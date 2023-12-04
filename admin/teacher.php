@@ -81,9 +81,9 @@ if (isset($_SESSION['admin_id']) &&
                     <th scope="row"><?=$i?></th>
                     <td><?=$teacher['id_giao_vien']?></td>
                     <td><a href="teacher-view.php?id_giao_vien=<?=$teacher['id_giao_vien']?>">
-                         <?=$teacher['fname']?></a></td>
-                    <td><?=$teacher['lname']?></td>
-                    <td><?=$teacher['username']?></td>
+                         <?=$teacher['ho']?></a></td>
+                    <td><?=$teacher['ten']?></td>
+                    <td><?=$teacher['ten_dang_nhap']?></td>
                     <td>
                        <?php 
                            $s = '';

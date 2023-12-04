@@ -6,9 +6,9 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
     	
 
-if (isset($_POST['fname']) &&
-    isset($_POST['lname']) &&
-    isset($_POST['username']) &&
+if (isset($_POST['ho']) &&
+    isset($_POST['ten']) &&
+    isset($_POST['ten_dang_nhap']) &&
     isset($_POST['pass'])     &&
     isset($_POST['address'])  &&
     isset($_POST['employee_number']) &&
@@ -22,9 +22,9 @@ if (isset($_POST['fname']) &&
     include '../../DB_connection.php';
     include "../data/teacher.php";
 
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $uname = $_POST['username'];
+    $ho = $_POST['ho'];
+    $ten = $_POST['ten'];
+    $uname = $_POST['ten_dang_nhap'];
     $pass = $_POST['pass'];
 
     $address = $_POST['address'];
@@ -45,22 +45,22 @@ if (isset($_POST['fname']) &&
     	$subjects .=$subject;
     }
 
-    $data = 'uname='.$uname.'&fname='.$fname.'&lname='.$lname.'&address='.$address.'&en='.$employee_number.'&pn='.$phone_number.'&qf='.$qualification.'&email='.$email_address;
+    $data = 'uname='.$uname.'&ho='.$ho.'&ten='.$ten.'&address='.$address.'&en='.$employee_number.'&pn='.$phone_number.'&qf='.$qualification.'&email='.$email_address;
 
-    if (empty($fname)) {
+    if (empty($ho)) {
 		$em  = "First name is required";
 		header("Location: ../teacher-add.php?error=$em&$data");
 		exit;
-	}else if (empty($lname)) {
+	}else if (empty($ten)) {
 		$em  = "Last name is required";
 		header("Location: ../teacher-add.php?error=$em&$data");
 		exit;
 	}else if (empty($uname)) {
-		$em  = "Username is required";
+		$em  = "ten_dang_nhap is required";
 		header("Location: ../teacher-add.php?error=$em&$data");
 		exit;
 	}else if (!unameIsUnique($uname, $conn)) {
-		$em  = "Username is taken! try another";
+		$em  = "ten_dang_nhap is taken! try another";
 		header("Location: ../teacher-add.php?error=$em&$data");
 		exit;
 	}else if (empty($pass)) {
@@ -104,10 +104,10 @@ if (isset($_POST['fname']) &&
         $pass = password_hash($pass, PASSWORD_DEFAULT);
 
         $sql  = "INSERT INTO
-                 teachers(username, password, class, fname, lname, subjects, address, employee_number, date_of_birth, phone_number, qualification, gender, email_address)
+                 teachers(ten_dang_nhap, password, class, ho, ten, subjects, address, employee_number, date_of_birth, phone_number, qualification, gender, email_address)
                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname, $pass, $classes, $fname, $lname, $subjects, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address]);
+        $stmt->execute([$uname, $pass, $classes, $ho, $ten, $subjects, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address]);
         $sm = "New teacher registered successfully";
         header("Location: ../teacher-add.php?success=$sm");
         exit;

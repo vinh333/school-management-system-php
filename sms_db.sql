@@ -29,17 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
-  `username` varchar(127) NOT NULL,
+  `ten_dang_nhap` varchar(127) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fname` varchar(127) NOT NULL,
-  `lname` varchar(127) NOT NULL
+  `ho` varchar(127) NOT NULL,
+  `ten` varchar(127) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `username`, `password`, `fname`, `lname`) VALUES
+INSERT INTO `admin` (`admin_id`, `ten_dang_nhap`, `password`, `ho`, `ten`) VALUES
 (1, 'elias', '$2y$10$H7obJEdmLzqqcPy7wQWhsOLUvrgzC8f1Y1or2Gxaza5z1PT0tvLy6', 'Elias', 'Abdurrahman');
 
 -- --------------------------------------------------------
@@ -118,10 +118,10 @@ INSERT INTO `message` (`message_id`, `sender_full_name`, `sender_email`, `messag
 
 CREATE TABLE `registrar_office` (
   `r_user_id` int(11) NOT NULL,
-  `username` varchar(127) NOT NULL,
+  `ten_dang_nhap` varchar(127) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fname` varchar(31) NOT NULL,
-  `lname` varchar(31) NOT NULL,
+  `ho` varchar(31) NOT NULL,
+  `ten` varchar(31) NOT NULL,
   `address` varchar(31) NOT NULL,
   `employee_number` int(11) NOT NULL,
   `date_of_birth` date NOT NULL,
@@ -136,7 +136,7 @@ CREATE TABLE `registrar_office` (
 -- Dumping data for table `registrar_office`
 --
 
-INSERT INTO `registrar_office` (`r_user_id`, `username`, `password`, `fname`, `lname`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
+INSERT INTO `registrar_office` (`r_user_id`, `ten_dang_nhap`, `password`, `ho`, `ten`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
 (1, 'james', '$2y$10$t0SCfeXNcyiO9hdzNTKKB.j2xlE2yt8Hm2.0AWJR5kSE469JIkHKG', 'James', 'William', 'West Virginia', 843583, '2022-10-04', '+12328324092', 'diploma', 'Male', 'james@j.com', '2022-10-23 01:03:25'),
 (2, 'oliver2', '$2y$10$7XhzOu.3OgHPFv7hKjvfUu3waU.8j6xTASj4yIWMfo...k/p8yvvS', 'Oliver2', 'Noah', 'California,  Los angeles', 6546, '1999-06-11', '09457396789', 'BSc, BA', 'Male', 'ov@ab.com', '2022-11-12 23:06:18');
 
@@ -190,11 +190,11 @@ INSERT INTO `setting` (`id`, `current_year`, `current_semester`, `school_name`, 
 --
 
 CREATE TABLE `students` (
-  `student_id` int(11) NOT NULL,
-  `username` varchar(127) NOT NULL,
+  `id_hoc_sinh` int(11) NOT NULL,
+  `ten_dang_nhap` varchar(127) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fname` varchar(127) NOT NULL,
-  `lname` varchar(255) NOT NULL,
+  `ho` varchar(127) NOT NULL,
+  `ten` varchar(255) NOT NULL,
   `grade` int(11) NOT NULL,
   `section` int(11) NOT NULL,
   `address` varchar(31) NOT NULL,
@@ -202,8 +202,8 @@ CREATE TABLE `students` (
   `email_address` varchar(255) NOT NULL,
   `date_of_birth` date NOT NULL,
   `date_of_joined` timestamp NULL DEFAULT current_timestamp(),
-  `parent_fname` varchar(127) NOT NULL,
-  `parent_lname` varchar(127) NOT NULL,
+  `parent_ho` varchar(127) NOT NULL,
+  `parent_ten` varchar(127) NOT NULL,
   `parent_phone_number` varchar(31) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -211,7 +211,7 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`student_id`, `username`, `password`, `fname`, `lname`, `grade`, `section`, `address`, `gender`, `email_address`, `date_of_birth`, `date_of_joined`, `parent_fname`, `parent_lname`, `parent_phone_number`) VALUES
+INSERT INTO `students` (`id_hoc_sinh`, `ten_dang_nhap`, `password`, `ho`, `ten`, `grade`, `section`, `address`, `gender`, `email_address`, `date_of_birth`, `date_of_joined`, `parent_ho`, `parent_ten`, `parent_phone_number`) VALUES
 (1, 'john', '$2y$10$xmtROY8efWeORYiuQDE3SO.eZwscao20QNuLky1Qlr88zDzNNq4gm', 'John', 'Doe', 1, 1, 'California,  Los angeles', 'Male', 'abas55@ab.com', '2012-09-12', '2019-12-11 14:16:44', 'Doe', 'Mark', '09393'),
 (3, 'abas', '$2y$10$KLFheMWgpLfoiqMuW2LQxOPficlBiSIJ9.wE2qr5yJUbAQ.5VURoO', 'Abas', 'A.', 2, 1, 'Berlin', 'Male', 'abas@ab.com', '2002-12-03', '2021-12-01 14:16:51', 'dsf', 'dfds', '7979'),
 (4, 'jo', '$2y$10$pYyVlWg9jxkT0u/4LrCMS.ztMaOvgyol1hgNt.jqcFEqUC7yZLIYe', 'John3', 'Doe', 1, 1, 'California,  Los angeles', 'Female', 'jo@jo.com', '2013-06-13', '2022-09-10 13:48:49', 'Doe', 'Mark', '074932040'),
@@ -227,7 +227,7 @@ CREATE TABLE `student_score` (
   `id` int(11) NOT NULL,
   `semester` varchar(100) NOT NULL,
   `year` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
+  `id_hoc_sinh` int(11) NOT NULL,
   `id_giao_vien` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `results` varchar(512) NOT NULL
@@ -237,7 +237,7 @@ CREATE TABLE `student_score` (
 -- Dumping data for table `student_score`
 --
 
-INSERT INTO `student_score` (`id`, `semester`, `year`, `student_id`, `id_giao_vien`, `subject_id`, `results`) VALUES
+INSERT INTO `student_score` (`id`, `semester`, `year`, `id_hoc_sinh`, `id_giao_vien`, `subject_id`, `results`) VALUES
 (1, 'II', 2021, 1, 1, 1, '10 15,15 20,10 10,10 20,30 35'),
 (2, 'II', 2023, 1, 1, 4, '15 20,4 5'),
 (3, 'I', 2022, 1, 1, 5, '10 20,50 50');
@@ -276,11 +276,11 @@ INSERT INTO `subjects` (`subject_id`, `subject`, `subject_code`, `grade`) VALUES
 
 CREATE TABLE `teachers` (
   `id_giao_vien` int(11) NOT NULL,
-  `username` varchar(127) NOT NULL,
+  `ten_dang_nhap` varchar(127) NOT NULL,
   `password` varchar(255) NOT NULL,
   `class` varchar(31) NOT NULL,
-  `fname` varchar(127) NOT NULL,
-  `lname` varchar(127) NOT NULL,
+  `ho` varchar(127) NOT NULL,
+  `ten` varchar(127) NOT NULL,
   `subjects` varchar(31) NOT NULL,
   `address` varchar(31) NOT NULL,
   `employee_number` int(11) NOT NULL,
@@ -296,7 +296,7 @@ CREATE TABLE `teachers` (
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`id_giao_vien`, `username`, `password`, `class`, `fname`, `lname`, `subjects`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
+INSERT INTO `teachers` (`id_giao_vien`, `ten_dang_nhap`, `password`, `class`, `ho`, `ten`, `subjects`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
 (1, 'oliver', '$2y$10$JruTW/rNZ6CVO4nxYWCrn.GJpiIKMACEPYrK00S7Dk/fkbJIdYau2', '1234', 'Oliver', 'Noah', '1245', 'California,  Los angeles', 6546, '2022-09-12', '0945739', 'BSc', 'Male', 'ol@ab.com', '2022-09-09 05:23:45'),
 (5, 'abas', '$2y$10$cMSKcHEJcg3K6wbVcxcXGuksgU39i70aEQVKN7ZHrzqTH9oAc3y5m', '123', 'Abas', 'A.', '12', 'Berlin', 1929, '2003-09-16', '09457396789', 'BSc,', 'Male', 'abas55@ab.com', '2022-09-09 06:42:31');
 
@@ -309,7 +309,7 @@ INSERT INTO `teachers` (`id_giao_vien`, `username`, `password`, `class`, `fname`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `ten_dang_nhap` (`ten_dang_nhap`);
 
 --
 -- Indexes for table `class`
@@ -351,8 +351,8 @@ ALTER TABLE `setting`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`student_id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`id_hoc_sinh`),
+  ADD UNIQUE KEY `ten_dang_nhap` (`ten_dang_nhap`);
 
 --
 -- Indexes for table `student_score`
@@ -371,7 +371,7 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `teachers`
   ADD PRIMARY KEY (`id_giao_vien`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `ten_dang_nhap` (`ten_dang_nhap`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -423,7 +423,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_hoc_sinh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `student_score`

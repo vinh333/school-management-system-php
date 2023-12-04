@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['admin_id']) && 
     isset($_SESSION['role'])     &&
-    isset($_GET['student_id'])) {
+    isset($_GET['id_hoc_sinh'])) {
 
     if ($_SESSION['role'] == 'Admin') {
       
@@ -13,8 +13,8 @@ if (isset($_SESSION['admin_id']) &&
        $grades = getAllGrades($conn);
        $sections = getAllsections($conn);
        
-       $student_id = $_GET['student_id'];
-       $student = getStudentById($student_id, $conn);
+       $id_hoc_sinh = $_GET['id_hoc_sinh'];
+       $student = getStudentById($id_hoc_sinh, $conn);
 
        if ($student == 0) {
          header("Location: student.php");
@@ -61,15 +61,15 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Tên</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['fname']?>" 
-                 name="fname">
+                 value="<?=$student['ho']?>" 
+                 name="ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Họ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['lname']?>"
-                 name="lname">
+                 value="<?=$student['ten']?>"
+                 name="ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa chỉ</label>
@@ -109,12 +109,12 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Tên đăng nhập</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['username']?>"
-                 name="username">
+                 value="<?=$student['ten_dang_nhap']?>"
+                 name="ten_dang_nhap">
         </div>
         <input type="text"
-                value="<?=$student['student_id']?>"
-                name="student_id"
+                value="<?=$student['id_hoc_sinh']?>"
+                name="id_hoc_sinh"
                 hidden>
 
         <div class="mb-3">
@@ -172,15 +172,15 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Tên phụ huynh (bố/mẹ)</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['parent_fname']?>"
-                 name="parent_fname">
+                 value="<?=$student['parent_ho']?>"
+                 name="parent_ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Họ phụ huynh (bố/mẹ)</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['parent_lname']?>"
-                 name="parent_lname">
+                 value="<?=$student['parent_ten']?>"
+                 name="parent_ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Số điện thoại phụ huynh (bố/mẹ)</label>
@@ -234,8 +234,8 @@ if (isset($_SESSION['admin_id']) &&
             
           </div>
           <input type="text"
-                value="<?=$student['student_id']?>"
-                name="student_id"
+                value="<?=$student['id_hoc_sinh']?>"
+                name="id_hoc_sinh"
                 hidden>
 
           <div class="mb-3">

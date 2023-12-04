@@ -29,10 +29,10 @@ function getAllR_users($conn){
    }
 }
 
-// Check if the username Unique
+// Check if the ten_dang_nhap Unique
 function unameIsUnique($uname, $conn, $r_user_id=0){
-   $sql = "SELECT username, r_user_id FROM registrar_office
-           WHERE username=?";
+   $sql = "SELECT ten_dang_nhap, r_user_id FROM registrar_office
+           WHERE ten_dang_nhap=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
    

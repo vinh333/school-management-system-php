@@ -6,9 +6,9 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
     	
 
-if (isset($_POST['fname'])      &&
-    isset($_POST['lname'])      &&
-    isset($_POST['username'])   &&
+if (isset($_POST['ho'])      &&
+    isset($_POST['ten'])      &&
+    isset($_POST['ten_dang_nhap'])   &&
     isset($_POST['r_user_id']) &&
     isset($_POST['address'])  &&
     isset($_POST['employee_number']) &&
@@ -21,9 +21,9 @@ if (isset($_POST['fname'])      &&
     include '../../DB_connection.php';
     include "../data/registrar_office.php";
 
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $uname = $_POST['username'];
+    $ho = $_POST['ho'];
+    $ten = $_POST['ten'];
+    $uname = $_POST['ten_dang_nhap'];
 
     $address = $_POST['address'];
     $employee_number = $_POST['employee_number'];
@@ -38,20 +38,20 @@ if (isset($_POST['fname'])      &&
 
     $data = 'r_user_id='.$r_user_id;
 
-    if (empty($fname)) {
+    if (empty($ho)) {
 		$em  = "First name is required";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
-	}else if (empty($lname)) {
+	}else if (empty($ten)) {
 		$em  = "Last name is required";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
 	}else if (empty($uname)) {
-		$em  = "Username is required";
+		$em  = "ten_dang_nhap is required";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
 	}else if (!unameIsUnique($uname, $conn, $r_user_id)) {
-		$em  = "Username is taken! try another";
+		$em  = "ten_dang_nhap is taken! try another";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
 	}else if (empty($address)) {
@@ -84,11 +84,11 @@ if (isset($_POST['fname'])      &&
         exit;
     }else {
         $sql = "UPDATE registrar_office SET
-                username = ?, fname=?, lname=?,
+                ten_dang_nhap = ?, ho=?, ten=?,
                 address = ?, employee_number=?, date_of_birth = ?, phone_number = ?, qualification = ?,gender=?, email_address = ?
                 WHERE r_user_id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname, $fname, $lname, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address, $r_user_id]);
+        $stmt->execute([$uname, $ho, $ten, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address, $r_user_id]);
         $sm = "successfully updated!";
         header("Location: ../registrar-office-edit.php?success=$sm&$data");
         exit;

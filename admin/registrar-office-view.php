@@ -32,12 +32,12 @@ if (isset($_SESSION['admin_id']) &&
          <div class="card" style="width: 22rem;">
           <img src="../img/registrar-office-<?=$r_user['gender']?>.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-center">@<?=$r_user['username']?></h5>
+            <h5 class="card-title text-center">@<?=$r_user['ten_dang_nhap']?></h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Họ và tên đệm: <?=$r_user['fname']?></li>
-            <li class="list-group-item">Tên: <?=$r_user['lname']?></li>
-            <li class="list-group-item">Tên đăng nhập: <?=$r_user['username']?></li>
+            <li class="list-group-item">Họ và tên đệm: <?=$r_user['ho']?></li>
+            <li class="list-group-item">Tên: <?=$r_user['ten']?></li>
+            <li class="list-group-item">Tên đăng nhập: <?=$r_user['ten_dang_nhap']?></li>
 
             <li class="list-group-item">Số nhân viên: <?=$r_user['employee_number']?></li>
             <li class="list-group-item">Địa chỉ: <?=$r_user['address']?></li>

@@ -6,56 +6,56 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
         
 
-if (isset($_POST['fname'])      &&
-    isset($_POST['lname'])      &&
-    isset($_POST['username'])   &&
-    isset($_POST['student_id']) &&
+if (isset($_POST['ho'])      &&
+    isset($_POST['ten'])      &&
+    isset($_POST['ten_dang_nhap'])   &&
+    isset($_POST['id_hoc_sinh']) &&
     isset($_POST['address'])    &&
     isset($_POST['email_address']) &&
     isset($_POST['gender'])        &&
     isset($_POST['date_of_birth']) &&
     isset($_POST['section'])       &&
-    isset($_POST['parent_fname'])  &&
-    isset($_POST['parent_lname'])  &&
+    isset($_POST['parent_ho'])  &&
+    isset($_POST['parent_ten'])  &&
     isset($_POST['parent_phone_number']) &&
     isset($_POST['grade'])) {
     
     include '../../DB_connection.php';
     include "../data/student.php";
 
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $uname = $_POST['username'];
+    $ho = $_POST['ho'];
+    $ten = $_POST['ten'];
+    $uname = $_POST['ten_dang_nhap'];
 
     $address = $_POST['address'];
     $gender = $_POST['gender'];
     $section = $_POST['section'];
     $email_address = $_POST['email_address'];
     $date_of_birth = $_POST['date_of_birth'];
-    $parent_fname = $_POST['parent_fname'];
-    $parent_lname = $_POST['parent_lname'];
+    $parent_ho = $_POST['parent_ho'];
+    $parent_ten = $_POST['parent_ten'];
     $parent_phone_number = $_POST['parent_phone_number'];
 
-    $student_id = $_POST['student_id'];
+    $id_hoc_sinh = $_POST['id_hoc_sinh'];
     
     $grade = $_POST['grade'];
 
-    $data = 'student_id='.$student_id;
+    $data = 'id_hoc_sinh='.$id_hoc_sinh;
 
-    if (empty($fname)) {
+    if (empty($ho)) {
         $em  = "First name is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($lname)) {
+    }else if (empty($ten)) {
         $em  = "Last name is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
     }else if (empty($uname)) {
-        $em  = "Username is required";
+        $em  = "ten_dang_nhap is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (!unameIsUnique($uname, $conn, $student_id)) {
-        $em  = "Username is taken! try another";
+    }else if (!unameIsUnique($uname, $conn, $id_hoc_sinh)) {
+        $em  = "ten_dang_nhap is taken! try another";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
     }else if (empty($address)) {
@@ -74,11 +74,11 @@ if (isset($_POST['fname'])      &&
         $em  = "Date of birth is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($parent_fname)) {
+    }else if (empty($parent_ho)) {
         $em  = "Parent first name is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($parent_lname)) {
+    }else if (empty($parent_ten)) {
         $em  = "Parent last name is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
@@ -92,10 +92,10 @@ if (isset($_POST['fname'])      &&
         exit;
     }else {
         $sql = "UPDATE students SET
-                username = ?, fname=?, lname=?, grade=?, address=?,gender = ?, section=?, email_address=?, date_of_birth=?, parent_fname=?,parent_lname=?,parent_phone_number=?
-                WHERE student_id=?";
+                ten_dang_nhap = ?, ho=?, ten=?, grade=?, address=?,gender = ?, section=?, email_address=?, date_of_birth=?, parent_ho=?,parent_ten=?,parent_phone_number=?
+                WHERE id_hoc_sinh=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname,$fname, $lname, $grade, $address, $gender,$section, $email_address, $date_of_birth, $parent_fname, $parent_lname,$parent_phone_number, $student_id]);
+        $stmt->execute([$uname,$ho, $ten, $grade, $address, $gender,$section, $email_address, $date_of_birth, $parent_ho, $parent_ten,$parent_phone_number, $id_hoc_sinh]);
         $sm = "successfully updated!";
         header("Location: ../student-edit.php?success=$sm&$data");
         exit;

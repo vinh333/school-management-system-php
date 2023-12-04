@@ -62,22 +62,22 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Họ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$teacher['fname']?>" 
-                 name="fname">
+                 value="<?=$teacher['ho']?>" 
+                 name="ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Tên</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$teacher['lname']?>"
-                 name="lname">
+                 value="<?=$teacher['ten']?>"
+                 name="ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Tên Đăng Nhập</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$teacher['username']?>"
-                 name="username">
+                 value="<?=$teacher['ten_dang_nhap']?>"
+                 name="ten_dang_nhap">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa Chỉ</label>

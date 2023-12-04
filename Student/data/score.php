@@ -1,11 +1,11 @@
 <?php
 
 // Get student_score by ID
-function getScoreById($student_id, $conn){
+function getScoreById($id_hoc_sinh, $conn){
    $sql = "SELECT * FROM student_score
-           WHERE student_id=? ORDER BY year DESC";
+           WHERE id_hoc_sinh=? ORDER BY year DESC";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$student_id]);
+   $stmt->execute([$id_hoc_sinh]);
 
    if ($stmt->rowCount() > 0) {
      $student_scores = $stmt->fetchAll();

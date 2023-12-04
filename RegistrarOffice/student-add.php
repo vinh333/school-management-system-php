@@ -10,8 +10,8 @@ if (isset($_SESSION['r_user_id']) &&
        $sections = getAllSections($conn);
 
 
-       $fname = '';
-       $lname = '';
+       $ho = '';
+       $ten = '';
        $uname = '';
        $address = '';
        $email = '';
@@ -20,8 +20,8 @@ if (isset($_SESSION['r_user_id']) &&
        $ppn = '';
 
 
-       if (isset($_GET['fname'])) $fname = $_GET['fname'];
-       if (isset($_GET['lname'])) $lname = $_GET['lname'];
+       if (isset($_GET['ho'])) $ho = $_GET['ho'];
+       if (isset($_GET['ten'])) $ten = $_GET['ten'];
        if (isset($_GET['uname'])) $uname = $_GET['uname'];
        if (isset($_GET['address'])) $address = $_GET['address'];
        if (isset($_GET['email'])) $email = $_GET['email'];
@@ -64,15 +64,15 @@ if (isset($_SESSION['r_user_id']) &&
           <label class="form-label">Tên</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$fname?>" 
-                 name="fname">
+                 value="<?=$ho?>" 
+                 name="ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Họ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$lname?>"
-                 name="lname">
+                 value="<?=$ten?>"
+                 name="ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa chỉ</label>
@@ -110,7 +110,7 @@ if (isset($_SESSION['r_user_id']) &&
           <input type="text" 
                  class="form-control"
                  value="<?=$uname?>"
-                 name="username">
+                 name="ten_dang_nhap">
         </div>
         <div class="mb-3">
           <label class="form-label">Mật khẩu</label>
@@ -130,14 +130,14 @@ if (isset($_SESSION['r_user_id']) &&
           <input type="text" 
                  class="form-control"
                  value="<?=$pfn?>"
-                 name="parent_fname">
+                 name="parent_ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Họ phụ huynh - phụ nữ</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$pln?>"
-                 name="parent_lname">
+                 name="parent_ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Số điện thoại phụ huynh - phụ nữ</label>

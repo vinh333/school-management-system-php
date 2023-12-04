@@ -29,10 +29,10 @@ function getAllTeachers($conn){
    }
 }
 
-// Check if the username Unique
+// Check if the ten_dang_nhap Unique
 function unameIsUnique($uname, $conn, $id_giao_vien=0){
-   $sql = "SELECT username, id_giao_vien FROM teachers
-           WHERE username=?";
+   $sql = "SELECT ten_dang_nhap, id_giao_vien FROM teachers
+           WHERE ten_dang_nhap=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
    
@@ -76,9 +76,9 @@ function searchTeachers($key, $conn){
 
    $sql = "SELECT * FROM teachers
            WHERE id_giao_vien LIKE ? 
-           OR fname LIKE ?
-           OR lname LIKE ?
-           OR username LIKE ?
+           OR ho LIKE ?
+           OR ten LIKE ?
+           OR ten_dang_nhap LIKE ?
            OR employee_number LIKE ?
            OR phone_number LIKE ?
            OR qualification LIKE ?

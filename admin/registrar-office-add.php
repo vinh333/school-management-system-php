@@ -8,8 +8,8 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
 
 
-       $fname = '';
-       $lname = '';
+       $ho = '';
+       $ten = '';
        $uname = '';
        $address = '';
        $en = '';
@@ -17,8 +17,8 @@ if (isset($_SESSION['admin_id']) &&
        $qf = '';
        $email = '';
 
-       if (isset($_GET['fname'])) $fname = $_GET['fname'];
-       if (isset($_GET['lname'])) $lname = $_GET['lname'];
+       if (isset($_GET['ho'])) $ho = $_GET['ho'];
+       if (isset($_GET['ten'])) $ten = $_GET['ten'];
        if (isset($_GET['uname'])) $uname = $_GET['uname'];
        if (isset($_GET['address'])) $address = $_GET['address'];
        if (isset($_GET['en'])) $en = $_GET['en'];
@@ -64,22 +64,22 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Họ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$fname?>" 
-                 name="fname">
+                 value="<?=$ho?>" 
+                 name="ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Tên</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$lname?>"
-                 name="lname">
+                 value="<?=$ten?>"
+                 name="ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Tên Người Dùng</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$uname?>"
-                 name="username">
+                 name="ten_dang_nhap">
         </div>
         <div class="mb-3">
           <label class="form-label">Mật Khẩu</label>

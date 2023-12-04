@@ -37,10 +37,8 @@ if (isset($_SESSION['id_giao_vien']) &&
      ?>
      
   <?php $i = 0; foreach ($students as $student ) { 
-       $g = getGradeById($class['grade'], $conn);
-      
-       $s = getSectioById($class['section'], $conn);
-       if ($g['grade_id'] == $student['grade'] && $s['section_id'] == $student['section']) { 
+       
+       if ($class['id_lop'] == $student['id_lop'] ) { 
            $i++; 
            if ($i == 1) { 
                $check++;
@@ -55,31 +53,23 @@ if (isset($_SESSION['id_giao_vien']) &&
                     <th scope="col">Họ và tên đệm</th>
                     <th scope="col">Tên</th>
                     <th scope="col">Tên đăng nhập</th>
-                    <th scope="col">Khối</th>
+                    <th scope="col">Lớp</th>
                   </tr>
                 </thead>
                 <tbody>  
               <?php } ?>          
                   <tr>
                     <th scope="row"><?=$i?></th>
-                    <td><?=$student['student_id']?></td>
+                    <td><?=$student['id_hoc_sinh']?></td>
                     <td>
-                      <a href="student-grade.php?student_id=<?=$student['student_id']?>">
-                        <?=$student['fname']?>
+                      <a href="student-grade.php?id_hoc_sinh=<?=$student['id_hoc_sinh']?>">
+                        <?=$student['ho']?>
                       </a>
                     </td>
-                    <td><?=$student['lname']?></td>
-                    <td><?=$student['username']?></td>
-                    <td>
-                      <?php 
-                           $grade = $student['grade'];
-                           $g_temp = getGradeById($grade, $conn);
-                           if ($g_temp != 0) {
-                              echo $g_temp['grade_code'].'-'.
-                                     $g_temp['grade'];
-                            }
-                        ?>
-                    </td>
+                    <td><?=$student['ten']?></td>
+                    <td><?=$student['ten_dang_nhap']?></td>
+                    <td><?=$class['ten_lop']?></td>
+                    
                   </tr>
                 <?php } } ?>
                 </tbody>

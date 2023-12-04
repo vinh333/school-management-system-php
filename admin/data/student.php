@@ -17,7 +17,7 @@ function getAllStudents($conn){
 // DELETE
 function removeStudent($id, $conn){
    $sql  = "DELETE FROM students
-           WHERE student_id=?";
+           WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $re   = $stmt->execute([$id]);
    if ($re) {
@@ -30,7 +30,7 @@ function removeStudent($id, $conn){
 // Get Student By Id 
 function getStudentById($id, $conn){
    $sql = "SELECT * FROM students
-           WHERE student_id=?";
+           WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
@@ -43,14 +43,14 @@ function getStudentById($id, $conn){
 }
 
 
-// Check if the username Unique
-function unameIsUnique($uname, $conn, $student_id=0){
-   $sql = "SELECT username, student_id FROM students
-           WHERE username=?";
+// Check if the ten_dang_nhap Unique
+function unameIsUnique($uname, $conn, $id_hoc_sinh=0){
+   $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM students
+           WHERE ten_dang_nhap=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
    
-   if ($student_id == 0) {
+   if ($id_hoc_sinh == 0) {
      if ($stmt->rowCount() >= 1) {
        return 0;
      }else {
@@ -59,7 +59,7 @@ function unameIsUnique($uname, $conn, $student_id=0){
    }else {
     if ($stmt->rowCount() >= 1) {
        $student = $stmt->fetch();
-       if ($student['student_id'] == $student_id) {
+       if ($student['id_hoc_sinh'] == $id_hoc_sinh) {
          return 1;
        }else {
         return 0;
@@ -76,15 +76,15 @@ function unameIsUnique($uname, $conn, $student_id=0){
 function searchStudents($key, $conn){
    $key = preg_replace('/(?<!\\\)([%_])/', '\\\$1',$key);
    $sql = "SELECT * FROM students
-           WHERE student_id LIKE ? 
-           OR fname LIKE ?
+           WHERE id_hoc_sinh LIKE ? 
+           OR ho LIKE ?
            OR address LIKE ?
            OR email_address LIKE ?
-           OR parent_fname LIKE ?
-           OR parent_lname LIKE ?
+           OR parent_ho LIKE ?
+           OR parent_ten LIKE ?
            OR parent_phone_number LIKE ?
-           OR lname LIKE ?
-           OR username LIKE ?";
+           OR ten LIKE ?
+           OR ten_dang_nhap LIKE ?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$key, $key, $key, $key, $key, $key, $key, $key, $key]);
 

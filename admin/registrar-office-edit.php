@@ -51,15 +51,15 @@ if (isset($_SESSION['admin_id']) &&
         <?php } ?>
         <div class="mb-3">
           <label class="form-label">Họ và tên đệm</label>
-          <input type="text" class="form-control" value="<?=$r_user['fname']?>" name="fname">
+          <input type="text" class="form-control" value="<?=$r_user['ho']?>" name="ho">
         </div>
         <div class="mb-3">
           <label class="form-label">Tên</label>
-          <input type="text" class="form-control" value="<?=$r_user['lname']?>" name="lname">
+          <input type="text" class="form-control" value="<?=$r_user['ten']?>" name="ten">
         </div>
         <div class="mb-3">
           <label class="form-label">Tên đăng nhập</label>
-          <input type="text" class="form-control" value="<?=$r_user['username']?>" name="username">
+          <input type="text" class="form-control" value="<?=$r_user['ten_dang_nhap']?>" name="ten_dang_nhap">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa chỉ</label>

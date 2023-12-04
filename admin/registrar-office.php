@@ -62,9 +62,9 @@ if (isset($_SESSION['admin_id']) &&
                     <th scope="row"><?=$i?></th>
                     <td><?=$r_user['r_user_id']?></td>
                     <td><a href="registrar-office-view.php?r_user_id=<?=$r_user['r_user_id']?>">
-                         <?=$r_user['fname']?></a></td>
-                    <td><?=$r_user['lname']?></td>
-                    <td><?=$r_user['username']?></td>
+                         <?=$r_user['ho']?></a></td>
+                    <td><?=$r_user['ten']?></td>
+                    <td><?=$r_user['ten_dang_nhap']?></td>
                     <td>
                         <a href="registrar-office-edit.php?r_user_id=<?=$r_user['r_user_id']?>"
                            class="btn btn-warning">Chỉnh sửa</a>

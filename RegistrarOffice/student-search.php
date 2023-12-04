@@ -80,14 +80,14 @@ if (isset($_SESSION['r_user_id']) &&
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>
-                    <td><?=$student['student_id']?></td>
+                    <td><?=$student['id_hoc_sinh']?></td>
                     <td>
-                      <a href="student-view.php?student_id=<?=$student['student_id']?>">
-                        <?=$student['fname']?>
+                      <a href="student-view.php?id_hoc_sinh=<?=$student['id_hoc_sinh']?>">
+                        <?=$student['ho']?>
                       </a>
                     </td>
-                    <td><?=$student['lname']?></td>
-                    <td><?=$student['username']?></td>
+                    <td><?=$student['ten']?></td>
+                    <td><?=$student['ten_dang_nhap']?></td>
                     <td>
                       <?php 
                            $grade = $student['grade'];
@@ -99,9 +99,9 @@ if (isset($_SESSION['r_user_id']) &&
                         ?>
                     </td>
                     <td>
-                        <a href="student-edit.php?student_id=<?=$student['student_id']?>"
+                        <a href="student-edit.php?id_hoc_sinh=<?=$student['id_hoc_sinh']?>"
                            class="btn btn-warning">Sửa</a>
-                        <a href="student-delete.php?student_id=<?=$student['student_id']?>"
+                        <a href="student-delete.php?id_hoc_sinh=<?=$student['id_hoc_sinh']?>"
                            class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>

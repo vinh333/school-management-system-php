@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['student_id']) && 
+if (isset($_SESSION['id_hoc_sinh']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Student') {
@@ -9,9 +9,9 @@ if (isset($_SESSION['student_id']) &&
      include "data/subject.php";
 
 
-     $student_id = $_SESSION['student_id'];
+     $id_hoc_sinh = $_SESSION['id_hoc_sinh'];
 
-     $scores = getScoreById($student_id, $conn);
+     $scores = getScoreById($id_hoc_sinh, $conn);
 
 
  ?>

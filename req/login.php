@@ -12,7 +12,7 @@ if (isset($_POST['uname']) &&
     $role = $_POST['role'];
 
     if (empty($uname)) {
-        $em  = "Username is required";
+        $em  = "ten_dang_nhap is required";
         header("Location: ../login.php?error=$em");
         exit;
     } elseif (empty($pass)) {
@@ -48,10 +48,10 @@ if (isset($_POST['uname']) &&
 
         if ($stmt->rowCount() == 1) {
             $user = $stmt->fetch();
-            $username = $user['ten_dang_nhap'];
+            $ten_dang_nhap = $user['ten_dang_nhap'];
             $password = $user['mat_khau'];
 
-            if ($username === $uname) {
+            if ($ten_dang_nhap === $uname) {
                 if (password_verify($pass, $password)) {
                     $_SESSION['role'] = $role;
                     if ($role == 'Admin') {
@@ -61,7 +61,7 @@ if (isset($_POST['uname']) &&
                         exit;
                     } elseif ($role == 'Student') {
                         $id = $user['id_hoc_sinh'];
-                        $_SESSION['student_id'] = $id;
+                        $_SESSION['id_hoc_sinh'] = $id;
                         header("Location: ../Student/index.php");
                         exit;
                     } elseif ($role == 'Registrar Office') {
@@ -75,23 +75,23 @@ if (isset($_POST['uname']) &&
                         header("Location: ../Teacher/index.php");
                         exit;
                     } else {
-                        $em  = "Incorrect Username or Password";
+                        $em  = "Incorrect ten_dang_nhap or Password";
                         header("Location: ../login.php?error=$em");
                         exit;
                     }
 
                 } else {
-                    $em  = "Incorrect Username or Password";
+                    $em  = "Incorrect ten_dang_nhap or Password";
                     header("Location: ../login.php?error=$em");
                     exit;
                 }
             } else {
-                $em  = "Incorrect Username or Password";
+                $em  = "Incorrect ten_dang_nhap or Password";
                 header("Location: ../login.php?error=$em");
                 exit;
             }
         } else {
-            $em  = "Incorrect Username or Password";
+            $em  = "Incorrect ten_dang_nhap or Password";
             header("Location: ../login.php?error=$em");
             exit;
         }

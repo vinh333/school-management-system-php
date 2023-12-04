@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['student_id']) && 
+if (isset($_SESSION['id_hoc_sinh']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Student') {
@@ -16,7 +16,7 @@ if (isset($_SESSION['student_id']) &&
             $new_pass = $_POST['new_pass'];
             $c_new_pass = $_POST['c_new_pass'];
 
-            $student_id = $_SESSION['student_id'];
+            $id_hoc_sinh = $_SESSION['id_hoc_sinh'];
 
             if (empty($old_pass)) {
                 $em  = "Yêu cầu nhập mật khẩu cũ";
@@ -34,7 +34,7 @@ if (isset($_SESSION['student_id']) &&
                 $em  = "Mật khẩu mới và mật khẩu xác nhận không khớp";
                 header("Location: ../pass.php?perror=$em");
                 exit;
-            } else if (!studentPasswordVerify($old_pass, $conn, $student_id)) {
+            } else if (!studentPasswordVerify($old_pass, $conn, $id_hoc_sinh)) {
                 $em  = "Mật khẩu cũ không đúng";
                 header("Location: ../pass.php?perror=$em");
                 exit;
@@ -44,10 +44,10 @@ if (isset($_SESSION['student_id']) &&
 
                 $sql = "UPDATE students SET
                         password = ?
-                        WHERE student_id=?";
+                        WHERE id_hoc_sinh=?";
 
                 $stmt = $conn->prepare($sql);
-                $stmt->execute([$new_pass, $student_id]);
+                $stmt->execute([$new_pass, $id_hoc_sinh]);
                 $sm = "Mật khẩu đã được thay đổi thành công!";
                 header("Location: ../pass.php?psuccess=$sm");
                 exit;

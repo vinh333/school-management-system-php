@@ -12,12 +12,12 @@ if (isset($_SESSION['id_giao_vien']) &&
        include "data/teacher.php";
        include "data/student_score.php";
 
-       if (!isset($_GET['student_id'])) {
+       if (!isset($_GET['id_hoc_sinh'])) {
            header("Location: students.php");
            exit;
        }
-       $student_id = $_GET['student_id'];
-       $student = getStudentById($student_id, $conn);
+       $id_hoc_sinh = $_GET['id_hoc_sinh'];
+       $student = getStudentById($id_hoc_sinh, $conn);
        $setting = getSetting($conn);
        $subjects = getSubjectByGrade($student['grade'], $conn);
 
@@ -30,7 +30,7 @@ if (isset($_SESSION['id_giao_vien']) &&
        if (isset($_POST['ssubject_id'])) {
            $ssubject_id = $_POST['ssubject_id'];
 
-           $student_score = getScoreById($student_id, $id_giao_vien, $ssubject_id, $setting['current_semester'], $setting['current_year'], $conn); 
+           $student_score = getScoreById($id_hoc_sinh, $id_giao_vien, $ssubject_id, $setting['current_semester'], $setting['current_year'], $conn); 
        }
  ?>
 <!DOCTYPE html>
@@ -56,9 +56,9 @@ if (isset($_SESSION['id_giao_vien']) &&
         <form method="post" action="">
             <div class="mb-3">
                 <ul class="list-group">
-                    <li class="list-group-item"><b>ID: </b> <?php echo $student['student_id'] ?></li>
-                  <li class="list-group-item"><b>Họ và tên đệm: </b> <?php echo $student['fname'] ?></li>
-                  <li class="list-group-item"><b>Tên: </b> <?php echo $student['lname'] ?></li>
+                    <li class="list-group-item"><b>ID: </b> <?php echo $student['id_hoc_sinh'] ?></li>
+                  <li class="list-group-item"><b>Họ và tên đệm: </b> <?php echo $student['ho'] ?></li>
+                  <li class="list-group-item"><b>Tên: </b> <?php echo $student['ten'] ?></li>
                   <li class="list-group-item"><b>Khối: </b> 
                     <?php  $g = getGradeById($student['grade'], $conn); 
                         echo $g['grade_code'].'-'.$g['grade'];
@@ -130,7 +130,7 @@ if (isset($_SESSION['id_giao_vien']) &&
             </div>
            <?php } } ?>
 
-           <input type="text" name="student_id" value="<?=$student_id?>" hidden>
+           <input type="text" name="id_hoc_sinh" value="<?=$id_hoc_sinh?>" hidden>
             <input type="text" name="subject_id" value="<?=$ssubject_id?>" hidden>
             <input type="text" name="current_semester" value="<?=$setting['current_semester']?>" hidden>
             <input type="text" name="current_year" value="<?=$setting['current_year']?>" hidden>

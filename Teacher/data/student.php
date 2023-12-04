@@ -30,13 +30,13 @@ function getStudentById($id, $conn){
 }
 
 // Hàm để kiểm tra tính duy nhất của tên đăng nhập
-function unameIsUnique($uname, $conn, $student_id=0){
+function unameIsUnique($uname, $conn, $id_hoc_sinh=0){
    $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM hoc_sinh
            WHERE ten_dang_nhap=?"; // Sửa tên cột và bảng
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
    
-   if ($student_id == 0) {
+   if ($id_hoc_sinh == 0) {
      if ($stmt->rowCount() >= 1) {
        return 0;
      } else {
@@ -45,7 +45,7 @@ function unameIsUnique($uname, $conn, $student_id=0){
    } else {
     if ($stmt->rowCount() >= 1) {
        $student = $stmt->fetch();
-       if ($student['id_hoc_sinh'] == $student_id) {
+       if ($student['id_hoc_sinh'] == $id_hoc_sinh) {
          return 1;
        } else {
         return 0;
@@ -57,11 +57,11 @@ function unameIsUnique($uname, $conn, $student_id=0){
 }
 
 // Hàm để xác minh mật khẩu sinh viên
-function studentPasswordVerify($student_pass, $conn, $student_id){
+function studentPasswordVerify($student_pass, $conn, $id_hoc_sinh){
    $sql = "SELECT * FROM hoc_sinh
            WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$student_id]);
+   $stmt->execute([$id_hoc_sinh]);
 
    if ($stmt->rowCount() == 1) {
      $student = $stmt->fetch();
