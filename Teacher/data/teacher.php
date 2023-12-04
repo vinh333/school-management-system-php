@@ -1,18 +1,16 @@
-<?php  
+<?php
 
 // Hàm để lấy thông tin giáo viên dựa trên ID
-function getTeacherById($teacher_id, $conn){
-   $sql = "SELECT * FROM teachers
-           WHERE teacher_id=?";
+function getTeacherById($id_giao_vien, $conn){
+   $sql = "SELECT * FROM giao_vien
+           WHERE id_giao_vien=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$teacher_id]);
+   $stmt->execute([$id_giao_vien]);
 
    if ($stmt->rowCount() == 1) {
      $teacher = $stmt->fetch();
      return $teacher;
-   }else {
+   } else {
     return 0;
    }
 }
-
-

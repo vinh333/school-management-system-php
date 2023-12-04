@@ -6,7 +6,6 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
        include "../DB_connection.php";
        include "data/subject.php";
-       include "data/grade.php";
        $courses = getAllSubjects($conn);
        
  ?>

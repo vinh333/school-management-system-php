@@ -2,16 +2,14 @@
 session_start();
 if (isset($_SESSION['admin_id']) && 
     isset($_SESSION['role'])     &&
-    isset($_GET['class_id'])) {
+    isset($_GET['id_lop'])) {
 
     if ($_SESSION['role'] == 'Admin') {
       
        include "../DB_connection.php";
        include "data/class.php";
-       include "data/grade.php";
-       include "data/section.php";
 
-       $class = getClassById($_GET['class_id'], $conn);
+       $class = getClassById($_GET['id_lop'], $conn);
        $grades = getAllGrades($conn);
        $sections = getAllSections($conn);
        
@@ -91,8 +89,8 @@ if (isset($_SESSION['admin_id']) &&
         </div>
         <input type="text" 
                  class="form-control"
-                 value="<?=$class['class_id']?>"
-                 name="class_id"
+                 value="<?=$class['id_lop']?>"
+                 name="id_lop"
                  hidden>
 
       <button type="submit" 

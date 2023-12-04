@@ -9,7 +9,6 @@ if (isset($_SESSION['admin_id']) &&
        $search_key = $_GET['searchKey'];
        include "../DB_connection.php";
        include "data/student.php";
-       include "data/grade.php";
        $students = searchStudents($search_key, $conn);
  ?>
 <!DOCTYPE html>

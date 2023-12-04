@@ -1,22 +1,20 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
+if (isset($_SESSION['id_giao_vien']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
        include "../DB_connection.php";
        include "data/student.php";
-       include "data/grade.php";
        include "data/class.php";
-       include "data/section.php";
-       if (!isset($_GET['class_id'])) {
+       if (!isset($_GET['id_lop'])) {
            header("Location: students.php");
            exit;
        }
-       $class_id = $_GET['class_id'];
+       $id_lop = $_GET['id_lop'];
        $students = getAllStudents($conn);
 
-       $class = getClassById($class_id, $conn);
+       $class = getClassById($id_lop, $conn);
 
  ?>
 <!DOCTYPE html>

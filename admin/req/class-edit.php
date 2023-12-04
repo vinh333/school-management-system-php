@@ -8,17 +8,17 @@ if (isset($_SESSION['admin_id']) &&
 
 if (isset($_POST['section']) &&
     isset($_POST['grade']) &&
-    isset($_POST['class_id'])) {
+    isset($_POST['id_lop'])) {
     
     include '../../DB_connection.php';
 
     $section = $_POST['section'];
     $grade = $_POST['grade'];
-    $class_id = $_POST['class_id'];
+    $id_lop = $_POST['id_lop'];
 
-    $data = 'class_id='.$class_id;
+    $data = 'id_lop='.$id_lop;
 
-    if (empty($class_id)) {
+    if (empty($id_lop)) {
         $em  = "Class id is required";
         header("Location: ../class-edit.php?error=$em&$data");
         exit;
@@ -43,9 +43,9 @@ if (isset($_POST['section']) &&
         }else {
 
             $sql  = "UPDATE class SET grade=?, section=?
-                     WHERE class_id=?";
+                     WHERE id_lop=?";
             $stmt = $conn->prepare($sql);
-            $stmt->execute([$grade, $section, $class_id]);
+            $stmt->execute([$grade, $section, $id_lop]);
             $sm = "Class updated successfully";
             header("Location: ../class-edit.php?success=$sm&$data");
             exit;

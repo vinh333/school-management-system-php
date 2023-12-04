@@ -1,16 +1,14 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && isset($_SESSION['role'])) {
+if (isset($_SESSION['id_giao_vien']) && isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
        include "../DB_connection.php";
        include "data/class.php";
-       include "data/grade.php";
-       include "data/section.php";
        include "data/teacher.php";
        
-       $teacher_id = $_SESSION['teacher_id'];
-       $teacher = getTeacherById($teacher_id, $conn);
+       $id_giao_vien = $_SESSION['id_giao_vien'];
+       $teacher = getTeacherById($id_giao_vien, $conn);
        $classes = getAllClasses($conn);
  ?>
 <!DOCTYPE html>
@@ -46,12 +44,11 @@ if (isset($_SESSION['teacher_id']) && isset($_SESSION['role'])) {
                   
 
                       <?php 
-                          $classesx = str_split(trim($teacher['class']));
-                          $grade  = getGradeById($class['grade'], $conn);
-                          $section = getSectioById($class['section'], $conn);
-                          $c = $grade['grade_code'].'-'.$grade['grade'].$section['section'];
-                          foreach ($classesx as $class_id) {
-                               if ($class_id == $class['class_id']) {  $i++; ?>
+                          $classesx = str_split(trim($teacher['danh_sach_lop']));
+                          
+                          $c = $class['id_lop'].'-'.$class['ten_lop'];
+                          foreach ($classesx as $id_lop) {
+                               if ($id_lop == $class['id_lop']) {  $i++; ?>
                             <tr>
                                 <th scope="row"><?=$i?></th>
                                 <td>

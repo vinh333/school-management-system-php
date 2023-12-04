@@ -7,8 +7,6 @@ if (isset($_SESSION['r_user_id']) &&
        include "../DB_connection.php";
        include "data/student.php";
        include "data/subject.php";
-       include "data/grade.php";
-       include "data/section.php";
 
        if(isset($_GET['student_id'])){
 

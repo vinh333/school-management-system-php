@@ -1,8 +1,8 @@
-<?php  
+<?php
 
 // Hàm để lấy tất cả điểm của sinh viên
 function getAllScores($conn){
-   $sql = "SELECT * FROM student_score";
+   $sql = "SELECT * FROM diem_hoc_sinh"; // Sửa tên bảng
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
@@ -15,11 +15,11 @@ function getAllScores($conn){
 }
 
 // Hàm để lấy điểm của sinh viên theo ID
-function getScoreById($student_id, $teacher_id, $subject_id, $semester, $year, $conn){
-   $sql = "SELECT * FROM student_score
-           WHERE student_id=? AND teacher_id=? AND subject_id=? AND semester=? AND year=?";
+function getScoreById($student_id, $id_giao_vien, $subject_id, $semester, $year, $conn){
+   $sql = "SELECT * FROM diem_hoc_sinh
+           WHERE id_hoc_sinh=? AND id_giao_vien=? AND id_mon_hoc=? AND hoc_ky=? AND nam_hoc=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$student_id, $teacher_id, $subject_id, $semester, $year]);
+   $stmt->execute([$student_id, $id_giao_vien, $subject_id, $semester, $year]);
 
    if ($stmt->rowCount() == 1) {
      $student_score = $stmt->fetch();
@@ -28,3 +28,4 @@ function getScoreById($student_id, $teacher_id, $subject_id, $semester, $year, $
     return 0;
    }
 }
+?>

@@ -7,7 +7,6 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
       
        include "../DB_connection.php";
-       include "data/grade.php";
 
        $grades = getAllGrades($conn);
        

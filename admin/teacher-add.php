@@ -7,8 +7,6 @@ if (isset($_SESSION['admin_id']) &&
       
        include "../DB_connection.php";
        include "data/subject.php";
-       include "data/grade.php";
-       include "data/section.php";
        include "data/class.php";
        $subjects = getAllSubjects($conn);
        $classes = getAllClasses($conn);
@@ -174,7 +172,7 @@ if (isset($_SESSION['admin_id']) &&
             <div class="col">
               <input type="checkbox"
                      name="classes[]"
-                     value="<?=$class['class_id']?>">
+                     value="<?=$class['id_lop']?>">
                      <?php 
                         $grade = getGradeById($class['grade'], $conn); 
                         $section = getSectioById($class['section'], $conn); 

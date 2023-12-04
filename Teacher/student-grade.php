@@ -1,14 +1,12 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
+if (isset($_SESSION['id_giao_vien']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
        include "../DB_connection.php";
        include "data/student.php";
-       include "data/grade.php";
        include "data/class.php";
-       include "data/section.php";
        include "data/setting.php";
        include "data/subject.php";
        include "data/teacher.php";
@@ -23,8 +21,8 @@ if (isset($_SESSION['teacher_id']) &&
        $setting = getSetting($conn);
        $subjects = getSubjectByGrade($student['grade'], $conn);
 
-       $teacher_id = $_SESSION['teacher_id'];
-       $teacher = getTeacherById($teacher_id, $conn);
+       $id_giao_vien = $_SESSION['id_giao_vien'];
+       $teacher = getTeacherById($id_giao_vien, $conn);
 
        $teacher_subjects = str_split(trim($teacher['subjects']));
 
@@ -32,7 +30,7 @@ if (isset($_SESSION['teacher_id']) &&
        if (isset($_POST['ssubject_id'])) {
            $ssubject_id = $_POST['ssubject_id'];
 
-           $student_score = getScoreById($student_id, $teacher_id, $ssubject_id, $setting['current_semester'], $setting['current_year'], $conn); 
+           $student_score = getScoreById($student_id, $id_giao_vien, $ssubject_id, $setting['current_semester'], $setting['current_year'], $conn); 
        }
  ?>
 <!DOCTYPE html>

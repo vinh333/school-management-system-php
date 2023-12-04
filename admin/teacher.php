@@ -7,9 +7,7 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
        include "data/teacher.php";
        include "data/subject.php";
-       include "data/grade.php";
        include "data/class.php";
-       include "data/section.php";
        $teachers = getAllTeachers($conn);
  ?>
 <!DOCTYPE html>
@@ -81,8 +79,8 @@ if (isset($_SESSION['admin_id']) &&
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>
-                    <td><?=$teacher['teacher_id']?></td>
-                    <td><a href="teacher-view.php?teacher_id=<?=$teacher['teacher_id']?>">
+                    <td><?=$teacher['id_giao_vien']?></td>
+                    <td><a href="teacher-view.php?id_giao_vien=<?=$teacher['id_giao_vien']?>">
                          <?=$teacher['fname']?></a></td>
                     <td><?=$teacher['lname']?></td>
                     <td><?=$teacher['username']?></td>
@@ -103,8 +101,8 @@ if (isset($_SESSION['admin_id']) &&
                            $c = '';
                            $classes = str_split(trim($teacher['class']));
 
-                           foreach ($classes as $class_id) {
-                               $class = getClassById($class_id, $conn);
+                           foreach ($classes as $id_lop) {
+                               $class = getClassById($id_lop, $conn);
 
                               $c_temp = getGradeById($class['grade'], $conn);
                               $section = getSectioById($class['section'], $conn);
@@ -117,9 +115,9 @@ if (isset($_SESSION['admin_id']) &&
                         ?>
                     </td>
                     <td>
-                        <a href="teacher-edit.php?teacher_id=<?=$teacher['teacher_id']?>"
+                        <a href="teacher-edit.php?id_giao_vien=<?=$teacher['id_giao_vien']?>"
                            class="btn btn-warning">Sửa</a>
-                        <a href="teacher-delete.php?teacher_id=<?=$teacher['teacher_id']?>"
+                        <a href="teacher-delete.php?id_giao_vien=<?=$teacher['id_giao_vien']?>"
                            class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>

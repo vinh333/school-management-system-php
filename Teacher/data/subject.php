@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 // Hàm để lấy tất cả các môn học từ cơ sở dữ liệu
 function getAllSubjects($conn){
    // Chuỗi SQL để truy vấn tất cả các môn học
-   $sql = "SELECT * FROM subjects";
+   $sql = "SELECT * FROM mon_hoc";
    // Chuẩn bị và thực thi câu truy vấn SQL sử dụng PDO
    $stmt = $conn->prepare($sql);
    $stmt->execute();
@@ -22,8 +22,8 @@ function getAllSubjects($conn){
 // Hàm để lấy thông tin môn học dựa trên ID
 function getSubjectById($subject_id, $conn){
    // Chuỗi SQL để truy vấn thông tin môn học từ cơ sở dữ liệu
-   $sql = "SELECT * FROM subjects
-           WHERE subject_id=?";
+   $sql = "SELECT * FROM mon_hoc
+           WHERE id_mon_hoc=?";
    // Chuẩn bị và thực thi câu truy vấn SQL sử dụng PDO
    $stmt = $conn->prepare($sql);
    $stmt->execute([$subject_id]);
@@ -42,8 +42,8 @@ function getSubjectById($subject_id, $conn){
 // Hàm để lấy thông tin môn học dựa trên lớp
 function getSubjectByGrade($grade, $conn){
    // Chuỗi SQL để truy vấn thông tin môn học từ cơ sở dữ liệu dựa trên lớp
-   $sql = "SELECT * FROM subjects
-           WHERE grade=?";
+   $sql = "SELECT * FROM mon_hoc
+           WHERE lop=?";
    // Chuẩn bị và thực thi câu truy vấn SQL sử dụng PDO
    $stmt = $conn->prepare($sql);
    $stmt->execute([$grade]);
@@ -59,4 +59,4 @@ function getSubjectByGrade($grade, $conn){
    }
 }
 
- ?>
+?>

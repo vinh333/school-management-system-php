@@ -8,9 +8,7 @@ if (isset($_SESSION['admin_id']) &&
       
        include "../DB_connection.php";
        include "data/subject.php";
-       include "data/grade.php";
        include "data/student.php";
-       include "data/section.php";
        $subjects = getAllSubjects($conn);
        $grades = getAllGrades($conn);
        $sections = getAllsections($conn);

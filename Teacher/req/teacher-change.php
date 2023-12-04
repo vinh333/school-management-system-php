@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
+if (isset($_SESSION['id_giao_vien']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
@@ -17,7 +17,7 @@ if (isset($_POST['old_pass']) &&
     $new_pass = $_POST['new_pass'];
     $c_new_pass = $_POST['c_new_pass'];
 
-    $teacher_id = $_SESSION['teacher_id'];
+    $id_giao_vien = $_SESSION['id_giao_vien'];
     
     if (empty($old_pass)) {
 		$em  = "Old password is required";
@@ -35,7 +35,7 @@ if (isset($_POST['old_pass']) &&
         $em  = "New password and confirm password does not match";
         header("Location: ../pass.php?perror=$em");
         exit;
-    }else if (!studentPasswordVerify($old_pass, $conn, $teacher_id)) {
+    }else if (!studentPasswordVerify($old_pass, $conn, $id_giao_vien)) {
         $em  = "Incorrect old password";
         header("Location: ../pass.php?perror=$em");
         exit;
@@ -45,10 +45,10 @@ if (isset($_POST['old_pass']) &&
 
         $sql = "UPDATE teachers SET
                 password = ?
-                WHERE teacher_id=?";
+                WHERE id_giao_vien=?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$new_pass, $teacher_id]);
+        $stmt->execute([$new_pass, $id_giao_vien]);
         $sm = "The password has been changed successfully!";
         header("Location: ../pass.php?psuccess=$sm");
         exit;

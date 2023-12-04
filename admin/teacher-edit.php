@@ -2,22 +2,20 @@
 session_start();
 if (isset($_SESSION['admin_id']) && 
     isset($_SESSION['role'])     &&
-    isset($_GET['teacher_id'])) {
+    isset($_GET['id_giao_vien'])) {
 
     if ($_SESSION['role'] == 'Admin') {
       
        include "../DB_connection.php";
        include "data/subject.php";
-       include "data/grade.php";
-       include "data/section.php";
        include "data/class.php";
        include "data/teacher.php";
        $subjects = getAllSubjects($conn);
        $classes  = getAllClasses($conn);
        
        
-       $teacher_id = $_GET['teacher_id'];
-       $teacher = getTeacherById($teacher_id, $conn);
+       $id_giao_vien = $_GET['id_giao_vien'];
+       $teacher = getTeacherById($id_giao_vien, $conn);
 
        if ($teacher == 0) {
          header("Location: teacher.php");
@@ -136,8 +134,8 @@ if (isset($_SESSION['admin_id']) &&
                  name="gender"> Nữ
         </div>
         <input type="text"
-                value="<?=$teacher['teacher_id']?>"
-                name="teacher_id"
+                value="<?=$teacher['id_giao_vien']?>"
+                name="id_giao_vien"
                 hidden>
 
         <div class="mb-3">
@@ -168,15 +166,15 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Lớp Học</label>
           <div class="row row-cols-5">
             <?php 
-            $class_ids = str_split(trim($teacher['class']));
+            $id_lops = str_split(trim($teacher['class']));
             foreach ($classes as $class){ 
               $checked =0;
-              foreach ($class_ids as $class_id ) {
-                if ($class_id == $class['class_id']) {
+              foreach ($id_lops as $id_lop ) {
+                if ($id_lop == $class['id_lop']) {
                    $checked =1;
                 }
               }
-              $grade = getGradeById($class['class_id'], $conn);
+              $grade = getGradeById($class['id_lop'], $conn);
             ?>
             <div class="col">
               <input type="checkbox"
@@ -232,8 +230,8 @@ if (isset($_SESSION['admin_id']) &&
             
           </div>
           <input type="text"
-                value="<?=$teacher['teacher_id']?>"
-                name="teacher_id"
+                value="<?=$teacher['id_giao_vien']?>"
+                name="id_giao_vien"
                 hidden>
 
           <div class="mb-3">

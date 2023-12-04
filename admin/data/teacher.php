@@ -1,11 +1,11 @@
 <?php  
 
 // Get Teacher by ID
-function getTeacherById($teacher_id, $conn){
+function getTeacherById($id_giao_vien, $conn){
    $sql = "SELECT * FROM teachers
-           WHERE teacher_id=?";
+           WHERE id_giao_vien=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$teacher_id]);
+   $stmt->execute([$id_giao_vien]);
 
    if ($stmt->rowCount() == 1) {
      $teacher = $stmt->fetch();
@@ -30,13 +30,13 @@ function getAllTeachers($conn){
 }
 
 // Check if the username Unique
-function unameIsUnique($uname, $conn, $teacher_id=0){
-   $sql = "SELECT username, teacher_id FROM teachers
+function unameIsUnique($uname, $conn, $id_giao_vien=0){
+   $sql = "SELECT username, id_giao_vien FROM teachers
            WHERE username=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
    
-   if ($teacher_id == 0) {
+   if ($id_giao_vien == 0) {
      if ($stmt->rowCount() >= 1) {
        return 0;
      }else {
@@ -45,7 +45,7 @@ function unameIsUnique($uname, $conn, $teacher_id=0){
    }else {
     if ($stmt->rowCount() >= 1) {
        $teacher = $stmt->fetch();
-       if ($teacher['teacher_id'] == $teacher_id) {
+       if ($teacher['id_giao_vien'] == $id_giao_vien) {
          return 1;
        }else {
         return 0;
@@ -60,7 +60,7 @@ function unameIsUnique($uname, $conn, $teacher_id=0){
 // DELETE
 function removeTeacher($id, $conn){
    $sql  = "DELETE FROM teachers
-           WHERE teacher_id=?";
+           WHERE id_giao_vien=?";
    $stmt = $conn->prepare($sql);
    $re   = $stmt->execute([$id]);
    if ($re) {
@@ -75,7 +75,7 @@ function searchTeachers($key, $conn){
    $key = preg_replace('/(?<!\\\)([%_])/', '\\\$1',$key);
 
    $sql = "SELECT * FROM teachers
-           WHERE teacher_id LIKE ? 
+           WHERE id_giao_vien LIKE ? 
            OR fname LIKE ?
            OR lname LIKE ?
            OR username LIKE ?

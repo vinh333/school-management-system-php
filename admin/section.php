@@ -5,7 +5,6 @@ if (isset($_SESSION['admin_id']) &&
 
     if ($_SESSION['role'] == 'Admin') {
        include "../DB_connection.php";
-       include "data/section.php";
        $sections = getAllSections($conn);
  ?>
 <!DOCTYPE html>

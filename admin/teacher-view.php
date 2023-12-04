@@ -7,15 +7,13 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
        include "data/teacher.php";
        include "data/subject.php";
-       include "data/grade.php";
-       include "data/section.php";
        include "data/class.php";
 
-       if(isset($_GET['teacher_id'])){
+       if(isset($_GET['id_giao_vien'])){
 
-       $teacher_id = $_GET['teacher_id'];
+       $id_giao_vien = $_GET['id_giao_vien'];
 
-       $teacher = getTeacherById($teacher_id,$conn);    
+       $teacher = getTeacherById($id_giao_vien,$conn);    
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,8 +69,8 @@ if (isset($_SESSION['admin_id']) &&
                      $c = '';
                      $classes = str_split(trim($teacher['class']));
 
-                     foreach ($classes as $class_id) {
-                         $class = getClassById($class_id, $conn);
+                     foreach ($classes as $id_lop) {
+                         $class = getClassById($id_lop, $conn);
 
                         $c_temp = getGradeById($class['grade'], $conn);
                         $section = getSectioById($class['section'], $conn);

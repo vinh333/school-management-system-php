@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 // Hàm để lấy tất cả thông tin sinh viên từ cơ sở dữ liệu
 function getAllStudents($conn){
-   $sql = "SELECT * FROM students";
+   $sql = "SELECT * FROM hoc_sinh"; // Sửa tên bảng thành 'hoc_sinh'
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
@@ -16,8 +16,8 @@ function getAllStudents($conn){
 
 // Hàm để lấy thông tin sinh viên theo ID từ cơ sở dữ liệu
 function getStudentById($id, $conn){
-   $sql = "SELECT * FROM students
-           WHERE student_id=?";
+   $sql = "SELECT * FROM hoc_sinh
+           WHERE id_hoc_sinh=?"; // Sửa tên cột và bảng
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
 
@@ -31,8 +31,8 @@ function getStudentById($id, $conn){
 
 // Hàm để kiểm tra tính duy nhất của tên đăng nhập
 function unameIsUnique($uname, $conn, $student_id=0){
-   $sql = "SELECT username, student_id FROM students
-           WHERE username=?";
+   $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM hoc_sinh
+           WHERE ten_dang_nhap=?"; // Sửa tên cột và bảng
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
    
@@ -45,7 +45,7 @@ function unameIsUnique($uname, $conn, $student_id=0){
    } else {
     if ($stmt->rowCount() >= 1) {
        $student = $stmt->fetch();
-       if ($student['student_id'] == $student_id) {
+       if ($student['id_hoc_sinh'] == $student_id) {
          return 1;
        } else {
         return 0;
@@ -58,14 +58,14 @@ function unameIsUnique($uname, $conn, $student_id=0){
 
 // Hàm để xác minh mật khẩu sinh viên
 function studentPasswordVerify($student_pass, $conn, $student_id){
-   $sql = "SELECT * FROM students
-           WHERE student_id=?";
+   $sql = "SELECT * FROM hoc_sinh
+           WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$student_id]);
 
    if ($stmt->rowCount() == 1) {
      $student = $stmt->fetch();
-     $pass  = $student['password'];
+     $pass  = $student['mat_khau']; // Sửa tên cột
 
      if (password_verify($student_pass, $pass)) {
         return 1;
@@ -76,3 +76,4 @@ function studentPasswordVerify($student_pass, $conn, $student_id){
     return 0;
    }
 }
+?>

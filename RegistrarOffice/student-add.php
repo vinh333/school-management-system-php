@@ -6,8 +6,6 @@ if (isset($_SESSION['r_user_id']) &&
     if ($_SESSION['role'] == 'Registrar Office') {
       
        include "../DB_connection.php";
-       include "data/grade.php";
-       include "data/section.php";
        $grades = getAllGrades($conn);
        $sections = getAllSections($conn);
 

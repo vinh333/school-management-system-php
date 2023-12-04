@@ -1,12 +1,11 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
+if (isset($_SESSION['id_giao_vien']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Registrar Office') {
        include "../DB_connection.php";
        include "data/student.php";
-       include "data/grade.php";
        $students = getAllStudents($conn);
  ?>
 <!DOCTYPE html>

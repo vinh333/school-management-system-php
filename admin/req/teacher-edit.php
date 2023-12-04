@@ -9,7 +9,7 @@ if (isset($_SESSION['admin_id']) &&
 if (isset($_POST['fname'])      &&
     isset($_POST['lname'])      &&
     isset($_POST['username'])   &&
-    isset($_POST['teacher_id']) &&
+    isset($_POST['id_giao_vien']) &&
     isset($_POST['address'])  &&
     isset($_POST['employee_number']) &&
     isset($_POST['phone_number'])  &&
@@ -35,7 +35,7 @@ if (isset($_POST['fname'])      &&
     $gender = $_POST['gender'];
     $date_of_birth = $_POST['date_of_birth'];
 
-    $teacher_id = $_POST['teacher_id'];
+    $id_giao_vien = $_POST['id_giao_vien'];
     
     $classes = "";
     foreach ($_POST['classes'] as $class) {
@@ -47,7 +47,7 @@ if (isset($_POST['fname'])      &&
     	$subjects .=$subject;
     }
 
-    $data = 'teacher_id='.$teacher_id;
+    $data = 'id_giao_vien='.$id_giao_vien;
 
     if (empty($fname)) {
 		$em  = "First name is required";
@@ -61,7 +61,7 @@ if (isset($_POST['fname'])      &&
 		$em  = "Username is required";
 		header("Location: ../teacher-edit.php?error=$em&$data");
 		exit;
-	}else if (!unameIsUnique($uname, $conn, $teacher_id)) {
+	}else if (!unameIsUnique($uname, $conn, $id_giao_vien)) {
 		$em  = "Username is taken! try another";
 		header("Location: ../teacher-edit.php?error=$em&$data");
 		exit;
@@ -97,9 +97,9 @@ if (isset($_POST['fname'])      &&
         $sql = "UPDATE teachers SET
                 username = ?,class=?, fname=?, lname=?, subjects=?,
                 address = ?, employee_number=?, date_of_birth = ?, phone_number = ?, qualification = ?,gender=?, email_address = ?
-                WHERE teacher_id=?";
+                WHERE id_giao_vien=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname,  $classes, $fname, $lname, $subjects, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address,        $teacher_id]);
+        $stmt->execute([$uname,  $classes, $fname, $lname, $subjects, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address,        $id_giao_vien]);
         $sm = "successfully updated!";
         header("Location: ../teacher-edit.php?success=$sm&$data");
         exit;

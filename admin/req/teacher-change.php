@@ -9,7 +9,7 @@ if (isset($_SESSION['admin_id']) &&
 if (isset($_POST['admin_pass']) &&
     isset($_POST['new_pass'])   &&
     isset($_POST['c_new_pass']) &&
-    isset($_POST['teacher_id'])) {
+    isset($_POST['id_giao_vien'])) {
     
     include '../../DB_connection.php';
     include "../data/teacher.php";
@@ -19,10 +19,10 @@ if (isset($_POST['admin_pass']) &&
     $new_pass = $_POST['new_pass'];
     $c_new_pass = $_POST['c_new_pass'];
 
-    $teacher_id = $_POST['teacher_id'];
+    $id_giao_vien = $_POST['id_giao_vien'];
     $id = $_SESSION['admin_id'];
     
-    $data = 'teacher_id='.$teacher_id.'#change_password';
+    $data = 'id_giao_vien='.$id_giao_vien.'#change_password';
 
     if (empty($admin_pass)) {
 		$em  = "Admin password is required";
@@ -50,10 +50,10 @@ if (isset($_POST['admin_pass']) &&
 
         $sql = "UPDATE teachers SET
                 password = ?
-                WHERE teacher_id=?";
+                WHERE id_giao_vien=?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$new_pass, $teacher_id]);
+        $stmt->execute([$new_pass, $id_giao_vien]);
         $sm = "The password has been changed successfully!";
         header("Location: ../teacher-edit.php?psuccess=$sm&$data");
         exit;

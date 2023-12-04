@@ -49,7 +49,7 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `fname`, `lname`) VALUE
 --
 
 CREATE TABLE `class` (
-  `class_id` int(11) NOT NULL,
+  `id_lop` int(11) NOT NULL,
   `grade` int(11) NOT NULL,
   `section` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,7 +58,7 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `grade`, `section`) VALUES
+INSERT INTO `class` (`id_lop`, `grade`, `section`) VALUES
 (1, 7, 2),
 (2, 1, 1),
 (3, 3, 3),
@@ -228,7 +228,7 @@ CREATE TABLE `student_score` (
   `semester` varchar(100) NOT NULL,
   `year` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
+  `id_giao_vien` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `results` varchar(512) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -237,7 +237,7 @@ CREATE TABLE `student_score` (
 -- Dumping data for table `student_score`
 --
 
-INSERT INTO `student_score` (`id`, `semester`, `year`, `student_id`, `teacher_id`, `subject_id`, `results`) VALUES
+INSERT INTO `student_score` (`id`, `semester`, `year`, `student_id`, `id_giao_vien`, `subject_id`, `results`) VALUES
 (1, 'II', 2021, 1, 1, 1, '10 15,15 20,10 10,10 20,30 35'),
 (2, 'II', 2023, 1, 1, 4, '15 20,4 5'),
 (3, 'I', 2022, 1, 1, 5, '10 20,50 50');
@@ -275,7 +275,7 @@ INSERT INTO `subjects` (`subject_id`, `subject`, `subject_code`, `grade`) VALUES
 --
 
 CREATE TABLE `teachers` (
-  `teacher_id` int(11) NOT NULL,
+  `id_giao_vien` int(11) NOT NULL,
   `username` varchar(127) NOT NULL,
   `password` varchar(255) NOT NULL,
   `class` varchar(31) NOT NULL,
@@ -296,7 +296,7 @@ CREATE TABLE `teachers` (
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`teacher_id`, `username`, `password`, `class`, `fname`, `lname`, `subjects`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
+INSERT INTO `teachers` (`id_giao_vien`, `username`, `password`, `class`, `fname`, `lname`, `subjects`, `address`, `employee_number`, `date_of_birth`, `phone_number`, `qualification`, `gender`, `email_address`, `date_of_joined`) VALUES
 (1, 'oliver', '$2y$10$JruTW/rNZ6CVO4nxYWCrn.GJpiIKMACEPYrK00S7Dk/fkbJIdYau2', '1234', 'Oliver', 'Noah', '1245', 'California,  Los angeles', 6546, '2022-09-12', '0945739', 'BSc', 'Male', 'ol@ab.com', '2022-09-09 05:23:45'),
 (5, 'abas', '$2y$10$cMSKcHEJcg3K6wbVcxcXGuksgU39i70aEQVKN7ZHrzqTH9oAc3y5m', '123', 'Abas', 'A.', '12', 'Berlin', 1929, '2003-09-16', '09457396789', 'BSc,', 'Male', 'abas55@ab.com', '2022-09-09 06:42:31');
 
@@ -315,7 +315,7 @@ ALTER TABLE `admin`
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
-  ADD PRIMARY KEY (`class_id`);
+  ADD PRIMARY KEY (`id_lop`);
 
 --
 -- Indexes for table `grades`
@@ -370,7 +370,7 @@ ALTER TABLE `subjects`
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
-  ADD PRIMARY KEY (`teacher_id`),
+  ADD PRIMARY KEY (`id_giao_vien`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
@@ -387,7 +387,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_lop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `grades`
@@ -441,7 +441,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_giao_vien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

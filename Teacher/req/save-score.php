@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
+if (isset($_SESSION['id_giao_vien']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
@@ -44,7 +44,7 @@ if (isset($_POST['score-1']) &&
     $subject_id = $_POST['subject_id'];
     $current_year = $_POST['current_year'];
     $current_semester = $_POST['current_semester'];
-    $teacher_id = $_SESSION['teacher_id'];
+    $id_giao_vien = $_SESSION['id_giao_vien'];
 
     if(empty($score_1) || empty($score_2) || empty($score_3) || empty($score_4) || empty($score_5) || empty($aoutof_1) || empty($aoutof_2) || empty($aoutof_3) || empty($aoutof_4) || empty($aoutof_5) || empty($student_id) || empty($subject_id) || empty($current_year) || empty($current_semester)){
 
@@ -89,18 +89,18 @@ if (isset($_POST['score-1']) &&
         $sql = "UPDATE student_score SET
                 results = ?
                 WHERE  semester=?
-                AND year=? AND student_id=? AND teacher_id=? AND subject_id=?";
+                AND year=? AND student_id=? AND id_giao_vien=? AND subject_id=?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$data, $current_semester, $current_year, $student_id, $teacher_id, $subject_id]);
+        $stmt->execute([$data, $current_semester, $current_year, $student_id, $id_giao_vien, $subject_id]);
         $sm = "The Score has been updated successfully!";
         header("Location: ../student-grade.php?student_id=$student_id&success=$sm");
         exit;
           }else {
-             $sql = "INSERT INTO student_score(semester, year, student_id, teacher_id, subject_id, results)VALUES(?,?,?,?,?,?)";
+             $sql = "INSERT INTO student_score(semester, year, student_id, id_giao_vien, subject_id, results)VALUES(?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$current_semester, $current_year, $student_id, $teacher_id, $subject_id, $data]);
+        $stmt->execute([$current_semester, $current_year, $student_id, $id_giao_vien, $subject_id, $data]);
         $sm = "The Score has been created successfully!";
         header("Location: ../student-grade.php?student_id=$student_id&success=$sm");
           }

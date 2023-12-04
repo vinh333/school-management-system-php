@@ -1,19 +1,17 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
+if (isset($_SESSION['id_giao_vien']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
        include "../DB_connection.php";
        include "data/teacher.php";
        include "data/subject.php";
-       include "data/grade.php";
-       include "data/section.php";
        include "data/class.php";
 
 
-       $teacher_id = $_SESSION['teacher_id'];
-       $teacher = getTeacherById($teacher_id, $conn);
+       $id_giao_vien = $_SESSION['id_giao_vien'];
+       $teacher = getTeacherById($id_giao_vien, $conn);
  ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -35,32 +33,32 @@ if (isset($_SESSION['teacher_id']) &&
      ?>
      <div class="container mt-5">
          <div class="card" style="width: 22rem;">
-          <img src="../img/teacher-<?=$teacher['gender']?>.png" class="card-img-top" alt="...">
+          <img src="../img/teacher-<?=$teacher['gioi_tinh']?>.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-center">@<?=$teacher['username']?></h5>
+            <h5 class="card-title text-center">@<?=$teacher['ten_dang_nhap']?></h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Họ và tên: <?=$teacher['fname']?></li>
-            <li class="list-group-item">Tên đệm: <?=$teacher['lname']?></li>
-            <li class="list-group-item">Tên đăng nhập: <?=$teacher['username']?></li>
+          <li class="list-group-item">Họ và tên: <?=$teacher['ho']?></li>
+            <li class="list-group-item">Tên đệm: <?=$teacher['ten']?></li>
+            <li class="list-group-item">Tên đăng nhập: <?=$teacher['ten_dang_nhap']?></li>
 
-            <li class="list-group-item">Mã nhân viên: <?=$teacher['employee_number']?></li>
-            <li class="list-group-item">Địa chỉ: <?=$teacher['address']?></li>
-            <li class="list-group-item">Ngày sinh: <?=$teacher['date_of_birth']?></li>
-            <li class="list-group-item">Số điện thoại: <?=$teacher['phone_number']?></li>
-            <li class="list-group-item">Trình độ: <?=$teacher['qualification']?></li>
-            <li class="list-group-item">Địa chỉ email: <?=$teacher['email_address']?></li>
-            <li class="list-group-item">Giới tính: <?=$teacher['gender']?></li>
-            <li class="list-group-item">Ngày gia nhập: <?=$teacher['date_of_joined']?></li>
+            <li class="list-group-item">Mã nhân viên: <?=$teacher['so_hieu_giao_vien']?></li>
+            <li class="list-group-item">Địa chỉ: <?=$teacher['dia_chi']?></li>
+            <li class="list-group-item">Ngày sinh: <?=$teacher['ngay_sinh']?></li>
+            <li class="list-group-item">Số điện thoại: <?=$teacher['so_dien_thoai']?></li>
+            <li class="list-group-item">Trình độ: <?=$teacher['trinh_do']?></li>
+            <li class="list-group-item">Địa chỉ email: <?=$teacher['email']?></li>
+            <li class="list-group-item">Giới tính: <?=$teacher['gioi_tinh']?></li>
+            <li class="list-group-item">Ngày gia nhập: <?=$teacher['ngay_tham_gia']?></li>
 
             <li class="list-group-item">Môn giảng dạy: 
                 <?php 
                    $s = '';
-                   $subjects = str_split(trim($teacher['subjects']));
+                   $subjects = str_split(trim($teacher['mon_hoc']));
                    foreach ($subjects as $subject) {
                       $s_temp = getSubjectById($subject, $conn);
                       if ($s_temp != 0) 
-                        $s .=$s_temp['subject_code'].', ';
+                        $s .=$s_temp['ma_mon_hoc'].', ';
                    }
                    echo $s;
                 ?>
@@ -68,16 +66,11 @@ if (isset($_SESSION['teacher_id']) &&
             <li class="list-group-item">Lớp giảng dạy: 
                   <?php 
                      $c = '';
-                     $classes = str_split(trim($teacher['class']));
+                     $classes = str_split(trim($teacher['danh_sach_lop']));
 
-                     foreach ($classes as $class_id) {
-                         $class = getClassById($class_id, $conn);
-
-                        $c_temp = getGradeById($class['grade'], $conn);
-                        $section = getSectioById($class['section'], $conn);
-                        if ($c_temp != 0) 
-                          $c .=$c_temp['grade_code'].'-'.
-                               $c_temp['grade'].$section['section'].', ';
+                     foreach ($classes as $id_lop) {
+                         $class = getClassById($id_lop, $conn);
+                          $c .=$class['ten_lop'].', ';
                      }
                      echo $c;
 

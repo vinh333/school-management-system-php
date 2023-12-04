@@ -14,11 +14,11 @@ function getAllClasses($conn){
 }
 
 // Get class by ID
-function getClassById($class_id, $conn){
+function getClassById($id_lop, $conn){
    $sql = "SELECT * FROM class
-           WHERE class_id=?";
+           WHERE id_lop=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$class_id]);
+   $stmt->execute([$id_lop]);
 
    if ($stmt->rowCount() == 1) {
      $class = $stmt->fetch();
@@ -31,7 +31,7 @@ function getClassById($class_id, $conn){
 // DELETE
 function removeClass($id, $conn){
    $sql  = "DELETE FROM class
-           WHERE class_id=?";
+           WHERE id_lop=?";
    $stmt = $conn->prepare($sql);
    $re   = $stmt->execute([$id]);
    if ($re) {

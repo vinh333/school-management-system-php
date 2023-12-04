@@ -6,8 +6,6 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
        include "../DB_connection.php";
        include "data/class.php";
-       include "data/grade.php";
-       include "data/section.php";
        $classes = getAllClasses($conn);
  ?>
 <!DOCTYPE html>
@@ -66,9 +64,9 @@ if (isset($_SESSION['admin_id']) &&
                        ?>
                     </td>
                     <td>
-                        <a href="class-edit.php?class_id=<?=$class['class_id']?>"
+                        <a href="class-edit.php?id_lop=<?=$class['id_lop']?>"
                            class="btn btn-warning">Sửa</a>
-                        <a href="class-delete.php?class_id=<?=$class['class_id']?>"
+                        <a href="class-delete.php?id_lop=<?=$class['id_lop']?>"
                            class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
