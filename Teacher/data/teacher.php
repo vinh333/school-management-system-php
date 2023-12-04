@@ -1,6 +1,6 @@
 <?php  
 
-// Get Teacher by ID
+// Hàm để lấy thông tin giáo viên dựa trên ID
 function getTeacherById($teacher_id, $conn){
    $sql = "SELECT * FROM teachers
            WHERE teacher_id=?";

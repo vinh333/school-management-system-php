@@ -10,21 +10,20 @@ if (isset($_SESSION['admin_id']) &&
 
      $id = $_GET['r_user_id'];
      if (removeRUser($id, $conn)) {
-     	$sm = "Successfully deleted!";
+     	$sm = "Xóa thành công!";
         header("Location: registrar-office.php?success=$sm");
         exit;
-     }else {
-        $em = "Unknown error occurred";
+     } else {
+        $em = "Đã xảy ra lỗi không xác định";
         header("Location: registrar-office.php?error=$em");
         exit;
      }
-
-
-  }else {
+  } else {
     header("Location: registrar-office.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: registrar-office.php");
 	exit;
 } 
+?>

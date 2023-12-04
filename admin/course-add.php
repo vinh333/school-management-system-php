@@ -14,7 +14,7 @@ if (isset($_SESSION['admin_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Add Course</title>
+	<title>Admin - Thêm Môn Học</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -27,18 +27,18 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="course.php"
-           class="btn btn-dark">Go Back</a> <br><br>
+           class="btn btn-dark">Quay Lại</a> <br><br>
         <?php if ($grades == 0) { ?>
           <div class="alert alert-info" role="alert">
-           First create grade.
+           Hãy tạo khối trước.
           </div>
-        <?php }else{ ?>
+        <?php } else { ?>
 
         <form method="post"
               class="shadow p-3 mt-5 form-w" 
               action="req/course-add.php">
 
-        <h3>Add New Course</h3><hr>
+        <h3>Thêm Môn Học Mới</h3><hr>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
            <?=$_GET['error']?>
@@ -51,19 +51,19 @@ if (isset($_SESSION['admin_id']) &&
         <?php } ?>
         
         <div class="mb-3">
-          <label class="form-label">Course Name</label>
+          <label class="form-label">Tên Môn Học</label>
           <input type="text" 
                  class="form-control"
                  name="course_name">
         </div>
         <div class="mb-3">
-          <label class="form-label">Course Code</label>
+          <label class="form-label">Mã Môn Học</label>
           <input type="text" 
                  class="form-control"
                  name="course_code">
         </div>
         <div class="mb-3">
-          <label class="form-label">Grade</label>
+          <label class="form-label">Khối</label>
           <select name="grade"
                   class="form-control" >
                   <?php foreach ($grades as $grade) { ?>
@@ -74,7 +74,7 @@ if (isset($_SESSION['admin_id']) &&
                   
           </select>
         </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary">Tạo Mới</button>
      </form>
      </div>
      <?php } ?>
@@ -91,13 +91,12 @@ if (isset($_SESSION['admin_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

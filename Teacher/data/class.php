@@ -1,5 +1,5 @@
 <?php 
-// All classes
+// Tất cả các lớp
 function getAllClasses($conn){
    $sql = "SELECT * FROM class";
    $stmt = $conn->prepare($sql);
@@ -13,8 +13,7 @@ function getAllClasses($conn){
    }
 }
 
-
-// Get class by ID
+// Lấy thông tin lớp dựa trên ID
 function getClassById($class_id, $conn){
    $sql = "SELECT * FROM class
            WHERE class_id=?";
@@ -29,7 +28,7 @@ function getClassById($class_id, $conn){
    }
 }
 
-// DELETE
+// Hàm DELETE
 function removeClass($id, $conn){
    $sql  = "DELETE FROM class
            WHERE class_id=?";

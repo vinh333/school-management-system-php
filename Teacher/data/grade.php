@@ -1,5 +1,5 @@
 <?php 
-// All Grades
+// Tất cả các khối
 function getAllGrades($conn){
    $sql = "SELECT * FROM grades";
    $stmt = $conn->prepare($sql);
@@ -13,7 +13,7 @@ function getAllGrades($conn){
    }
 }
 
-// Get Grade by ID
+// Lấy thông tin khối dựa trên ID
 function getGradeById($grade_id, $conn){
    $sql = "SELECT * FROM grades
            WHERE grade_id=?";
@@ -28,7 +28,7 @@ function getGradeById($grade_id, $conn){
    }
 }
 
-// DELETE
+// Hàm DELETE
 function removeGrade($id, $conn){
    $sql  = "DELETE FROM grades
            WHERE grade_id=?";

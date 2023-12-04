@@ -28,8 +28,6 @@ if (isset($_SESSION['teacher_id']) &&
 
        $teacher_subjects = str_split(trim($teacher['subjects']));
 
-       
-      
        $ssubject_id = 0;
        if (isset($_POST['ssubject_id'])) {
            $ssubject_id = $_POST['ssubject_id'];
@@ -38,11 +36,11 @@ if (isset($_SESSION['teacher_id']) &&
        }
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Teacher - Students Grade</title>
+	<title>Giáo viên - Điểm học sinh</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -57,27 +55,26 @@ if (isset($_SESSION['teacher_id']) &&
 
      <div class="d-flex align-items-center flex-column"><br><br>
         <div class="login shadow p-3">
-        <form method="post"
-              action="">
+        <form method="post" action="">
             <div class="mb-3">
                 <ul class="list-group">
                     <li class="list-group-item"><b>ID: </b> <?php echo $student['student_id'] ?></li>
-                  <li class="list-group-item"><b>First Name: </b> <?php echo $student['fname'] ?></li>
-                  <li class="list-group-item"><b>Last Name: </b> <?php echo $student['lname'] ?></li>
-                  <li class="list-group-item"><b>Garde: </b> 
+                  <li class="list-group-item"><b>Họ và tên đệm: </b> <?php echo $student['fname'] ?></li>
+                  <li class="list-group-item"><b>Tên: </b> <?php echo $student['lname'] ?></li>
+                  <li class="list-group-item"><b>Khối: </b> 
                     <?php  $g = getGradeById($student['grade'], $conn); 
                         echo $g['grade_code'].'-'.$g['grade'];
                     ?>
                   </li>
-                  <li class="list-group-item"><b>Section: </b> 
+                  <li class="list-group-item"><b>Học Lực: </b> 
                     <?php  $s = getSectioById($student['section'], $conn); 
                         echo $s['section'];
                     ?>
                   </li>
-                  <li class="list-group-item text-center"><b>Year: </b> <?php echo $setting['current_year']; ?> &nbsp;&nbsp;&nbsp;<b>Semester</b> <?php echo $setting['current_semester']; ?></li>
+                  <li class="list-group-item text-center"><b>Năm: </b> <?php echo $setting['current_year']; ?> &nbsp;&nbsp;&nbsp;<b>Học kỳ</b> <?php echo $setting['current_semester']; ?></li>
                 </ul>
             </div>
-            <h5 class="text-center">Add Grade</h5>
+            <h5 class="text-center">Thêm điểm</h5>
             <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger" role="alert">
               <?=$_GET['error']?>
@@ -89,32 +86,29 @@ if (isset($_SESSION['teacher_id']) &&
             </div>
             <?php } ?>
            
-         <label class="form-label">Subject / Course</label>
-            <select class="form-control"
-                    name="ssubject_id">
-                    <?php foreach($subjects as $subject){ 
-                        foreach($teacher_subjects as $teacher_subject){
-                            if($subject['subject_id'] == $teacher_subject){ ?>
+         <label class="form-label">Môn học</label>
+            <select class="form-control" name="ssubject_id">
+                <?php foreach($subjects as $subject){ 
+                    foreach($teacher_subjects as $teacher_subject){
+                        if($subject['subject_id'] == $teacher_subject){ ?>
                     
                        <option <?php if($ssubject_id == $subject['subject_id']){echo "selected";} ?> 
                            value="<?php echo $subject['subject_id'] ?>">
                         <?php echo $subject['subject_code'] ?></option>
-                    <?php }   }
-                        } ?>
+                <?php }   }
+                } ?>
             </select><br>
 
             
-            <button type="submit" class="btn btn-primary">Select</button><br><br>
+            <button type="submit" class="btn btn-primary">Chọn</button><br><br>
         </form>
-        <form method="post"
-              action="req/save-score.php">
+        <form method="post" action="req/save-score.php">
         <?php 
             
             if ($ssubject_id != 0) { 
               $counter = 0;
               if($student_score != 0){ ?>
-                <input type="text" name="student_score_id"
-            value="<?=$student_score['id']?>" hidden>
+                <input type="text" name="student_score_id" value="<?=$student_score['id']?>" hidden>
             <?php
             $scores = explode(',', trim($student_score['results']));
 
@@ -124,37 +118,32 @@ if (isset($_SESSION['teacher_id']) &&
             ?>
 
             <div class="input-group mb-3">
-                  <input type="number" min="0" max="100" class="form-control" value="<?=$temp[0]?>"name="score-<?php echo $counter; ?>">
+                  <input type="number" min="0" max="100" class="form-control" value="<?=$temp[0]?>" name="score-<?php echo $counter; ?>">
                   <span class="input-group-text">/</span>
-                  <input type="number" min="0" max="100" class="form-control" value="<?=$temp[1]?>"
-                  name="aoutof-<?php echo $counter; ?>">
+                  <input type="number" min="0" max="100" class="form-control" value="<?=$temp[1]?>" name="aoutof-<?php echo $counter; ?>">
             </div>  
            <?php } } if($counter <  5){ 
                for ($i=++$counter; $i <= 5; $i++) { 
             ?>
             <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="xx" 
-                  name="score-<?php echo $i; ?>">
+                  <input type="text" class="form-control" value="xx" name="score-<?php echo $i; ?>">
                   <span class="input-group-text">/</span>
-                  <input type="text" class="form-control" value="xx"
-                  name="aoutof-<?php echo $i; ?>">
+                  <input type="text" class="form-control" value="xx" name="aoutof-<?php echo $i; ?>">
             </div>
-            
-                   
            <?php } } ?>
 
            <input type="text" name="student_id" value="<?=$student_id?>" hidden>
-            <input type="text" name="subject_id" value="<?=$ssubject_id?>"hidden>
+            <input type="text" name="subject_id" value="<?=$ssubject_id?>" hidden>
             <input type="text" name="current_semester" value="<?=$setting['current_semester']?>" hidden>
             <input type="text" name="current_year" value="<?=$setting['current_year']?>" hidden>
         
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
         </form>  
         <?php } ?> 
         </div>
         </div>
      <?php 
-         }else{
+         } else {
             header("Location: students.php");
             exit;
          }
@@ -165,16 +154,15 @@ if (isset($_SESSION['teacher_id']) &&
              $("#navLinks li:nth-child(4) a").addClass('active');
         });
     </script>
-
 </body>
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 

@@ -10,7 +10,7 @@ if (isset($_SESSION['student_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Student - Change Password</title>
+	<title>Học Sinh - Thay Đổi Mật Khẩu</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -26,7 +26,7 @@ if (isset($_SESSION['student_id']) &&
               class="shadow p-3 my-5 form-w" 
               action="req/student-change.php"
               id="change_password">
-        <h3>Change Password</h3><hr>
+        <h3>Thay Đổi Mật Khẩu</h3><hr>
           <?php if (isset($_GET['perror'])) { ?>
             <div class="alert alert-danger" role="alert">
              <?=$_GET['perror']?>
@@ -40,13 +40,13 @@ if (isset($_SESSION['student_id']) &&
 
        <div class="mb-3">
             <div class="mb-3">
-            <label class="form-label">Old password</label>
+            <label class="form-label">Mật Khẩu Cũ</label>
                 <input type="password" 
                        class="form-control"
                        name="old_pass"> 
           </div>
 
-            <label class="form-label">New password </label>
+            <label class="form-label">Mật Khẩu Mới </label>
             <div class="input-group mb-3">
                 <input type="text" 
                        class="form-control"
@@ -54,13 +54,13 @@ if (isset($_SESSION['student_id']) &&
                        id="passInput">
                 <button class="btn btn-secondary"
                         id="gBtn">
-                        Random</button>
+                        Ngẫu Nhiên</button>
             </div>
             
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Confirm new password  </label>
+            <label class="form-label">Xác Nhận Mật Khẩu Mới</label>
                 <input type="text" 
                        class="form-control"
                        name="c_new_pass"
@@ -68,7 +68,7 @@ if (isset($_SESSION['student_id']) &&
           </div>
           <button type="submit" 
               class="btn btn-primary">
-              Change</button>
+              Thay Đổi</button>
         </form>
      </div>
     

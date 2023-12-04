@@ -10,11 +10,11 @@ if (isset($_SESSION['admin_id']) &&
 
      $id = $_GET['teacher_id'];
      if (removeTeacher($id, $conn)) {
-     	$sm = "Successfully deleted!";
+     	$sm = "Xóa thành công!";
         header("Location: teacher.php?success=$sm");
         exit;
      }else {
-        $em = "Unknown error occurred";
+        $em = "Đã xảy ra lỗi không xác định";
         header("Location: teacher.php?error=$em");
         exit;
      }

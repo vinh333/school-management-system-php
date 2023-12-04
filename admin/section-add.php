@@ -11,7 +11,7 @@ if (isset($_SESSION['admin_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Add Section</title>
+	<title>Quản trị viên - Thêm Khoa</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -24,12 +24,12 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="section.php"
-           class="btn btn-dark">Go Back</a>
+           class="btn btn-dark">Quay lại</a>
 
         <form method="post"
               class="shadow p-3 mt-5 form-w" 
               action="req/section-add.php">
-        <h3>Add New Section</h3><hr>
+        <h3>Thêm Khoa Mới</h3><hr>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
            <?=$_GET['error']?>
@@ -41,12 +41,12 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">Section</label>
+          <label class="form-label">Khoa</label>
           <input type="text" 
                  class="form-control"
                  name="section">
         </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary">Tạo mới</button>
      </form>
      </div>
      
@@ -61,13 +61,12 @@ if (isset($_SESSION['admin_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

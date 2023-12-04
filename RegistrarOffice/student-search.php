@@ -17,7 +17,7 @@ if (isset($_SESSION['r_user_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registrar Office - Search Students</title>
+	<title>Văn phòng đăng ký - Tìm kiếm Sinh viên</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -30,9 +30,9 @@ if (isset($_SESSION['r_user_id']) &&
      ?>
      <div class="container mt-5">
         <a href="student-add.php"
-           class="btn btn-dark">Add New Student</a>
+           class="btn btn-dark">Thêm Sinh viên mới</a>
         <a href="student.php"
-           class="btn btn-dark">Go Back</a>
+           class="btn btn-dark">Quay lại</a>
            
            <form action="student-search.php" 
                  class="mt-3 n-table"
@@ -41,7 +41,7 @@ if (isset($_SESSION['r_user_id']) &&
                 <input type="text" 
                        class="form-control"
                        name="searchKey"
-                       placeholder="Search...">
+                       placeholder="Tìm kiếm...">
                 <button class="btn btn-primary">
                         <i class="fa fa-search" 
                            aria-hidden="true"></i>
@@ -69,11 +69,11 @@ if (isset($_SESSION['r_user_id']) &&
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Grade</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Họ</th>
+                    <th scope="col">Tên đăng nhập</th>
+                    <th scope="col">Khối</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -101,9 +101,9 @@ if (isset($_SESSION['r_user_id']) &&
                     </td>
                     <td>
                         <a href="student-edit.php?student_id=<?=$student['student_id']?>"
-                           class="btn btn-warning">Edit</a>
+                           class="btn btn-warning">Sửa</a>
                         <a href="student-delete.php?student_id=<?=$student['student_id']?>"
-                           class="btn btn-danger">Delete</a>
+                           class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -113,9 +113,9 @@ if (isset($_SESSION['r_user_id']) &&
          <?php }else{ ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                    No Results Found
+                    Không có kết quả nào được tìm thấy
                  <a href="student.php"
-                   class="btn btn-dark">Go Back</a>
+                   class="btn btn-dark">Quay lại</a>
               </div>
          <?php } ?>
      </div>

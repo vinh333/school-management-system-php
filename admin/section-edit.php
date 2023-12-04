@@ -15,15 +15,14 @@ if (isset($_SESSION['admin_id']) &&
          header("Location: section.php");
          exit;
        }
-
-
  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Edit Section</title>
+	<title>Quản trị - Chỉnh sửa khối</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -36,12 +35,12 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="section.php"
-           class="btn btn-dark">Go Back</a>
+           class="btn btn-dark">Quay lại</a>
 
         <form method="post"
               class="shadow p-3 mt-5 form-w" 
               action="req/section-edit.php">
-        <h3>Edit Section</h3><hr>
+        <h3>Chỉnh sửa khối</h3><hr>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
            <?=$_GET['error']?>
@@ -53,7 +52,7 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">Section</label>
+          <label class="form-label">Khối</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$section['section']?>" 
@@ -67,7 +66,7 @@ if (isset($_SESSION['admin_id']) &&
 
       <button type="submit" 
               class="btn btn-primary">
-              Update</button>
+              Cập nhật</button>
      </form>
      
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>	
@@ -89,5 +88,4 @@ if (isset($_SESSION['admin_id']) &&
 	header("Location: grade.php");
 	exit;
 } 
-
 ?>

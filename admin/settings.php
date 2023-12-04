@@ -13,7 +13,7 @@ if (isset($_SESSION['admin_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Setting</title>
+	<title>Admin - Cài Đặt</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -23,13 +23,12 @@ if (isset($_SESSION['admin_id']) &&
 <body>
     <?php 
         include "inc/navbar.php";
-
      ?>
    <div class="container mt-5">
         <form method="post"
               class="shadow p-3 mt-5 form-w" 
               action="req/setting-edit.php">
-        <h3>Edit</h3><hr>
+        <h3>Chỉnh Sửa</h3><hr>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
            <?=$_GET['error']?>
@@ -41,7 +40,7 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">School Name</label>
+          <label class="form-label">Tên Trường</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$setting['school_name']?>" 
@@ -55,19 +54,19 @@ if (isset($_SESSION['admin_id']) &&
                  name="slogan">
         </div>
         <div class="mb-3">
-                <label class="form-label">About</label>
+                <label class="form-label">Giới Thiệu</label>
                 <textarea class="form-control" name="about"
                           rows="4"><?=$setting['about']?></textarea>
         </div>
         <div class="mb-3">
-          <label class="form-label">Current Year</label>
+          <label class="form-label">Năm Học Hiện Tại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$setting['current_year']?>" 
                  name="current_year">
         </div>
         <div class="mb-3">
-          <label class="form-label">Current Semester</label>
+          <label class="form-label">Học Kỳ Hiện Tại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$setting['current_semester']?>"
@@ -75,7 +74,7 @@ if (isset($_SESSION['admin_id']) &&
         </div>
       <button type="submit" 
               class="btn btn-primary">
-              Update</button>
+              Cập Nhật</button>
      </form>
  </div>
      
@@ -98,5 +97,4 @@ if (isset($_SESSION['admin_id']) &&
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

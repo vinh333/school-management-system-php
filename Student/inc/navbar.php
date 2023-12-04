@@ -12,21 +12,20 @@
         <li class="nav-item">
           <a class="nav-link" 
              aria-current="page" 
-             href="index.php">Dashboard</a>
+             href="index.php">Bảng Điều Khiển</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="grade.php">Grade Summary</a>
+          <a class="nav-link" href="grade.php">Tóm Tắt Điểm</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="pass.php">Change Password</a>
+          <a class="nav-link" href="pass.php">Thay Đổi Mật Khẩu</a>
         </li>
-
       </ul>
       <ul class="navbar-nav me-right mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="../logout.php">Logout</a>
+          <a class="nav-link" href="../logout.php">Đăng Xuất</a>
         </li>
       </ul>
-  </div>
     </div>
+  </div>
 </nav>

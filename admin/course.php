@@ -15,7 +15,7 @@ if (isset($_SESSION['admin_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Course</title>
+	<title>Admin - Khóa Học</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -29,7 +29,7 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="course-add.php"
-           class="btn btn-dark">Add New Course</a>
+           class="btn btn-dark">Thêm Khóa Học Mới</a>
 
            <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger mt-3 n-table" 
@@ -50,9 +50,9 @@ if (isset($_SESSION['admin_id']) &&
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Course</th>
-                    <th scope="col">Course Code</th>
-                    <th scope="col">Grade</th>
+                    <th scope="col">Khóa Học</th>
+                    <th scope="col">Mã Khóa Học</th>
+                    <th scope="col">Khối Điểm</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,10 +78,10 @@ if (isset($_SESSION['admin_id']) &&
                     </td>
                     <td>
                         <a href="course-edit.php?course_id=<?=$course['subject_id']?>"
-                           class="btn btn-warning">Edit</a>
+                           class="btn btn-warning">Sửa</a>
                            
                         <a href="course-delete.php?course_id=<?=$course['subject_id']?>"
-                           class="btn btn-danger">Delete</a>
+                           class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -91,7 +91,7 @@ if (isset($_SESSION['admin_id']) &&
          <?php }else{ ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
               </div>
          <?php } ?>
      </div>
@@ -115,5 +115,4 @@ if (isset($_SESSION['admin_id']) &&
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

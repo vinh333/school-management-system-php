@@ -37,7 +37,7 @@ if (isset($_SESSION['admin_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Add Teacher</title>
+	<title>Admin - Thêm Giáo Viên Mới</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -50,12 +50,12 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="teacher.php"
-           class="btn btn-dark">Go Back</a>
+           class="btn btn-dark">Quay Lại</a>
 
         <form method="post"
               class="shadow p-3 mt-5 form-w" 
               action="req/teacher-add.php">
-        <h3>Add New Teacher</h3><hr>
+        <h3>Thêm Giáo Viên Mới</h3><hr>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
            <?=$_GET['error']?>
@@ -67,28 +67,28 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">First name</label>
+          <label class="form-label">Tên</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$fname?>" 
                  name="fname">
         </div>
         <div class="mb-3">
-          <label class="form-label">Last name</label>
+          <label class="form-label">Họ</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$lname?>"
                  name="lname">
         </div>
         <div class="mb-3">
-          <label class="form-label">Username</label>
+          <label class="form-label">Tên Đăng Nhập</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$uname?>"
                  name="username">
         </div>
         <div class="mb-3">
-          <label class="form-label">Password</label>
+          <label class="form-label">Mật Khẩu</label>
           <div class="input-group mb-3">
               <input type="text" 
                      class="form-control"
@@ -96,65 +96,65 @@ if (isset($_SESSION['admin_id']) &&
                      id="passInput">
               <button class="btn btn-secondary"
                       id="gBtn">
-                      Random</button>
+                      Ngẫu nhiên</button>
           </div>
           
         </div>
         <div class="mb-3">
-          <label class="form-label">Address</label>
+          <label class="form-label">Địa Chỉ</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$address?>"
                  name="address">
         </div>
         <div class="mb-3">
-          <label class="form-label">employee Number</label>
+          <label class="form-label">Mã Nhân Viên</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$en?>"
                  name="employee_number">
         </div>
         <div class="mb-3">
-          <label class="form-label">Phone Number</label>
+          <label class="form-label">Số Điện Thoại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$pn?>"
                  name="phone_number">
         </div>
         <div class="mb-3">
-          <label class="form-label">Qualification</label>
+          <label class="form-label">Trình Độ</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$qf?>"
                  name="qualification">
         </div>
         <div class="mb-3">
-          <label class="form-label">Email Address</label>
+          <label class="form-label">Email</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$email?>"
                  name="email_address">
         </div>
         <div class="mb-3">
-          <label class="form-label">Gender</label><br>
+          <label class="form-label">Giới Tính</label><br>
           <input type="radio"
-                 value="Male"
+                 value="Nam"
                  checked 
-                 name="gender"> Male
+                 name="gender"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
           <input type="radio"
-                 value="Female"
-                 name="gender"> Female
+                 value="Nữ"
+                 name="gender"> Nữ
         </div>
         <div class="mb-3">
-          <label class="form-label">Date of Birth</label>
+          <label class="form-label">Ngày Sinh</label>
           <input type="date" 
                  class="form-control"
                  value=""
                  name="date_of_birth">
         </div>
         <div class="mb-3">
-          <label class="form-label">Subject</label>
+          <label class="form-label">Môn Học</label>
           <div class="row row-cols-5">
             <?php foreach ($subjects as $subject): ?>
             <div class="col">
@@ -168,7 +168,7 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label">Class</label>
+          <label class="form-label">Lớp</label>
           <div class="row row-cols-5">
             <?php foreach ($classes as $class): ?>
             <div class="col">
@@ -186,7 +186,7 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         </div>
 
-      <button type="submit" class="btn btn-primary">Add</button>
+      <button type="submit" class="btn btn-primary">Thêm</button>
      </form>
      </div>
      

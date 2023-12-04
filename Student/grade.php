@@ -20,7 +20,7 @@ if (isset($_SESSION['student_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Student - Grade Summary</title>
+	<title>Học Sinh - Tổng Kết Điểm</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -73,15 +73,15 @@ if (isset($_SESSION['student_id']) &&
         ?>
          <div class="table-responsive " style="width: 90%; max-width: 700px;">
               <table class="table table-bordered mt-1 mb-5 n-table">
-                 <caption style="caption-side:top">Year - <?=$score['year']?> </caption>
+                 <caption style="caption-side:top">Năm - <?=$score['year']?> </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Course Code</th>
-                    <th scope="col">Course Title</th>
-                    <th scope="col">Results</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Grade</th>
-                    <th scope="col">Semester</th>
+                    <th scope="col">Mã Môn Học</th>
+                    <th scope="col">Tên Môn Học</th>
+                    <th scope="col">Kết Quả</th>
+                    <th scope="col">Tổng</th>
+                    <th scope="col">Điểm</th>
+                    <th scope="col">Học Kỳ</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,7 +118,7 @@ if (isset($_SESSION['student_id']) &&
    <?php }else { ?>
      <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
      </div>
    <?php } ?>
     

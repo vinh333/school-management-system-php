@@ -1,6 +1,6 @@
 <?php  
 
-// All Sections
+// Hàm để lấy tất cả các khối
 function getAllSections($conn){
    $sql = "SELECT * FROM section";
    $stmt = $conn->prepare($sql);
@@ -14,7 +14,7 @@ function getAllSections($conn){
    }
 }
 
-// Get Section by ID
+// Hàm để lấy khối theo ID
 function getSectioById($section_id, $conn){
    $sql = "SELECT * FROM section
            WHERE section_id=?";
@@ -29,7 +29,7 @@ function getSectioById($section_id, $conn){
    }
 }
 
-// DELETE
+// Hàm DELETE
 function removeSection($id, $conn){
    $sql  = "DELETE FROM section
            WHERE section_id=?";

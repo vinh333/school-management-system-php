@@ -1,7 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['teacher_id']) && 
-    isset($_SESSION['role'])) {
+if (isset($_SESSION['teacher_id']) && isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Teacher') {
        include "../DB_connection.php";
@@ -15,11 +14,11 @@ if (isset($_SESSION['teacher_id']) &&
        $classes = getAllClasses($conn);
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teachers - Classes</title>
+    <title>Giáo viên - Lớp học</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../logo.png">
@@ -38,7 +37,7 @@ if (isset($_SESSION['teacher_id']) &&
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Class</th>
+                    <th scope="col">Lớp</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -76,7 +75,7 @@ if (isset($_SESSION['teacher_id']) &&
          <?php }else{ ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
               </div>
          <?php } ?>
      </div>

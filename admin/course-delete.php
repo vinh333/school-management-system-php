@@ -10,21 +10,21 @@ if (isset($_SESSION['admin_id']) &&
 
      $id = $_GET['course_id'];
      if (removeCourse($id, $conn)) {
-     	$sm = "Successfully deleted!";
+     	$sm = "Xóa thành công!";
         header("Location: course.php?success=$sm");
         exit;
-     }else {
-        $em = "Unknown error occurred";
+     } else {
+        $em = "Đã xảy ra lỗi không xác định";
         header("Location: course.php?error=$em");
         exit;
      }
 
-
-  }else {
+  } else {
     header("Location: course.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: course.php");
 	exit;
 } 
+?>

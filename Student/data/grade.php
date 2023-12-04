@@ -1,5 +1,6 @@
-<?php 
-// All Grades
+<?php
+
+// Tất cả các Khối
 function getAllGrades($conn){
    $sql = "SELECT * FROM grades";
    $stmt = $conn->prepare($sql);
@@ -13,7 +14,7 @@ function getAllGrades($conn){
    }
 }
 
-// Get Grade by ID
+// Lấy Khối bởi ID
 function getGradeById($grade_id, $conn){
    $sql = "SELECT * FROM grades
            WHERE grade_id=?";
@@ -28,7 +29,7 @@ function getGradeById($grade_id, $conn){
    }
 }
 
-// DELETE
+// XÓA
 function removeGrade($id, $conn){
    $sql  = "DELETE FROM grades
            WHERE grade_id=?";
@@ -40,3 +41,4 @@ function removeGrade($id, $conn){
     return 0;
    }
 }
+?>

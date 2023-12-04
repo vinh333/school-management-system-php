@@ -11,12 +11,12 @@ if (isset($_SESSION['admin_id']) &&
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Grade</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="icon" href="../logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Khối Điểm</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../logo.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -27,7 +27,7 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="grade-add.php"
-           class="btn btn-dark">Add New Grade</a>
+           class="btn btn-dark">Thêm Khối Điểm Mới</a>
 
            <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger mt-3 n-table" 
@@ -48,7 +48,7 @@ if (isset($_SESSION['admin_id']) &&
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Grade</th>
+                    <th scope="col">Khối Điểm</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,9 +64,9 @@ if (isset($_SESSION['admin_id']) &&
                     </td>
                     <td>
                         <a href="grade-edit.php?grade_id=<?=$grade['grade_id']?>"
-                           class="btn btn-warning">Edit</a>
+                           class="btn btn-warning">Chỉnh Sửa</a>
                         <a href="grade-delete.php?grade_id=<?=$grade['grade_id']?>"
-                           class="btn btn-danger">Delete</a>
+                           class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -76,12 +76,12 @@ if (isset($_SESSION['admin_id']) &&
          <?php }else{ ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
               </div>
          <?php } ?>
      </div>
      
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>    
     <script>
         $(document).ready(function(){
              $("#navLinks li:nth-child(4) a").addClass('active');
@@ -97,8 +97,8 @@ if (isset($_SESSION['admin_id']) &&
     exit;
   } 
 }else {
-	header("Location: ../login.php");
-	exit;
+    header("Location: ../login.php");
+    exit;
 } 
 
 ?>

@@ -10,21 +10,20 @@ if (isset($_SESSION['admin_id']) &&
 
      $id = $_GET['section_id'];
      if (removeSection($id, $conn)) {
-     	$sm = "Successfully deleted!";
+     	$sm = "Xóa thành công!";
         header("Location: section.php?success=$sm");
         exit;
-     }else {
-        $em = "Unknown error occurred";
+     } else {
+        $em = "Đã xảy ra lỗi không xác định";
         header("Location: section.php?error=$em");
         exit;
      }
-
-
-  }else {
+  } else {
     header("Location: section.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: section.php");
 	exit;
 } 
+?>

@@ -31,7 +31,7 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="teacher-add.php"
-           class="btn btn-dark">Add New Teacher</a>
+           class="btn btn-dark">Thêm Giáo Viên Mới</a>
 
            <form action="teacher-search.php" 
                  class="mt-3 n-table"
@@ -40,7 +40,7 @@ if (isset($_SESSION['admin_id']) &&
                 <input type="text" 
                        class="form-control"
                        name="searchKey"
-                       placeholder="Search...">
+                       placeholder="Tìm kiếm...">
                 <button class="btn btn-primary">
                         <i class="fa fa-search" 
                            aria-hidden="true"></i>
@@ -68,12 +68,12 @@ if (isset($_SESSION['admin_id']) &&
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Class</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Họ và Tên Đệm</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Tên Đăng Nhập</th>
+                    <th scope="col">Môn Học</th>
+                    <th scope="col">Lớp</th>
+                    <th scope="col">Hành Động</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,9 +118,9 @@ if (isset($_SESSION['admin_id']) &&
                     </td>
                     <td>
                         <a href="teacher-edit.php?teacher_id=<?=$teacher['teacher_id']?>"
-                           class="btn btn-warning">Edit</a>
+                           class="btn btn-warning">Sửa</a>
                         <a href="teacher-delete.php?teacher_id=<?=$teacher['teacher_id']?>"
-                           class="btn btn-danger">Delete</a>
+                           class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
                 <?php } ?>
@@ -130,7 +130,7 @@ if (isset($_SESSION['admin_id']) &&
          <?php }else{ ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
               </div>
          <?php } ?>
      </div>
@@ -155,4 +155,3 @@ if (isset($_SESSION['admin_id']) &&
 	exit;
 } 
 
-?>

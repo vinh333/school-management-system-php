@@ -20,11 +20,11 @@ if (isset($_SESSION['teacher_id']) &&
 
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Teacher - Students</title>
+	<title>Giáo viên - Học sinh</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -40,10 +40,12 @@ if (isset($_SESSION['teacher_id']) &&
      
   <?php $i = 0; foreach ($students as $student ) { 
        $g = getGradeById($class['grade'], $conn);
+      
        $s = getSectioById($class['section'], $conn);
-       if ($g['grade_id'] == $student['grade'] && $s['section_id'] == $student['section']) { $i++; 
-       if ($i == 1) { 
-        $check++;
+       if ($g['grade_id'] == $student['grade'] && $s['section_id'] == $student['section']) { 
+           $i++; 
+           if ($i == 1) { 
+               $check++;
     ?>
         <div class="container mt-5">
            <div class="table-responsive">
@@ -52,10 +54,10 @@ if (isset($_SESSION['teacher_id']) &&
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">ID</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Grade</th>
+                    <th scope="col">Họ và tên đệm</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Tên đăng nhập</th>
+                    <th scope="col">Khối</th>
                   </tr>
                 </thead>
                 <tbody>  
@@ -85,10 +87,10 @@ if (isset($_SESSION['teacher_id']) &&
                 </tbody>
               </table>
            </div>
-         <?php }else{ ?>
+         <?php } else { ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
               </div>
          <?php } ?>
      </div>
@@ -108,11 +110,11 @@ if (isset($_SESSION['teacher_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 

@@ -6,11 +6,11 @@ if (isset($_SESSION['r_user_id']) &&
     if ($_SESSION['role'] == 'Registrar Office') {
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registrar Office - Home</title>
+	<title>Văn phòng đăng ký - Trang chủ</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -25,17 +25,17 @@ if (isset($_SESSION['r_user_id']) &&
                <a href="student-add.php" 
                   class="col btn btn-dark m-2 py-3">
                  <i class="fa fa-user-plus fs-1" aria-hidden="true"></i><br>
-                  Register Student
+                  Đăng ký Sinh viên
                </a> 
 
                <a href="student.php" class="col btn btn-dark m-2 py-3">
                  <i class="fa fa-user fs-1" aria-hidden="true"></i><br>
-                  All Students 
+                  Tất cả Sinh viên
                </a> 
                
                <a href="../logout.php" class="col btn btn-warning m-2 py-3 col-5">
                  <i class="fa fa-sign-out fs-1" aria-hidden="true"></i><br>
-                  Logout
+                  Đăng xuất
                </a> 
              </div>
          </div>
@@ -52,13 +52,12 @@ if (isset($_SESSION['r_user_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

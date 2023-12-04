@@ -1,6 +1,6 @@
 <?php 
 
-// All Subjects
+// Tất cả các Môn Học
 function getAllSubjects($conn){
    $sql = "SELECT * FROM subjects";
    $stmt = $conn->prepare($sql);
@@ -9,12 +9,12 @@ function getAllSubjects($conn){
    if ($stmt->rowCount() >= 1) {
      $subjects = $stmt->fetchAll();
      return $subjects;
-   }else {
+   } else {
    	return 0;
    }
 }
 
-// Get Subjects by ID
+// Lấy Môn Học bằng ID
 function getSubjectById($subject_id, $conn){
    $sql = "SELECT * FROM subjects
            WHERE subject_id=?";
@@ -24,9 +24,9 @@ function getSubjectById($subject_id, $conn){
    if ($stmt->rowCount() == 1) {
      $subject = $stmt->fetch();
      return $subject;
-   }else {
+   } else {
    	return 0;
    }
 }
 
- ?>
+?>

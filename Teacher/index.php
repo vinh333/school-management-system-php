@@ -16,11 +16,11 @@ if (isset($_SESSION['teacher_id']) &&
        $teacher = getTeacherById($teacher_id, $conn);
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Teacher - Home</title>
+	<title>Giáo viên - Trang chủ</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -40,20 +40,20 @@ if (isset($_SESSION['teacher_id']) &&
             <h5 class="card-title text-center">@<?=$teacher['username']?></h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">First name: <?=$teacher['fname']?></li>
-            <li class="list-group-item">Last name: <?=$teacher['lname']?></li>
-            <li class="list-group-item">Username: <?=$teacher['username']?></li>
+            <li class="list-group-item">Họ và tên: <?=$teacher['fname']?></li>
+            <li class="list-group-item">Tên đệm: <?=$teacher['lname']?></li>
+            <li class="list-group-item">Tên đăng nhập: <?=$teacher['username']?></li>
 
-            <li class="list-group-item">Employee number: <?=$teacher['employee_number']?></li>
-            <li class="list-group-item">Address: <?=$teacher['address']?></li>
-            <li class="list-group-item">Date of birth: <?=$teacher['date_of_birth']?></li>
-            <li class="list-group-item">Phone number: <?=$teacher['phone_number']?></li>
-            <li class="list-group-item">Qualification: <?=$teacher['qualification']?></li>
-            <li class="list-group-item">Email address: <?=$teacher['email_address']?></li>
-            <li class="list-group-item">Gender: <?=$teacher['gender']?></li>
-            <li class="list-group-item">Date of joined: <?=$teacher['date_of_joined']?></li>
+            <li class="list-group-item">Mã nhân viên: <?=$teacher['employee_number']?></li>
+            <li class="list-group-item">Địa chỉ: <?=$teacher['address']?></li>
+            <li class="list-group-item">Ngày sinh: <?=$teacher['date_of_birth']?></li>
+            <li class="list-group-item">Số điện thoại: <?=$teacher['phone_number']?></li>
+            <li class="list-group-item">Trình độ: <?=$teacher['qualification']?></li>
+            <li class="list-group-item">Địa chỉ email: <?=$teacher['email_address']?></li>
+            <li class="list-group-item">Giới tính: <?=$teacher['gender']?></li>
+            <li class="list-group-item">Ngày gia nhập: <?=$teacher['date_of_joined']?></li>
 
-            <li class="list-group-item">Subject: 
+            <li class="list-group-item">Môn giảng dạy: 
                 <?php 
                    $s = '';
                    $subjects = str_split(trim($teacher['subjects']));
@@ -65,7 +65,7 @@ if (isset($_SESSION['teacher_id']) &&
                    echo $s;
                 ?>
             </li>
-            <li class="list-group-item">Class: 
+            <li class="list-group-item">Lớp giảng dạy: 
                   <?php 
                      $c = '';
                      $classes = str_split(trim($teacher['class']));
@@ -89,7 +89,7 @@ if (isset($_SESSION['teacher_id']) &&
      </div>
      <?php 
         }else {
-          header("Location: logout.php?error=An error occurred");
+          header("Location: logout.php?error=Có lỗi xảy ra");
           exit;
         }
      ?>
@@ -104,11 +104,11 @@ if (isset($_SESSION['teacher_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 

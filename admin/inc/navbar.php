@@ -12,41 +12,41 @@
         <li class="nav-item">
           <a class="nav-link" 
              aria-current="page" 
-             href="index.php">Dashboard</a>
+             href="index.php">Bảng Điều Khiển</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="teacher.php">Teachers</a>
+          <a class="nav-link" href="teacher.php">Giáo Viên</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="student.php">Students</a>
+          <a class="nav-link" href="student.php">Học Sinh</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="grade.php">Grade</a>
+          <a class="nav-link" href="grade.php">Khối</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="section.php">Section</a>
+          <a class="nav-link" href="section.php">Lớp</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="class.php">Class</a>
+          <a class="nav-link" href="class.php">Lớp Học</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="registrar-office.php">Registrar-Office</a>
+          <a class="nav-link" href="registrar-office.php">Văn Phòng Đăng Ký</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="course.php">Course</a>
+          <a class="nav-link" href="course.php">Khóa Học</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="message.php">Message</a>
+          <a class="nav-link" href="message.php">Tin Nhắn</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="settings.php">Settings</a>
+          <a class="nav-link" href="settings.php">Cài Đặt</a>
         </li>
       </ul>
       <ul class="navbar-nav me-right mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="../logout.php">Logout</a>
+          <a class="nav-link" href="../logout.php">Đăng Xuất</a>
         </li>
       </ul>
-  </div>
     </div>
+  </div>
 </nav>

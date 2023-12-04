@@ -1,6 +1,6 @@
 <?php  
 
-// All Sections
+// Tất cả Các Khoa
 function getAllSections($conn){
    $sql = "SELECT * FROM section";
    $stmt = $conn->prepare($sql);
@@ -14,7 +14,7 @@ function getAllSections($conn){
    }
 }
 
-// Get Section by ID
+// Lấy Khoa theo ID
 function getSectioById($section_id, $conn){
    $sql = "SELECT * FROM section
            WHERE section_id=?";
@@ -29,7 +29,7 @@ function getSectioById($section_id, $conn){
    }
 }
 
-// DELETE
+// XÓA
 function removeSection($id, $conn){
    $sql  = "DELETE FROM section
            WHERE section_id=?";
@@ -41,3 +41,4 @@ function removeSection($id, $conn){
     return 0;
    }
 }
+?>

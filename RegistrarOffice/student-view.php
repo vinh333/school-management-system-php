@@ -21,7 +21,7 @@ if (isset($_SESSION['r_user_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registrar Office - View Student</title>
+	<title>Văn phòng đăng ký - Xem Sinh viên</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -39,23 +39,23 @@ if (isset($_SESSION['r_user_id']) &&
             <h5 class="card-title text-center">@<?=$student['username']?></h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">First name: <?=$student['fname']?></li>
-            <li class="list-group-item">Last name: <?=$student['lname']?></li>
-            <li class="list-group-item">Username: <?=$student['username']?></li>
-            <li class="list-group-item">Address: <?=$student['address']?></li>
-            <li class="list-group-item">Date of birth: <?=$student['date_of_birth']?></li>
-            <li class="list-group-item">Email address: <?=$student['email_address']?></li>
-            <li class="list-group-item">Gender: <?=$student['gender']?></li>
-            <li class="list-group-item">Date of joined: <?=$student['date_of_joined']?></li>
+            <li class="list-group-item">Tên: <?=$student['fname']?></li>
+            <li class="list-group-item">Họ: <?=$student['lname']?></li>
+            <li class="list-group-item">Tên đăng nhập: <?=$student['username']?></li>
+            <li class="list-group-item">Địa chỉ: <?=$student['address']?></li>
+            <li class="list-group-item">Ngày sinh: <?=$student['date_of_birth']?></li>
+            <li class="list-group-item">Email: <?=$student['email_address']?></li>
+            <li class="list-group-item">Giới tính: <?=$student['gender']?></li>
+            <li class="list-group-item">Ngày tham gia: <?=$student['date_of_joined']?></li>
 
-            <li class="list-group-item">Grade: 
+            <li class="list-group-item">Khối: 
                  <?php 
                       $grade = $student['grade'];
                       $g = getGradeById($grade, $conn);
                       echo $g['grade_code'].'-'.$g['grade'];
                   ?>
             </li>
-            <li class="list-group-item">Section: 
+            <li class="list-group-item">Lớp: 
                  <?php 
                     $section = $student['section'];
                     $s = getSectioById($section, $conn);
@@ -63,12 +63,12 @@ if (isset($_SESSION['r_user_id']) &&
                   ?>
             </li>
             <br><br>
-            <li class="list-group-item">Parent first name: <?=$student['parent_fname']?></li>
-            <li class="list-group-item">Parent last name: <?=$student['parent_lname']?></li>
-            <li class="list-group-item">Parent phone number: <?=$student['parent_phone_number']?></li>
+            <li class="list-group-item">Họ tên phụ huynh: <?=$student['parent_fname']?></li>
+            <li class="list-group-item">Họ phụ huynh: <?=$student['parent_lname']?></li>
+            <li class="list-group-item">Số điện thoại phụ huynh: <?=$student['parent_phone_number']?></li>
           </ul>
           <div class="card-body">
-            <a href="student.php" class="card-link">Go Back</a>
+            <a href="student.php" class="card-link">Quay lại</a>
           </div>
         </div>
      </div>
@@ -98,5 +98,4 @@ if (isset($_SESSION['r_user_id']) &&
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

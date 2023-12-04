@@ -15,7 +15,7 @@ if (isset($_SESSION['admin_id']) &&
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Class</title>
+	<title>Quản trị viên - Lớp</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -29,7 +29,7 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="class-add.php"
-           class="btn btn-dark">Add New Class</a>
+           class="btn btn-dark">Thêm Lớp Mới</a>
 
            <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger mt-3 n-table" 
@@ -50,7 +50,7 @@ if (isset($_SESSION['admin_id']) &&
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Class</th>
+                    <th scope="col">Lớp</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,19 +67,19 @@ if (isset($_SESSION['admin_id']) &&
                     </td>
                     <td>
                         <a href="class-edit.php?class_id=<?=$class['class_id']?>"
-                           class="btn btn-warning">Edit</a>
+                           class="btn btn-warning">Sửa</a>
                         <a href="class-delete.php?class_id=<?=$class['class_id']?>"
-                           class="btn btn-danger">Delete</a>
+                           class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>
                 <?php } ?>
                 </tbody>
               </table>
            </div>
-         <?php }else{ ?>
+         <?php } else { ?>
              <div class="alert alert-info .w-450 m-5" 
                   role="alert">
-                Empty!
+                Trống!
               </div>
          <?php } ?>
      </div>
@@ -95,13 +95,12 @@ if (isset($_SESSION['admin_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: ../login.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: ../login.php");
 	exit;
 } 
-
 ?>

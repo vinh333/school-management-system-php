@@ -10,21 +10,21 @@ if (isset($_SESSION['admin_id']) &&
 
      $id = $_GET['grade_id'];
      if (removeGrade($id, $conn)) {
-     	$sm = "Successfully deleted!";
+     	$sm = "Xóa thành công!";
         header("Location: grade.php?success=$sm");
         exit;
-     }else {
-        $em = "Unknown error occurred";
+     } else {
+        $em = "Đã xảy ra lỗi không xác định";
         header("Location: grade.php?error=$em");
         exit;
      }
 
-
-  }else {
+  } else {
     header("Location: grade.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: grade.php");
 	exit;
-} 
+}
+?>

@@ -1,6 +1,6 @@
 <?php 
 
-// All Students 
+// Tất cả Sinh Viên 
 function getAllStudents($conn){
    $sql = "SELECT * FROM students";
    $stmt = $conn->prepare($sql);
@@ -14,9 +14,7 @@ function getAllStudents($conn){
    }
 }
 
-
-
-// Get Student By Id 
+// Lấy Sinh Viên theo ID 
 function getStudentById($id, $conn){
    $sql = "SELECT * FROM students
            WHERE student_id=?";
@@ -31,8 +29,7 @@ function getStudentById($id, $conn){
    }
 }
 
-
-// Check if the username Unique
+// Kiểm tra xem tên người dùng có duy nhất không
 function unameIsUnique($uname, $conn, $student_id=0){
    $sql = "SELECT username, student_id FROM students
            WHERE username=?";
@@ -57,10 +54,9 @@ function unameIsUnique($uname, $conn, $student_id=0){
       return 1;
      }
    }
-   
 }
 
-
+// Xác minh mật khẩu của sinh viên
 function studentPasswordVerify($student_pass, $conn, $student_id){
    $sql = "SELECT * FROM students
            WHERE student_id=?";
@@ -80,3 +76,5 @@ function studentPasswordVerify($student_pass, $conn, $student_id){
     return 0;
    }
 }
+
+?>

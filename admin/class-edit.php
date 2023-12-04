@@ -15,20 +15,17 @@ if (isset($_SESSION['admin_id']) &&
        $grades = getAllGrades($conn);
        $sections = getAllSections($conn);
        
-
        if ($class == 0) {
          header("Location: class.php");
          exit;
        }
-
-
  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin - Edit Class</title>
+	<title>Quản trị viên - Sửa Lớp</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../logo.png">
@@ -41,12 +38,12 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
         <a href="class.php"
-           class="btn btn-dark">Go Back</a>
+           class="btn btn-dark">Quay lại</a>
 
         <form method="post"
               class="shadow p-3 mt-5 form-w" 
               action="req/class-edit.php">
-        <h3>Edit Class</h3><hr>
+        <h3>Sửa Lớp</h3><hr>
         <?php if (isset($_GET['error'])) { ?>
           <div class="alert alert-danger" role="alert">
            <?=$_GET['error']?>
@@ -58,7 +55,7 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">Grade</label>
+          <label class="form-label">Khối</label>
           <select name="grade"
                   class="form-control" >
                   <?php foreach ($grades as $grade) { 
@@ -77,7 +74,7 @@ if (isset($_SESSION['admin_id']) &&
           </select>
         </div>
         <div class="mb-3">
-          <label class="form-label">Section</label>
+          <label class="form-label">Khối</label>
           <select name="section"
                   class="form-control" >
                   <?php foreach ($sections as $section) {
@@ -100,7 +97,7 @@ if (isset($_SESSION['admin_id']) &&
 
       <button type="submit" 
               class="btn btn-primary">
-              Update</button>
+              Cập nhật</button>
      </form>
      
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>	
@@ -114,13 +111,12 @@ if (isset($_SESSION['admin_id']) &&
 </html>
 <?php 
 
-  }else {
+  } else {
     header("Location: class.php");
     exit;
   } 
-}else {
+} else {
 	header("Location: class.php");
 	exit;
 } 
-
 ?>

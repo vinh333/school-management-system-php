@@ -43,72 +43,72 @@ if (isset($_POST['fname']) &&
     $data = 'uname='.$uname.'&fname='.$fname.'&lname='.$lname.'&address='.$address.'&gender='.$email_address.'&pfn='.$parent_fname.'&pln='.$parent_lname.'&ppn='.$parent_phone_number;
 
     if (empty($fname)) {
-		$em  = "First name is required";
+		$em  = "Tên không được để trống";
 		header("Location: ../student-add.php?error=$em&$data");
 		exit;
 	}else if (empty($lname)) {
-		$em  = "Last name is required";
+		$em  = "Họ không được để trống";
 		header("Location: ../student-add.php?error=$em&$data");
 		exit;
 	}else if (empty($uname)) {
-		$em  = "Username is required";
+		$em  = "Tên người dùng không được để trống";
 		header("Location: ../student-add.php?error=$em&$data");
 		exit;
 	}else if (!unameIsUnique($uname, $conn)) {
-		$em  = "Username is taken! try another";
+		$em  = "Tên người dùng đã tồn tại! Vui lòng chọn tên khác";
 		header("Location: ../student-add.php?error=$em&$data");
 		exit;
 	}else if (empty($pass)) {
-		$em  = "Password is required";
+		$em  = "Mật khẩu không được để trống";
 		header("Location: ../student-add.php?error=$em&$data");
 		exit;
 	}else if (empty($address)) {
-        $em  = "Address is required";
+        $em  = "Địa chỉ không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($gender)) {
-        $em  = "Gender is required";
+        $em  = "Giới tính không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($email_address)) {
-        $em  = "Email address is required";
+        $em  = "Địa chỉ email không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($date_of_birth)) {
-        $em  = "Date of birth is required";
+        $em  = "Ngày sinh không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($parent_fname)) {
-        $em  = "Parent first name is required";
+        $em  = "Tên phụ huynh không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($parent_lname)) {
-        $em  = "Parent last name is required";
+        $em  = "Họ phụ huynh không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($parent_phone_number)) {
-        $em  = "Parent phone number is required";
+        $em  = "Số điện thoại phụ huynh không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else if (empty($section)) {
-        $em  = "Section is required";
+        $em  = "Phần không được để trống";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else {
-        // hashing the password
+        // Mã hóa mật khẩu
         $pass = password_hash($pass, PASSWORD_DEFAULT);
         $sql  = "INSERT INTO
                  students(username, password, fname, lname, grade, section, address, gender, email_address, date_of_birth, parent_fname, parent_lname, parent_phone_number)
                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$uname, $pass, $fname, $lname, $grade, $section, $address, $gender, $email_address, $date_of_birth, $parent_fname, $parent_lname, $parent_phone_number]);
-        $sm = "New student registered successfully";
+        $sm = "Sinh viên mới đã đăng ký thành công";
         header("Location: ../student-add.php?success=$sm");
         exit;
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../student-add.php?error=$em");
     exit;
   }
@@ -121,3 +121,4 @@ if (isset($_POST['fname']) &&
 	header("Location: ../../logout.php");
 	exit;
 } 
+?>
