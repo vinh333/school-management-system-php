@@ -9,16 +9,16 @@ if (isset($_SESSION['admin_id']) &&
 if (isset($_POST['school_name']) &&
     isset($_POST['slogan']) &&
     isset($_POST['about']) &&
-    isset($_POST['current_year']) &&
-    isset($_POST['current_semester'])) {
+    isset($_POST['hoc_ky']) &&
+    isset($_POST['nam_hoc'])) {
     
     include '../../DB_connection.php';
 
     $school_name = $_POST['school_name'];
     $slogan = $_POST['slogan'];
     $about = $_POST['about'];
-    $current_year = $_POST['current_year'];
-    $current_semester = $_POST['current_semester'];
+    $current_year = $_POST['hoc_ky'];
+    $current_semester = $_POST['nam_hoc'];
 
    
 

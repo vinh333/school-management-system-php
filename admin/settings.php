@@ -62,14 +62,14 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Năm Học Hiện Tại</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$setting['current_year']?>" 
+                 value="<?=$setting['hoc_ky']?>" 
                  name="current_year">
         </div>
         <div class="mb-3">
           <label class="form-label">Học Kỳ Hiện Tại</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$setting['current_semester']?>"
+                 value="<?=$setting['nam_hoc']?>"
                  name="current_semester">
         </div>
       <button type="submit" 

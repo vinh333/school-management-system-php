@@ -39,10 +39,10 @@ if (isset($_SESSION['id_hoc_sinh']) &&
             foreach ($scores as $score) { 
               if($score['year'] == $check){
                 $check = $score['year'];
-                $csubject = getSubjectById($score['subject_id'], $conn);
+                $csubject = getSubjectById($score['id_mon_hoc'], $conn);
           ?>
           <tr>
-            <td><?=$csubject['subject_code']?></th>
+            <td><?=$csubject['ten_mon_hoc']?></th>
             <td><?=$csubject['subject']?></th>
             <td>
               <?php 
@@ -69,7 +69,7 @@ if (isset($_SESSION['id_hoc_sinh']) &&
         <?php }else { 
           $check = $score['year'];
 
-          $csubject = getSubjectById($score['subject_id'], $conn);
+          $csubject = getSubjectById($score['id_mon_hoc'], $conn);
         ?>
          <div class="table-responsive " style="width: 90%; max-width: 700px;">
               <table class="table table-bordered mt-1 mb-5 n-table">
@@ -86,7 +86,7 @@ if (isset($_SESSION['id_hoc_sinh']) &&
                 </thead>
                 <tbody>
                   <tr>
-            <td><?=$csubject['subject_code']?></th>
+            <td><?=$csubject['ten_mon_hoc']?></th>
             <td><?=$csubject['subject']?></th>
             <td>
               <?php 

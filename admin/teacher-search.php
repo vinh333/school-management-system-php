@@ -95,7 +95,7 @@ if (isset($_SESSION['admin_id']) &&
                            foreach ($subjects as $subject) {
                               $s_temp = getSubjectById($subject, $conn);
                               if ($s_temp != 0) 
-                                $s .=$s_temp['subject_code'].', ';
+                                $s .=$s_temp['ten_mon_hoc'].', ';
                            }
                            echo $s;
                         ?>

@@ -44,7 +44,7 @@ if (isset($_POST['course_name']) &&
         $stmt_check->execute([$grade, $course_code]);
         if ($stmt_check->rowCount() > 0) {
               $courses = $stmt_check->fetch();
-             if ($courses['subject_id'] == $course_id) {
+             if ($courses['id_mon_hoc'] == $course_id) {
                 $sql  = "UPDATE subjects SET subject=?, subject_code=?, grade=?
                      WHERE subject_id=?";
                 $stmt = $conn->prepare($sql);

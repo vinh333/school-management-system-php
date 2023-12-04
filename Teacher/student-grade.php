@@ -7,6 +7,7 @@ if (isset($_SESSION['id_giao_vien']) &&
        include "../DB_connection.php";
        include "data/student.php";
        include "data/class.php";
+
        include "data/setting.php";
        include "data/subject.php";
        include "data/teacher.php";
@@ -16,21 +17,21 @@ if (isset($_SESSION['id_giao_vien']) &&
            header("Location: students.php");
            exit;
        }
-       $id_hoc_sinh = $_GET['id_hoc_sinh'];
-       $student = getStudentById($id_hoc_sinh, $conn);
+       $student_id = $_GET['id_hoc_sinh'];
+       $student = getStudentById($student_id, $conn);
        $setting = getSetting($conn);
-       $subjects = getSubjectByGrade($student['grade'], $conn);
+       $subjects = getSubjectByClass($student['id_lop'], $conn);
 
-       $id_giao_vien = $_SESSION['id_giao_vien'];
-       $teacher = getTeacherById($id_giao_vien, $conn);
+       $teacher_id = $_SESSION['id_giao_vien'];
+       $teacher = getTeacherById($teacher_id, $conn);
 
-       $teacher_subjects = str_split(trim($teacher['subjects']));
+       $teacher_subjects = str_split(trim($teacher['mon_hoc']));
 
        $ssubject_id = 0;
        if (isset($_POST['ssubject_id'])) {
            $ssubject_id = $_POST['ssubject_id'];
-
-           $student_score = getScoreById($id_hoc_sinh, $id_giao_vien, $ssubject_id, $setting['current_semester'], $setting['current_year'], $conn); 
+          echo $student_id, $teacher_id, $ssubject_id, $setting['nam_hoc'], $setting['hoc_ky'];
+           $student_score = getScoreById($student_id, $teacher_id, $ssubject_id, $setting['hoc_ky'], $setting['nam_hoc'], $conn); 
        }
  ?>
 <!DOCTYPE html>
@@ -58,18 +59,10 @@ if (isset($_SESSION['id_giao_vien']) &&
                 <ul class="list-group">
                     <li class="list-group-item"><b>ID: </b> <?php echo $student['id_hoc_sinh'] ?></li>
                   <li class="list-group-item"><b>Họ và tên đệm: </b> <?php echo $student['ho'] ?></li>
-                  <li class="list-group-item"><b>Tên: </b> <?php echo $student['ten'] ?></li>
-                  <li class="list-group-item"><b>Khối: </b> 
-                    <?php  $g = getGradeById($student['grade'], $conn); 
-                        echo $g['grade_code'].'-'.$g['grade'];
-                    ?>
-                  </li>
-                  <li class="list-group-item"><b>Học Lực: </b> 
-                    <?php  $s = getSectioById($student['section'], $conn); 
-                        echo $s['section'];
-                    ?>
-                  </li>
-                  <li class="list-group-item text-center"><b>Năm: </b> <?php echo $setting['current_year']; ?> &nbsp;&nbsp;&nbsp;<b>Học kỳ</b> <?php echo $setting['current_semester']; ?></li>
+                  <li class="list-group-item"><b>Tên: </b> <?php echo $student['ten']?></li>
+                  
+                  
+                  <li class="list-group-item text-center"><b>Năm: </b> <?php echo $setting['hoc_ky']; ?> &nbsp;&nbsp;&nbsp;<b>Học kỳ</b> <?php echo $setting['nam_hoc']; ?></li>
                 </ul>
             </div>
             <h5 class="text-center">Thêm điểm</h5>
@@ -88,11 +81,11 @@ if (isset($_SESSION['id_giao_vien']) &&
             <select class="form-control" name="ssubject_id">
                 <?php foreach($subjects as $subject){ 
                     foreach($teacher_subjects as $teacher_subject){
-                        if($subject['subject_id'] == $teacher_subject){ ?>
+                        if($subject['id_mon_hoc'] == $teacher_subject){ ?>
                     
-                       <option <?php if($ssubject_id == $subject['subject_id']){echo "selected";} ?> 
-                           value="<?php echo $subject['subject_id'] ?>">
-                        <?php echo $subject['subject_code'] ?></option>
+                       <option <?php if($ssubject_id == $subject['id_mon_hoc']){echo "selected";} ?> 
+                           value="<?php echo $subject['id_mon_hoc'] ?>">
+                        <?php echo $subject['ten_mon_hoc'] ?></option>
                 <?php }   }
                 } ?>
             </select><br>
@@ -106,9 +99,9 @@ if (isset($_SESSION['id_giao_vien']) &&
             if ($ssubject_id != 0) { 
               $counter = 0;
               if($student_score != 0){ ?>
-                <input type="text" name="student_score_id" value="<?=$student_score['id']?>" hidden>
+                <input type="text" name="student_score_id" value="<?=$student_score['id_diem']?>" hidden>
             <?php
-            $scores = explode(',', trim($student_score['results']));
+            $scores = explode(',', trim($student_score['ket_qua']));
 
             foreach ($scores as $score) { 
                 $temp =  explode(' ', trim($score));
@@ -130,10 +123,10 @@ if (isset($_SESSION['id_giao_vien']) &&
             </div>
            <?php } } ?>
 
-           <input type="text" name="id_hoc_sinh" value="<?=$id_hoc_sinh?>" hidden>
+           <input type="text" name="student_id" value="<?=$student_id?>" hidden>
             <input type="text" name="subject_id" value="<?=$ssubject_id?>" hidden>
-            <input type="text" name="current_semester" value="<?=$setting['current_semester']?>" hidden>
-            <input type="text" name="current_year" value="<?=$setting['current_year']?>" hidden>
+            <input type="text" name="current_semester" value="<?=$setting['nam_hoc']?>" hidden>
+            <input type="text" name="current_year" value="<?=$setting['hoc_ky']?>" hidden>
         
           <button type="submit" class="btn btn-primary">Lưu</button>
         </form>  

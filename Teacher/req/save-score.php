@@ -17,9 +17,9 @@ if (isset($_POST['score-1']) &&
     isset($_POST['aoutof-4']) &&
     isset($_POST['aoutof-5']) &&
     isset($_POST['id_hoc_sinh']) &&
-    isset($_POST['subject_id']) &&
-    isset($_POST['current_year']) &&
-    isset($_POST['current_semester'])
+    isset($_POST['id_mon_hoc']) &&
+    isset($_POST['hoc_ky']) &&
+    isset($_POST['nam_hoc'])
     ) {
     
     include '../../DB_connection.php';
@@ -41,9 +41,9 @@ if (isset($_POST['score-1']) &&
     $aoutof_5 = $_POST['aoutof-5'];
 
     $id_hoc_sinh = $_POST['id_hoc_sinh'];
-    $subject_id = $_POST['subject_id'];
-    $current_year = $_POST['current_year'];
-    $current_semester = $_POST['current_semester'];
+    $subject_id = $_POST['id_mon_hoc'];
+    $current_year = $_POST['hoc_ky'];
+    $current_semester = $_POST['nam_hoc'];
     $id_giao_vien = $_SESSION['id_giao_vien'];
 
     if(empty($score_1) || empty($score_2) || empty($score_3) || empty($score_4) || empty($score_5) || empty($aoutof_1) || empty($aoutof_2) || empty($aoutof_3) || empty($aoutof_4) || empty($aoutof_5) || empty($id_hoc_sinh) || empty($subject_id) || empty($current_year) || empty($current_semester)){

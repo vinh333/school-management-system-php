@@ -66,7 +66,7 @@ if (isset($_SESSION['admin_id']) &&
                     </td>
                     <td>
                       <?php 
-                          echo $course['subject_code'];
+                          echo $course['ten_mon_hoc'];
                        ?>
                     </td>
                     <td>
@@ -76,10 +76,10 @@ if (isset($_SESSION['admin_id']) &&
                        ?>
                     </td>
                     <td>
-                        <a href="course-edit.php?course_id=<?=$course['subject_id']?>"
+                        <a href="course-edit.php?course_id=<?=$course['id_mon_hoc']?>"
                            class="btn btn-warning">Sửa</a>
                            
-                        <a href="course-delete.php?course_id=<?=$course['subject_id']?>"
+                        <a href="course-delete.php?course_id=<?=$course['id_mon_hoc']?>"
                            class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>

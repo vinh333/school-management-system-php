@@ -146,7 +146,7 @@ if (isset($_SESSION['admin_id']) &&
             foreach ($subjects as $subject){ 
               $checked =0;
               foreach ($subject_ids as $subject_id ) {
-                if ($subject_id == $subject['subject_id']) {
+                if ($subject_id == $subject['id_mon_hoc']) {
                    $checked =1;
                 }
               }
@@ -155,7 +155,7 @@ if (isset($_SESSION['admin_id']) &&
               <input type="checkbox"
                      name="subjects[]"
                      <?php if($checked) echo "checked"; ?>
-                     value="<?=$subject['subject_id']?>">
+                     value="<?=$subject['id_mon_hoc']?>">
                      <?=$subject['subject']?>
             </div>
             <?php } ?>

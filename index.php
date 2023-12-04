@@ -102,7 +102,7 @@ if ($setting != 0) {
 			</form>
         </section>
         <div class="text-center text-light">
-        	Bản quyền &copy; <?=$setting['current_year']?> <?=$setting['school_name']?>. Đã đăng ký bản quyền.
+        	Bản quyền &copy; <?=$setting['hoc_ky']?> <?=$setting['school_name']?>. Đã đăng ký bản quyền.
         </div>
 
     	</div>

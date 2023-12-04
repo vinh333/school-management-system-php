@@ -158,7 +158,7 @@ if (isset($_SESSION['admin_id']) &&
             <div class="col">
               <input type="checkbox"
                      name="subjects[]"
-                     value="<?=$subject['subject_id']?>">
+                     value="<?=$subject['id_mon_hoc']?>">
                      <?=$subject['subject']?>
             </div>
             <?php endforeach ?>

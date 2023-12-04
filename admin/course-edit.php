@@ -64,7 +64,7 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Mã Khóa Học</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$course['subject_code']?>" 
+                 value="<?=$course['ten_mon_hoc']?>" 
                  name="course_code">
         </div>
         <div class="mb-3">
@@ -88,7 +88,7 @@ if (isset($_SESSION['admin_id']) &&
         </div>
         <input type="text" 
                  class="form-control"
-                 value="<?=$course['subject_id']?>"
+                 value="<?=$course['id_mon_hoc']?>"
                  name="course_id"
                  hidden>
 

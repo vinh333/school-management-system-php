@@ -40,13 +40,13 @@ function getSubjectById($subject_id, $conn){
 }
 
 // Hàm để lấy thông tin môn học dựa trên lớp
-function getSubjectByGrade($grade, $conn){
+function getSubjectByClass($class, $conn){
    // Chuỗi SQL để truy vấn thông tin môn học từ cơ sở dữ liệu dựa trên lớp
    $sql = "SELECT * FROM mon_hoc
-           WHERE lop=?";
+           WHERE id_lop=?";
    // Chuẩn bị và thực thi câu truy vấn SQL sử dụng PDO
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$grade]);
+   $stmt->execute([$class]);
 
    // Kiểm tra số lượng dòng kết quả trả về từ câu truy vấn
    if ($stmt->rowCount() > 0) {
