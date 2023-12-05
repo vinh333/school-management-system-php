@@ -9,14 +9,14 @@ if (isset($_SESSION['admin_id']) &&
 if (isset($_POST['ho'])      &&
     isset($_POST['ten'])      &&
     isset($_POST['ten_dang_nhap'])   &&
-    isset($_POST['r_user_id']) &&
-    isset($_POST['address'])  &&
-    isset($_POST['employee_number']) &&
-    isset($_POST['phone_number'])  &&
-    isset($_POST['qualification']) &&
-    isset($_POST['email_address']) &&
-    isset($_POST['gender'])        &&
-    isset($_POST['date_of_birth'])) {
+    isset($_POST['id_phong_cong_tac_hssv']) &&
+    isset($_POST['dia_chi'])  &&
+    isset($_POST['so_hieu_giao_vien']) &&
+    isset($_POST['so_dien_thoai'])  &&
+    isset($_POST['trinh_do']) &&
+    isset($_POST['email']) &&
+    isset($_POST['gioi_tinh'])        &&
+    isset($_POST['ngay_sinh'])) {
     
     include '../../DB_connection.php';
     include "../data/registrar_office.php";
@@ -25,77 +25,77 @@ if (isset($_POST['ho'])      &&
     $ten = $_POST['ten'];
     $uname = $_POST['ten_dang_nhap'];
 
-    $address = $_POST['address'];
-    $employee_number = $_POST['employee_number'];
-    $phone_number = $_POST['phone_number'];
-    $qualification = $_POST['qualification'];
-    $email_address = $_POST['email_address'];
-    $gender = $_POST['gender'];
-    $date_of_birth = $_POST['date_of_birth'];
+    $dia_chi = $_POST['dia_chi'];
+    $so_hieu_giao_vien = $_POST['so_hieu_giao_vien'];
+    $so_dien_thoai = $_POST['so_dien_thoai'];
+    $trinh_do = $_POST['trinh_do'];
+    $email = $_POST['email'];
+    $gioi_tinh = $_POST['gioi_tinh'];
+    $ngay_sinh = $_POST['ngay_sinh'];
 
-    $r_user_id = $_POST['r_user_id'];
+    $id_phong_cong_tac_hssv = $_POST['id_phong_cong_tac_hssv'];
     
 
-    $data = 'r_user_id='.$r_user_id;
+    $data = 'id_phong_cong_tac_hssv='.$id_phong_cong_tac_hssv;
 
     if (empty($ho)) {
-		$em  = "First name is required";
+		$em  = "Họ là bắt buộc";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
 	}else if (empty($ten)) {
-		$em  = "Last name is required";
+		$em  = "Tên là bắt buộc";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
 	}else if (empty($uname)) {
-		$em  = "ten_dang_nhap is required";
+		$em  = "Tên đăng nhập là bắt buộc";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
-	}else if (!unameIsUnique($uname, $conn, $r_user_id)) {
-		$em  = "ten_dang_nhap is taken! try another";
+	}else if (!unameIsUnique($uname, $conn, $id_phong_cong_tac_hssv)) {
+		$em  = "Tên đăng nhập đã tồn tại! Hãy chọn một tên khác";
 		header("Location: ../registrar-office-edit.php?error=$em&$data");
 		exit;
-	}else if (empty($address)) {
-        $em  = "Address is required";
+	}else if (empty($dia_chi)) {
+        $em  = "Địa chỉ là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
-    }else if (empty($employee_number)) {
-        $em  = "Employee number is required";
+    }else if (empty($so_hieu_giao_vien)) {
+        $em  = "Số hiệu giáo viên là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
-    }else if (empty($phone_number)) {
-        $em  = "Phone number is required";
+    }else if (empty($so_dien_thoai)) {
+        $em  = "Số điện thoại là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
-    }else if (empty($qualification)) {
-        $em  = "Qualification is required";
+    }else if (empty($trinh_do)) {
+        $em  = "Trình độ là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
-    }else if (empty($email_address)) {
-        $em  = "Email address is required";
+    }else if (empty($email)) {
+        $em  = "Địa chỉ email là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
-    }else if (empty($gender)) {
-        $em  = "Gender address is required";
+    }else if (empty($gioi_tinh)) {
+        $em  = "Giới tính là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
-    }else if (empty($date_of_birth)) {
-        $em  = "Date of birth address is required";
+    }else if (empty($ngay_sinh)) {
+        $em  = "Ngày sinh là bắt buộc";
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
     }else {
         $sql = "UPDATE registrar_office SET
                 ten_dang_nhap = ?, ho=?, ten=?,
-                address = ?, employee_number=?, date_of_birth = ?, phone_number = ?, qualification = ?,gender=?, email_address = ?
-                WHERE r_user_id=?";
+                dia_chi = ?, so_hieu_giao_vien=?, ngay_sinh = ?, so_dien_thoai = ?, trinh_do = ?,gioi_tinh=?, email = ?
+                WHERE id_phong_cong_tac_hssv=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname, $ho, $ten, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address, $r_user_id]);
-        $sm = "successfully updated!";
+        $stmt->execute([$uname, $ho, $ten, $dia_chi, $so_hieu_giao_vien, $ngay_sinh, $so_dien_thoai, $trinh_do, $gioi_tinh, $email, $id_phong_cong_tac_hssv]);
+        $sm = "Cập nhật thành công!";
         header("Location: ../registrar-office-edit.php?success=$sm&$data");
         exit;
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../registrar-office.php?error=$em");
     exit;
   }

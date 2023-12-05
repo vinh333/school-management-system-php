@@ -8,7 +8,7 @@ function adminPasswordVerify($admin_pass, $conn, $admin_id){
 
    if ($stmt->rowCount() == 1) {
      $admin = $stmt->fetch();
-     $pass  = $admin['password'];
+     $pass  = $admin['mat_khau'];
 
      if (password_verify($admin_pass, $pass)) {
      	return 1;

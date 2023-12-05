@@ -2,13 +2,13 @@
 
 // All Students 
 function getAllStudents($conn){
-   $sql = "SELECT * FROM students";
+   $sql = "SELECT * FROM hoc_sinh";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
    if ($stmt->rowCount() >= 1) {
-     $students = $stmt->fetchAll();
-     return $students;
+     $hoc_sinh = $stmt->fetchAll();
+     return $hoc_sinh;
    }else {
    	return 0;
    }
@@ -16,7 +16,7 @@ function getAllStudents($conn){
 
 // DELETE
 function removeStudent($id, $conn){
-   $sql  = "DELETE FROM students
+   $sql  = "DELETE FROM hoc_sinh
            WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $re   = $stmt->execute([$id]);
@@ -29,7 +29,7 @@ function removeStudent($id, $conn){
 
 // Get Student By Id 
 function getStudentById($id, $conn){
-   $sql = "SELECT * FROM students
+   $sql = "SELECT * FROM hoc_sinh
            WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
@@ -45,7 +45,7 @@ function getStudentById($id, $conn){
 
 // Check if the ten_dang_nhap Unique
 function unameIsUnique($uname, $conn, $id_hoc_sinh=0){
-   $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM students
+   $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM hoc_sinh
            WHERE ten_dang_nhap=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
@@ -75,22 +75,22 @@ function unameIsUnique($uname, $conn, $id_hoc_sinh=0){
 // Search 
 function searchStudents($key, $conn){
    $key = preg_replace('/(?<!\\\)([%_])/', '\\\$1',$key);
-   $sql = "SELECT * FROM students
+   $sql = "SELECT * FROM hoc_sinh
            WHERE id_hoc_sinh LIKE ? 
            OR ho LIKE ?
-           OR address LIKE ?
-           OR email_address LIKE ?
-           OR parent_ho LIKE ?
-           OR parent_ten LIKE ?
-           OR parent_phone_number LIKE ?
+           OR dia_chi LIKE ?
+           OR email LIKE ?
+           OR ho_ten_cha LIKE ?
+           OR ho_ten_me LIKE ?
+           OR so_dien_thoai_phu_huynh LIKE ?
            OR ten LIKE ?
            OR ten_dang_nhap LIKE ?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$key, $key, $key, $key, $key, $key, $key, $key, $key]);
 
    if ($stmt->rowCount() == 1) {
-     $students = $stmt->fetchAll();
-     return $students;
+     $hoc_sinh = $stmt->fetchAll();
+     return $hoc_sinh;
    }else {
     return 0;
    }

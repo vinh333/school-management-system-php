@@ -10,13 +10,13 @@ if (isset($_POST['ho']) &&
     isset($_POST['ten']) &&
     isset($_POST['ten_dang_nhap']) &&
     isset($_POST['pass'])     &&
-    isset($_POST['address'])  &&
-    isset($_POST['gender'])   &&
-    isset($_POST['email_address']) &&
-    isset($_POST['date_of_birth']) &&
-    isset($_POST['parent_ho'])  &&
-    isset($_POST['parent_ten'])  &&
-    isset($_POST['parent_phone_number']) &&
+    isset($_POST['dia_chi'])  &&
+    isset($_POST['gioi_tinh'])   &&
+    isset($_POST['email']) &&
+    isset($_POST['ngay_sinh']) &&
+    isset($_POST['ho_ten_cha'])  &&
+    isset($_POST['ho_ten_me'])  &&
+    isset($_POST['so_dien_thoai_phu_huynh']) &&
     isset($_POST['section']) &&
     isset($_POST['grade'])) {
     
@@ -28,19 +28,19 @@ if (isset($_POST['ho']) &&
     $uname = $_POST['ten_dang_nhap'];
     $pass = $_POST['pass'];
 
-    $address = $_POST['address'];
-    $gender = $_POST['gender'];
-    $email_address = $_POST['email_address'];
-    $date_of_birth = $_POST['date_of_birth'];
-    $parent_ho = $_POST['parent_ho'];
-    $parent_ten = $_POST['parent_ten'];
-    $parent_phone_number = $_POST['parent_phone_number'];
+    $dia_chi = $_POST['dia_chi'];
+    $gioi_tinh = $_POST['gioi_tinh'];
+    $email = $_POST['email'];
+    $ngay_sinh = $_POST['ngay_sinh'];
+    $ho_ten_cha = $_POST['ho_ten_cha'];
+    $ho_ten_me = $_POST['ho_ten_me'];
+    $so_dien_thoai_phu_huynh = $_POST['so_dien_thoai_phu_huynh'];
 
     $grade = $_POST['grade'];
     $section = $_POST['section'];
     
 
-    $data = 'uname='.$uname.'&ho='.$ho.'&ten='.$ten.'&address='.$address.'&gender='.$email_address.'&pfn='.$parent_ho.'&pln='.$parent_ten.'&ppn='.$parent_phone_number;
+    $data = 'uname='.$uname.'&ho='.$ho.'&ten='.$ten.'&dia_chi='.$dia_chi.'&gioi_tinh='.$email.'&pfn='.$ho_ten_cha.'&pln='.$ho_ten_me.'&ppn='.$so_dien_thoai_phu_huynh;
 
     if (empty($ho)) {
 		$em  = "First name is required";
@@ -62,31 +62,31 @@ if (isset($_POST['ho']) &&
 		$em  = "Password is required";
 		header("Location: ../student-add.php?error=$em&$data");
 		exit;
-	}else if (empty($address)) {
-        $em  = "Address is required";
+	}else if (empty($dia_chi)) {
+        $em  = "dia_chi is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
-    }else if (empty($gender)) {
-        $em  = "Gender is required";
+    }else if (empty($gioi_tinh)) {
+        $em  = "gioi_tinh is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
-    }else if (empty($email_address)) {
-        $em  = "Email address is required";
+    }else if (empty($email)) {
+        $em  = "Email dia_chi is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
-    }else if (empty($date_of_birth)) {
+    }else if (empty($ngay_sinh)) {
         $em  = "Date of birth is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
-    }else if (empty($parent_ho)) {
+    }else if (empty($ho_ten_cha)) {
         $em  = "Parent first name is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
-    }else if (empty($parent_ten)) {
+    }else if (empty($ho_ten_me)) {
         $em  = "Parent last name is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
-    }else if (empty($parent_phone_number)) {
+    }else if (empty($so_dien_thoai_phu_huynh)) {
         $em  = "Parent phone number is required";
         header("Location: ../student-add.php?error=$em&$data");
         exit;
@@ -95,13 +95,13 @@ if (isset($_POST['ho']) &&
         header("Location: ../student-add.php?error=$em&$data");
         exit;
     }else {
-        // hashing the password
+        // hashing the mat_khau
         $pass = password_hash($pass, PASSWORD_DEFAULT);
         $sql  = "INSERT INTO
-                 students(ten_dang_nhap, password, ho, ten, grade, section, address, gender, email_address, date_of_birth, parent_ho, parent_ten, parent_phone_number)
+                 hoc_sinh(ten_dang_nhap, mat_khau, ho, ten, grade, section, dia_chi, gioi_tinh, email, ngay_sinh, ho_ten_cha, ho_ten_me, so_dien_thoai_phu_huynh)
                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname, $pass, $ho, $ten, $grade, $section, $address, $gender, $email_address, $date_of_birth, $parent_ho, $parent_ten, $parent_phone_number]);
+        $stmt->execute([$uname, $pass, $ho, $ten, $grade, $section, $dia_chi, $gioi_tinh, $email, $ngay_sinh, $ho_ten_cha, $ho_ten_me, $so_dien_thoai_phu_huynh]);
         $sm = "New student registered successfully";
         header("Location: ../student-add.php?success=$sm");
         exit;

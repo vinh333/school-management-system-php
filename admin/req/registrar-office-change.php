@@ -9,7 +9,7 @@ if (isset($_SESSION['admin_id']) &&
 if (isset($_POST['admin_pass']) &&
     isset($_POST['new_pass'])   &&
     isset($_POST['c_new_pass']) &&
-    isset($_POST['r_user_id'])) {
+    isset($_POST['id_phong_cong_tac_hssv'])) {
     
     include '../../DB_connection.php';
     include "../data/registrar_office.php";
@@ -19,48 +19,48 @@ if (isset($_POST['admin_pass']) &&
     $new_pass = $_POST['new_pass'];
     $c_new_pass = $_POST['c_new_pass'];
 
-    $r_user_id = $_POST['r_user_id'];
+    $id_phong_cong_tac_hssv = $_POST['id_phong_cong_tac_hssv'];
     $id = $_SESSION['admin_id'];
     
-    $data = 'r_user_id='.$r_user_id.'#change_password';
+    $data = 'id_phong_cong_tac_hssv='.$id_phong_cong_tac_hssv.'#change_password';
 
     if (empty($admin_pass)) {
-		$em  = "Admin password is required";
+		$em  = "Mật khẩu Admin là bắt buộc";
 		header("Location: ../registrar-office-edit.php?perror=$em&$data");
 		exit;
 	}else if (empty($new_pass)) {
-		$em  = "New password is required";
+		$em  = "Mật khẩu mới là bắt buộc";
 		header("Location: ../registrar-office-edit.php?perror=$em&$data");
 		exit;
 	}else if (empty($c_new_pass)) {
-		$em  = "Confirmation password is required";
+		$em  = "Xác nhận mật khẩu là bắt buộc";
 		header("Location: ../registrar-office-edit.php?perror=$em&$data");
 		exit;
 	}else if ($new_pass !== $c_new_pass) {
-        $em  = "New password and confirm password does not match";
+        $em  = "Mật khẩu mới và xác nhận mật khẩu không khớp";
         header("Location: ../registrar-office-edit.php?perror=$em&$data");
         exit;
     }else if (!adminPasswordVerify($admin_pass, $conn, $id)) {
-        $em  = "Incorrect admin password";
+        $em  = "Mật khẩu Admin không đúng";
         header("Location: ../registrar-office-edit.php?perror=$em&$data");
         exit;
     }else {
-        // hashing the password
+        // Băm mật khẩu mới
         $new_pass = password_hash($new_pass, PASSWORD_DEFAULT);
 
         $sql = "UPDATE registrar_office SET
-                password = ?
-                WHERE r_user_id=?";
+                mat_khau = ?
+                WHERE id_phong_cong_tac_hssv=?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$new_pass, $r_user_id]);
-        $sm = "The password has been changed successfully!";
+        $stmt->execute([$new_pass, $id_phong_cong_tac_hssv]);
+        $sm = "Mật khẩu đã được thay đổi thành công!";
         header("Location: ../registrar-office-edit.php?psuccess=$sm&$data");
         exit;
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../registrar-office.php?error=$em&$data");
     exit;
   }

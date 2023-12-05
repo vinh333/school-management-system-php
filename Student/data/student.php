@@ -1,14 +1,14 @@
 <?php 
 
 // Tất cả Sinh Viên 
-function getAllStudents($conn){
-   $sql = "SELECT * FROM students";
+function getAllhoc_sinh($conn){
+   $sql = "SELECT * FROM hoc_sinh";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
    if ($stmt->rowCount() >= 1) {
-     $students = $stmt->fetchAll();
-     return $students;
+     $hoc_sinh = $stmt->fetchAll();
+     return $hoc_sinh;
    }else {
    	return 0;
    }
@@ -16,7 +16,7 @@ function getAllStudents($conn){
 
 // Lấy Sinh Viên theo ID 
 function getStudentById($id, $conn){
-   $sql = "SELECT * FROM students
+   $sql = "SELECT * FROM hoc_sinh
            WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id]);
@@ -31,7 +31,7 @@ function getStudentById($id, $conn){
 
 // Kiểm tra xem tên người dùng có duy nhất không
 function unameIsUnique($uname, $conn, $id_hoc_sinh=0){
-   $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM students
+   $sql = "SELECT ten_dang_nhap, id_hoc_sinh FROM hoc_sinh
            WHERE ten_dang_nhap=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
@@ -58,7 +58,7 @@ function unameIsUnique($uname, $conn, $id_hoc_sinh=0){
 
 // Xác minh mật khẩu của sinh viên
 function studentPasswordVerify($student_pass, $conn, $id_hoc_sinh){
-   $sql = "SELECT * FROM students
+   $sql = "SELECT * FROM hoc_sinh
            WHERE id_hoc_sinh=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id_hoc_sinh]);

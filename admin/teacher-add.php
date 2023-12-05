@@ -8,14 +8,14 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
        include "data/subject.php";
        include "data/class.php";
-       $subjects = getAllSubjects($conn);
+       $mon_hoc = getAllSubjects($conn);
        $classes = getAllClasses($conn);
 
 
        $ho = '';
        $ten = '';
        $uname = '';
-       $address = '';
+       $dia_chi = '';
        $en = '';
        $pn = '';
        $qf = '';
@@ -24,7 +24,7 @@ if (isset($_SESSION['admin_id']) &&
        if (isset($_GET['ho'])) $ho = $_GET['ho'];
        if (isset($_GET['ten'])) $ten = $_GET['ten'];
        if (isset($_GET['uname'])) $uname = $_GET['uname'];
-       if (isset($_GET['address'])) $address = $_GET['address'];
+       if (isset($_GET['dia_chi'])) $dia_chi = $_GET['dia_chi'];
        if (isset($_GET['en'])) $en = $_GET['en'];
        if (isset($_GET['pn'])) $pn = $_GET['pn'];
        if (isset($_GET['qf'])) $qf = $_GET['qf'];
@@ -102,64 +102,64 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Địa Chỉ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$address?>"
-                 name="address">
+                 value="<?=$dia_chi?>"
+                 name="dia_chi">
         </div>
         <div class="mb-3">
-          <label class="form-label">Mã Nhân Viên</label>
+          <label class="form-label">Số Hiệu Giáo Viên</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$en?>"
-                 name="employee_number">
+                 name="so_hieu_giao_vien">
         </div>
         <div class="mb-3">
           <label class="form-label">Số Điện Thoại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$pn?>"
-                 name="phone_number">
+                 name="so_dien_thoai">
         </div>
         <div class="mb-3">
           <label class="form-label">Trình Độ</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$qf?>"
-                 name="qualification">
+                 name="trinh_do">
         </div>
         <div class="mb-3">
           <label class="form-label">Email</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$email?>"
-                 name="email_address">
+                 name="email">
         </div>
         <div class="mb-3">
           <label class="form-label">Giới Tính</label><br>
           <input type="radio"
                  value="Nam"
                  checked 
-                 name="gender"> Nam
+                 name="gioi_tinh"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
           <input type="radio"
-                 value="Nữ"
-                 name="gender"> Nữ
+                 value="Nu"
+                 name="gioi_tinh"> Nữ
         </div>
         <div class="mb-3">
           <label class="form-label">Ngày Sinh</label>
           <input type="date" 
                  class="form-control"
                  value=""
-                 name="date_of_birth">
+                 name="ngay_sinh">
         </div>
         <div class="mb-3">
           <label class="form-label">Môn Học</label>
           <div class="row row-cols-5">
-            <?php foreach ($subjects as $subject): ?>
+            <?php foreach ($mon_hoc as $subject): ?>
             <div class="col">
               <input type="checkbox"
-                     name="subjects[]"
+                     name="mon_hoc[]"
                      value="<?=$subject['id_mon_hoc']?>">
-                     <?=$subject['subject']?>
+                     <?=$subject['ten_mon_hoc']?>
             </div>
             <?php endforeach ?>
              
@@ -174,10 +174,10 @@ if (isset($_SESSION['admin_id']) &&
                      name="classes[]"
                      value="<?=$class['id_lop']?>">
                      <?php 
-                        $grade = getGradeById($class['grade'], $conn); 
-                        $section = getSectioById($class['section'], $conn); 
+                        // $grade = getGradeById($class['grade'], $conn); 
+                        // $section = getSectioById($class['section'], $conn); 
                       ?>
-                     <?=$grade['grade_code']?>-<?=$grade['grade'].$section['section']?>
+                     <?=$class['ten_lop']?>
             </div>
             <?php endforeach ?>
              

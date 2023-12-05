@@ -10,12 +10,12 @@ if (isset($_POST['ho']) &&
     isset($_POST['ten']) &&
     isset($_POST['ten_dang_nhap']) &&
     isset($_POST['pass'])     &&
-    isset($_POST['address'])  &&
-    isset($_POST['employee_number']) &&
-    isset($_POST['phone_number'])  &&
-    isset($_POST['qualification']) &&
-    isset($_POST['email_address']) &&
-    isset($_POST['date_of_birth'])) {
+    isset($_POST['dia_chi'])  &&
+    isset($_POST['so_hieu_giao_vien']) &&
+    isset($_POST['so_dien_thoai'])  &&
+    isset($_POST['trinh_do']) &&
+    isset($_POST['email']) &&
+    isset($_POST['ngay_sinh'])) {
     
     include '../../DB_connection.php';
     include "../data/registrar_office.php";
@@ -25,82 +25,82 @@ if (isset($_POST['ho']) &&
     $uname = $_POST['ten_dang_nhap'];
     $pass = $_POST['pass'];
 
-    $address = $_POST['address'];
-    $employee_number = $_POST['employee_number'];
-    $phone_number = $_POST['phone_number'];
-    $qualification = $_POST['qualification'];
-    $email_address = $_POST['email_address'];
-    $gender = $_POST['gender'];
-    $date_of_birth = $_POST['date_of_birth'];
+    $dia_chi = $_POST['dia_chi'];
+    $so_hieu_giao_vien = $_POST['so_hieu_giao_vien'];
+    $so_dien_thoai = $_POST['so_dien_thoai'];
+    $trinh_do = $_POST['trinh_do'];
+    $email = $_POST['email'];
+    $gioi_tinh = $_POST['gioi_tinh'];
+    $ngay_sinh = $_POST['ngay_sinh'];
 
 
 
-    $data = 'uname='.$uname.'&ho='.$ho.'&ten='.$ten.'&address='.$address.'&en='.$employee_number.'&pn='.$phone_number.'&qf='.$qualification.'&email='.$email_address;
+    $data = 'uname='.$uname.'&ho='.$ho.'&ten='.$ten.'&dia_chi='.$dia_chi.'&en='.$so_hieu_giao_vien.'&pn='.$so_dien_thoai.'&qf='.$trinh_do.'&email='.$email;
 
     if (empty($ho)) {
-		$em  = "First name is required";
+		$em  = "Tên là bắt buộc";
 		header("Location: ../registrar-office-add.php?error=$em&$data");
 		exit;
 	}else if (empty($ten)) {
-		$em  = "Last name is required";
+		$em  = "Họ là bắt buộc";
 		header("Location: ../registrar-office-add.php?error=$em&$data");
 		exit;
 	}else if (empty($uname)) {
-		$em  = "ten_dang_nhap is required";
+		$em  = "Tên đăng nhập là bắt buộc";
 		header("Location: ../registrar-office-add.php?error=$em&$data");
 		exit;
 	}else if (!unameIsUnique($uname, $conn)) {
-		$em  = "ten_dang_nhap is taken! try another";
+		$em  = "Tên đăng nhập đã được sử dụng, vui lòng chọn tên khác";
 		header("Location: ../registrar-office-add.php?error=$em&$data");
 		exit;
 	}else if (empty($pass)) {
-		$em  = "Password is required";
+		$em  = "Mật khẩu là bắt buộc";
 		header("Location: ../registrar-office-add.php?error=$em&$data");
 		exit;
-	}else if (empty($address)) {
-        $em  = "Address is required";
+	}else if (empty($dia_chi)) {
+        $em  = "Địa chỉ là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
-    }else if (empty($employee_number)) {
-        $em  = "Employee number is required";
+    }else if (empty($so_hieu_giao_vien)) {
+        $em  = "Số hiệu giáo viên là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
-    }else if (empty($phone_number)) {
-        $em  = "Phone number is required";
+    }else if (empty($so_dien_thoai)) {
+        $em  = "Số điện thoại là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
-    }else if (empty($qualification)) {
-        $em  = "Qualification is required";
+    }else if (empty($trinh_do)) {
+        $em  = "Trình độ là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
-    }else if (empty($email_address)) {
-        $em  = "Email address is required";
+    }else if (empty($email)) {
+        $em  = "Email là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
-    }else if (empty($gender)) {
-        $em  = "Gender address is required";
+    }else if (empty($gioi_tinh)) {
+        $em  = "Giới tính là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
-    }else if (empty($date_of_birth)) {
-        $em  = "Date of birth address is required";
+    }else if (empty($ngay_sinh)) {
+        $em  = "Ngày sinh là bắt buộc";
         header("Location: ../registrar-office-add.php?error=$em&$data");
         exit;
     }else {
-        // hashing the password
+        // Băm mật khẩu
         $pass = password_hash($pass, PASSWORD_DEFAULT);
 
         $sql  = "INSERT INTO
-                 registrar_office(ten_dang_nhap, password, ho, ten, address, employee_number, date_of_birth, phone_number, qualification, gender, email_address)
+                 registrar_office(ten_dang_nhap, mat_khau, ho, ten, dia_chi, so_hieu_giao_vien, ngay_sinh, so_dien_thoai, trinh_do, gioi_tinh, email)
                  VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname, $pass, $ho, $ten, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address]);
-        $sm = "New teacher registered successfully";
+        $stmt->execute([$uname, $pass, $ho, $ten, $dia_chi, $so_hieu_giao_vien, $ngay_sinh, $so_dien_thoai, $trinh_do, $gioi_tinh, $email]);
+        $sm = "Đăng ký giáo viên mới thành công";
         header("Location: ../teacher-add.php?success=$sm");
         exit;
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../registrar-office-add.php?error=$em");
     exit;
   }

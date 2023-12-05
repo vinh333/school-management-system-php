@@ -2,7 +2,7 @@
 
 // Get Teacher by ID
 function getTeacherById($id_giao_vien, $conn){
-   $sql = "SELECT * FROM teachers
+   $sql = "SELECT * FROM giao_vien
            WHERE id_giao_vien=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id_giao_vien]);
@@ -17,13 +17,13 @@ function getTeacherById($id_giao_vien, $conn){
 
 // All Teachers 
 function getAllTeachers($conn){
-   $sql = "SELECT * FROM teachers";
+   $sql = "SELECT * FROM giao_vien";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
    if ($stmt->rowCount() >= 1) {
-     $teachers = $stmt->fetchAll();
-     return $teachers;
+     $giao_vien = $stmt->fetchAll();
+     return $giao_vien;
    }else {
    	return 0;
    }
@@ -31,7 +31,7 @@ function getAllTeachers($conn){
 
 // Check if the ten_dang_nhap Unique
 function unameIsUnique($uname, $conn, $id_giao_vien=0){
-   $sql = "SELECT ten_dang_nhap, id_giao_vien FROM teachers
+   $sql = "SELECT ten_dang_nhap, id_giao_vien FROM giao_vien
            WHERE ten_dang_nhap=?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$uname]);
@@ -59,7 +59,7 @@ function unameIsUnique($uname, $conn, $id_giao_vien=0){
 
 // DELETE
 function removeTeacher($id, $conn){
-   $sql  = "DELETE FROM teachers
+   $sql  = "DELETE FROM giao_vien
            WHERE id_giao_vien=?";
    $stmt = $conn->prepare($sql);
    $re   = $stmt->execute([$id]);
@@ -74,22 +74,22 @@ function removeTeacher($id, $conn){
 function searchTeachers($key, $conn){
    $key = preg_replace('/(?<!\\\)([%_])/', '\\\$1',$key);
 
-   $sql = "SELECT * FROM teachers
+   $sql = "SELECT * FROM giao_vien
            WHERE id_giao_vien LIKE ? 
            OR ho LIKE ?
            OR ten LIKE ?
            OR ten_dang_nhap LIKE ?
-           OR employee_number LIKE ?
-           OR phone_number LIKE ?
-           OR qualification LIKE ?
-           OR email_address LIKE ?
-           OR address LIKE ?";
+           OR so_hieu_giao_vien LIKE ?
+           OR so_dien_thoai LIKE ?
+           OR trinh_do LIKE ?
+           OR email LIKE ?
+           OR dia_chi LIKE ?";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$key, $key, $key, $key, $key,$key, $key, $key, $key]);
 
    if ($stmt->rowCount() == 1) {
-     $teachers = $stmt->fetchAll();
-     return $teachers;
+     $giao_vien = $stmt->fetchAll();
+     return $giao_vien;
    }else {
     return 0;
    }

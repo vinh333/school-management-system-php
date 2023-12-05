@@ -10,7 +10,9 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
        include "data/teacher.php";
        include "data/subject.php";
-       $teachers = searchTeachers($search_key, $conn);
+       include "data/class.php";
+
+       $giao_vien = searchTeachers($search_key, $conn);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +29,7 @@ if (isset($_SESSION['admin_id']) &&
 <body>
     <?php 
         include "inc/navbar.php";
-        if ($teachers != 0) {
+        if ($giao_vien != 0) {
      ?>
      <div class="container mt-5">
         <a href="teacher-add.php"
@@ -79,7 +81,7 @@ if (isset($_SESSION['admin_id']) &&
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $i = 0; foreach ($teachers as $teacher ) { 
+                  <?php $i = 0; foreach ($giao_vien as $teacher ) { 
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>
@@ -91,8 +93,8 @@ if (isset($_SESSION['admin_id']) &&
                     <td>
                        <?php 
                            $s = '';
-                           $subjects = str_split(trim($teacher['subjects']));
-                           foreach ($subjects as $subject) {
+                           $mon_hoc = str_split(trim($teacher['mon_hoc']));
+                           foreach ($mon_hoc as $subject) {
                               $s_temp = getSubjectById($subject, $conn);
                               if ($s_temp != 0) 
                                 $s .=$s_temp['ten_mon_hoc'].', ';
@@ -103,12 +105,12 @@ if (isset($_SESSION['admin_id']) &&
                     <td>
                       <?php 
                            $g = '';
-                           $grades = str_split(trim($teacher['grades']));
+                           $grades = str_split(trim($teacher['danh_sach_lop']));
                            foreach ($grades as $grade) {
-                              $g_temp = getGradeById($grade, $conn);
+                            // echo $grade;
+                              $g_temp = getClassById($grade, $conn);
                               if ($g_temp != 0) 
-                                $g .=$g_temp['grade_code'].'-'.
-                                     $g_temp['grade'].', ';
+                                $g .=$g_temp['ten_lop'].', ';
                            }
                            echo $g;
                         ?>

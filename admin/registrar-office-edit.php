@@ -2,15 +2,15 @@
 session_start();
 if (isset($_SESSION['admin_id']) && 
     isset($_SESSION['role'])     &&
-    isset($_GET['r_user_id'])) {
+    isset($_GET['id_phong_cong_tac_hssv'])) {
 
     if ($_SESSION['role'] == 'Admin') {
       
        include "../DB_connection.php";
        include "data/registrar_office.php";
 
-       $r_user_id = $_GET['r_user_id'];
-       $r_user = getR_usersById($r_user_id, $conn);
+       $id_phong_cong_tac_hssv = $_GET['id_phong_cong_tac_hssv'];
+       $r_user = getR_usersById($id_phong_cong_tac_hssv, $conn);
 
        if ($r_user == 0) {
          header("Location: registrar-office.php");
@@ -63,35 +63,35 @@ if (isset($_SESSION['admin_id']) &&
         </div>
         <div class="mb-3">
           <label class="form-label">Địa chỉ</label>
-          <input type="text" class="form-control" value="<?=$r_user['address']?>" name="address">
+          <input type="text" class="form-control" value="<?=$r_user['dia_chi']?>" name="dia_chi">
         </div>
         <div class="mb-3">
           <label class="form-label">Số nhân viên</label>
-          <input type="text" class="form-control" value="<?=$r_user['employee_number']?>" name="employee_number">
+          <input type="text" class="form-control" value="<?=$r_user['so_hieu_giao_vien']?>" name="so_hieu_giao_vien">
         </div>
         <div class="mb-3">
           <label class="form-label">Ngày sinh</label>
-          <input type="date" class="form-control" value="<?=$r_user['date_of_birth']?>" name="date_of_birth">
+          <input type="date" class="form-control" value="<?=$r_user['ngay_sinh']?>" name="ngay_sinh">
         </div>
         <div class="mb-3">
           <label class="form-label">Số điện thoại</label>
-          <input type="text" class="form-control" value="<?=$r_user['phone_number']?>" name="phone_number">
+          <input type="text" class="form-control" value="<?=$r_user['so_dien_thoai']?>" name="so_dien_thoai">
         </div>
         <div class="mb-3">
           <label class="form-label">Trình độ</label>
-          <input type="text" class="form-control" value="<?=$r_user['qualification']?>" name="qualification">
+          <input type="text" class="form-control" value="<?=$r_user['trinh_do']?>" name="trinh_do">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa chỉ email</label>
-          <input type="text" class="form-control" value="<?=$r_user['email_address']?>" name="email_address">
+          <input type="text" class="form-control" value="<?=$r_user['email']?>" name="email">
         </div>
         <div class="mb-3">
           <label class="form-label">Giới tính</label><br>
-          <input type="radio" value="Nam" <?php if($r_user['gender'] == 'Nam') echo 'checked';  ?> name="gender"> Nam
+          <input type="radio" value="Nam" <?php if($r_user['gioi_tinh'] == 'Nam') echo 'checked';  ?> name="gioi_tinh"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="radio" value="Nữ" <?php if($r_user['gender'] == 'Nữ') echo 'checked';  ?> name="gender"> Nữ
+          <input type="radio" value="Nu" <?php if($r_user['gioi_tinh'] == 'Nữ') echo 'checked';  ?> name="gioi_tinh"> Nữ
         </div>
-        <input type="text" value="<?=$r_user['r_user_id']?>" name="r_user_id" hidden>
+        <input type="text" value="<?=$r_user['id_phong_cong_tac_hssv']?>" name="id_phong_cong_tac_hssv" hidden>
 
       <button type="submit" class="btn btn-primary">Cập nhật</button>
      </form>
@@ -112,7 +112,7 @@ if (isset($_SESSION['admin_id']) &&
        <div class="mb-3">
             <div class="mb-3">
             <label class="form-label">Mật khẩu Admin</label>
-                <input type="password" class="form-control" name="admin_pass"> 
+                <input type="mat_khau" class="form-control" name="admin_pass"> 
           </div>
 
             <label class="form-label">Mật khẩu mới</label>
@@ -122,7 +122,7 @@ if (isset($_SESSION['admin_id']) &&
             </div>
             
           </div>
-          <input type="text" value="<?=$r_user['r_user_id']?>" name="r_user_id" hidden>
+          <input type="text" value="<?=$r_user['id_phong_cong_tac_hssv']?>" name="id_phong_cong_tac_hssv" hidden>
 
           <div class="mb-3">
             <label class="form-label">Xác nhận mật khẩu mới</label>

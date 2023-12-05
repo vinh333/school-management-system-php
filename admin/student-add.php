@@ -13,7 +13,7 @@ if (isset($_SESSION['admin_id']) &&
        $ho = '';
        $ten = '';
        $uname = '';
-       $address = '';
+       $dia_chi = '';
        $email = '';
        $pfn = '';
        $pln = '';
@@ -23,7 +23,7 @@ if (isset($_SESSION['admin_id']) &&
        if (isset($_GET['ho'])) $ho = $_GET['ho'];
        if (isset($_GET['ten'])) $ten = $_GET['ten'];
        if (isset($_GET['uname'])) $uname = $_GET['uname'];
-       if (isset($_GET['address'])) $address = $_GET['address'];
+       if (isset($_GET['dia_chi'])) $dia_chi = $_GET['dia_chi'];
        if (isset($_GET['email'])) $email = $_GET['email'];
        if (isset($_GET['pfn'])) $pfn = $_GET['pfn'];
        if (isset($_GET['pln'])) $pln = $_GET['pln'];
@@ -81,32 +81,32 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Địa Chỉ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$address?>"
-                 name="address">
+                 value="<?=$dia_chi?>"
+                 name="dia_chi">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa Chỉ Email</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$email?>"
-                 name="email_address">
+                 name="email">
         </div>
         <div class="mb-3">
           <label class="form-label">Ngày Sinh</label>
           <input type="date" 
                  class="form-control"
-                 name="date_of_birth">
+                 name="ngay_sinh">
         </div>
         <div class="mb-3">
           <label class="form-label">Giới Tính</label><br>
           <input type="radio"
                  value="Nam"
                  checked 
-                 name="gender"> Nam
+                 name="gioi_tinh"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
           <input type="radio"
-                 value="Nữ"
-                 name="gender"> Nữ
+                 value="Nu"
+                 name="gioi_tinh"> Nữ
         </div><br><hr>
         <div class="mb-3">
           <label class="form-label">Tên Đăng Nhập</label>
@@ -133,21 +133,21 @@ if (isset($_SESSION['admin_id']) &&
           <input type="text" 
                  class="form-control"
                  value="<?=$pfn?>"
-                 name="parent_ho">
+                 name="ho_ten_cha">
         </div>
         <div class="mb-3">
           <label class="form-label">Họ Phụ Huynh</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$pln?>"
-                 name="parent_ten">
+                 name="ho_ten_me">
         </div>
         <div class="mb-3">
           <label class="form-label">Số Điện Thoại Phụ Huynh</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$ppn?>"
-                 name="parent_phone_number">
+                 name="so_dien_thoai_phu_huynh">
         </div><br><hr>
         <div class="mb-3">
           <label class="form-label">Khối</label>

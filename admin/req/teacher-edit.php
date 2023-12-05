@@ -10,14 +10,14 @@ if (isset($_POST['ho'])      &&
     isset($_POST['ten'])      &&
     isset($_POST['ten_dang_nhap'])   &&
     isset($_POST['id_giao_vien']) &&
-    isset($_POST['address'])  &&
-    isset($_POST['employee_number']) &&
-    isset($_POST['phone_number'])  &&
-    isset($_POST['qualification']) &&
-    isset($_POST['email_address']) &&
-    isset($_POST['gender'])        &&
-    isset($_POST['date_of_birth']) &&
-    isset($_POST['subjects'])   &&
+    isset($_POST['dia_chi'])  &&
+    isset($_POST['so_hieu_giao_vien']) &&
+    isset($_POST['so_dien_thoai'])  &&
+    isset($_POST['trinh_do']) &&
+    isset($_POST['email']) &&
+    isset($_POST['gioi_tinh'])        &&
+    isset($_POST['ngay_sinh']) &&
+    isset($_POST['mon_hoc'])   &&
     isset($_POST['classes'])) {
     
     include '../../DB_connection.php';
@@ -27,13 +27,13 @@ if (isset($_POST['ho'])      &&
     $ten = $_POST['ten'];
     $uname = $_POST['ten_dang_nhap'];
 
-    $address = $_POST['address'];
-    $employee_number = $_POST['employee_number'];
-    $phone_number = $_POST['phone_number'];
-    $qualification = $_POST['qualification'];
-    $email_address = $_POST['email_address'];
-    $gender = $_POST['gender'];
-    $date_of_birth = $_POST['date_of_birth'];
+    $dia_chi = $_POST['dia_chi'];
+    $so_hieu_giao_vien = $_POST['so_hieu_giao_vien'];
+    $so_dien_thoai = $_POST['so_dien_thoai'];
+    $trinh_do = $_POST['trinh_do'];
+    $email = $_POST['email'];
+    $gioi_tinh = $_POST['gioi_tinh'];
+    $ngay_sinh = $_POST['ngay_sinh'];
 
     $id_giao_vien = $_POST['id_giao_vien'];
     
@@ -42,9 +42,9 @@ if (isset($_POST['ho'])      &&
     	$classes .=$class;
     }
 
-    $subjects = "";
-    foreach ($_POST['subjects'] as $subject) {
-    	$subjects .=$subject;
+    $mon_hoc = "";
+    foreach ($_POST['mon_hoc'] as $subject) {
+    	$mon_hoc .=$subject;
     }
 
     $data = 'id_giao_vien='.$id_giao_vien;
@@ -65,41 +65,42 @@ if (isset($_POST['ho'])      &&
 		$em  = "ten_dang_nhap is taken! try another";
 		header("Location: ../teacher-edit.php?error=$em&$data");
 		exit;
-	}else if (empty($address)) {
-        $em  = "Address is required";
+	}else if (empty($dia_chi)) {
+        $em  = "dia_chi is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
-    }else if (empty($employee_number)) {
+    }else if (empty($so_hieu_giao_vien)) {
         $em  = "Employee number is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
-    }else if (empty($phone_number)) {
+    }else if (empty($so_dien_thoai)) {
         $em  = "Phone number is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
-    }else if (empty($qualification)) {
+    }else if (empty($trinh_do)) {
         $em  = "Qualification is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
-    }else if (empty($email_address)) {
-        $em  = "Email address is required";
+    }else if (empty($email)) {
+        $em  = "Email dia_chi is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
-    }else if (empty($gender)) {
-        $em  = "Gender address is required";
+    }else if (empty($gioi_tinh)) {
+        $em  = "gioi_tinh dia_chi is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
-    }else if (empty($date_of_birth)) {
-        $em  = "Date of birth address is required";
+    }else if (empty($ngay_sinh)) {
+        $em  = "Date of birth dia_chi is required";
         header("Location: ../teacher-edit.php?error=$em&$data");
         exit;
     }else {
-        $sql = "UPDATE teachers SET
-                ten_dang_nhap = ?,class=?, ho=?, ten=?, subjects=?,
-                address = ?, employee_number=?, date_of_birth = ?, phone_number = ?, qualification = ?,gender=?, email_address = ?
+        $sql = "UPDATE giao_vien SET
+                ten_dang_nhap = ?,danh_sach_lop=?, ho=?, ten=?, mon_hoc=?,
+                dia_chi = ?, so_hieu_giao_vien=?, ngay_sinh = ?, so_dien_thoai = ?, trinh_do = ?,gioi_tinh=?, email = ?
                 WHERE id_giao_vien=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname,  $classes, $ho, $ten, $subjects, $address, $employee_number, $date_of_birth, $phone_number, $qualification, $gender, $email_address,        $id_giao_vien]);
+        
+        $stmt->execute([$uname,  $classes, $ho, $ten, $mon_hoc, $dia_chi, $so_hieu_giao_vien, $ngay_sinh, $so_dien_thoai, $trinh_do, $gioi_tinh, $email,$id_giao_vien]);
         $sm = "successfully updated!";
         header("Location: ../teacher-edit.php?success=$sm&$data");
         exit;

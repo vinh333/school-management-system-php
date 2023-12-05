@@ -2,24 +2,24 @@
 
 // All Subjects
 function getAllSubjects($conn){
-   $sql = "SELECT * FROM subjects";
+   $sql = "SELECT * FROM mon_hoc";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
    if ($stmt->rowCount() >= 1) {
-     $subjects = $stmt->fetchAll();
-     return $subjects;
+     $mon_hoc = $stmt->fetchAll();
+     return $mon_hoc;
    }else {
    	return 0;
    }
 }
 
 // Get Subjects by ID
-function getSubjectById($subject_id, $conn){
-   $sql = "SELECT * FROM subjects
-           WHERE subject_id=?";
+function getSubjectById($id_mon_hoc, $conn){
+   $sql = "SELECT * FROM mon_hoc
+           WHERE id_mon_hoc=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$subject_id]);
+   $stmt->execute([$id_mon_hoc]);
 
    if ($stmt->rowCount() == 1) {
      $subject = $stmt->fetch();
@@ -32,8 +32,8 @@ function getSubjectById($subject_id, $conn){
 
 // DELETE course
 function removeCourse($id, $conn){
-   $sql  = "DELETE FROM subjects
-           WHERE subject_id=?";
+   $sql  = "DELETE FROM mon_hoc
+           WHERE id_mon_hoc=?";
    $stmt = $conn->prepare($sql);
    $re   = $stmt->execute([$id]);
    if ($re) {

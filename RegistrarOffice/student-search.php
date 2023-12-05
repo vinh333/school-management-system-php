@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['r_user_id']) && 
+if (isset($_SESSION['id_phong_cong_tac_hssv']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Registrar Office') {
@@ -9,7 +9,7 @@ if (isset($_SESSION['r_user_id']) &&
        $search_key = $_GET['searchKey'];
        include "../DB_connection.php";
        include "data/student.php";
-       $students = searchStudents($search_key, $conn);
+       $hoc_sinh = searchStudents($search_key, $conn);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ if (isset($_SESSION['r_user_id']) &&
 </head>
 <body>
     <?php 
-        if ($students != 0) {
+        if ($hoc_sinh != 0) {
      ?>
      <div class="container mt-5">
         <a href="student-add.php"
@@ -76,7 +76,7 @@ if (isset($_SESSION['r_user_id']) &&
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $i = 0; foreach ($students as $student ) { 
+                  <?php $i = 0; foreach ($hoc_sinh as $student ) { 
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>

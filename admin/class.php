@@ -58,9 +58,9 @@ if (isset($_SESSION['admin_id']) &&
                     <th scope="row"><?=$i?></th>
                     <td>
                       <?php 
-                          $grade  = getGradeById($class['grade'], $conn);
-                          $section = getSectioById($class['section'], $conn);
-                          echo $grade['grade_code'].'-'.$grade['grade'].$section['section'];
+                         
+                          echo $class['ten_lop'];
+
                        ?>
                     </td>
                     <td>

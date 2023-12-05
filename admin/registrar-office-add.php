@@ -11,7 +11,7 @@ if (isset($_SESSION['admin_id']) &&
        $ho = '';
        $ten = '';
        $uname = '';
-       $address = '';
+       $dia_chi = '';
        $en = '';
        $pn = '';
        $qf = '';
@@ -20,7 +20,7 @@ if (isset($_SESSION['admin_id']) &&
        if (isset($_GET['ho'])) $ho = $_GET['ho'];
        if (isset($_GET['ten'])) $ten = $_GET['ten'];
        if (isset($_GET['uname'])) $uname = $_GET['uname'];
-       if (isset($_GET['address'])) $address = $_GET['address'];
+       if (isset($_GET['dia_chi'])) $dia_chi = $_GET['dia_chi'];
        if (isset($_GET['en'])) $en = $_GET['en'];
        if (isset($_GET['pn'])) $pn = $_GET['pn'];
        if (isset($_GET['qf'])) $qf = $_GET['qf'];
@@ -98,54 +98,54 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Địa Chỉ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$address?>"
-                 name="address">
+                 value="<?=$dia_chi?>"
+                 name="dia_chi">
         </div>
         <div class="mb-3">
           <label class="form-label">Số Nhân Viên</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$en?>"
-                 name="employee_number">
+                 name="so_hieu_giao_vien">
         </div>
         <div class="mb-3">
           <label class="form-label">Số Điện Thoại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$pn?>"
-                 name="phone_number">
+                 name="so_dien_thoai">
         </div>
         <div class="mb-3">
           <label class="form-label">Trình Độ</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$qf?>"
-                 name="qualification">
+                 name="trinh_do">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa Chỉ Email</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$email?>"
-                 name="email_address">
+                 name="email">
         </div>
         <div class="mb-3">
           <label class="form-label">Giới Tính</label><br>
           <input type="radio"
                  value="Nam"
                  checked 
-                 name="gender"> Nam
+                 name="gioi_tinh"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
           <input type="radio"
-                 value="Nữ"
-                 name="gender"> Nữ
+                 value="Nu"
+                 name="gioi_tinh"> Nữ
         </div>
         <div class="mb-3">
           <label class="form-label">Ngày Sinh</label>
           <input type="date" 
                  class="form-control"
                  value=""
-                 name="date_of_birth">
+                 name="ngay_sinh">
         </div>
       <button type="submit" class="btn btn-primary">Thêm</button>
      </form>

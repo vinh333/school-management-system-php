@@ -24,42 +24,42 @@ if (isset($_POST['admin_pass']) &&
     $data = 'id_hoc_sinh='.$id_hoc_sinh.'#change_password';
 
     if (empty($admin_pass)) {
-		$em  = "Admin password is required";
+		$em  = "Mật khẩu Admin là bắt buộc";
 		header("Location: ../student-edit.php?perror=$em&$data");
 		exit;
 	}else if (empty($new_pass)) {
-		$em  = "New password is required";
+		$em  = "Mật khẩu mới là bắt buộc";
 		header("Location: ../student-edit.php?perror=$em&$data");
 		exit;
 	}else if (empty($c_new_pass)) {
-		$em  = "Confirmation password is required";
+		$em  = "Xác nhận mật khẩu là bắt buộc";
 		header("Location: ../student-edit.php?perror=$em&$data");
 		exit;
 	}else if ($new_pass !== $c_new_pass) {
-        $em  = "New password and confirm password does not match";
+        $em  = "Mật khẩu mới và xác nhận mật khẩu không khớp";
         header("Location: ../student-edit.php?perror=$em&$data");
         exit;
     }else if (!adminPasswordVerify($admin_pass, $conn, $id)) {
-        $em  = "Incorrect admin password";
+        $em  = "Mật khẩu Admin không đúng";
         header("Location: ../student-edit.php?perror=$em&$data");
         exit;
     }else {
-        // hashing the password
+        // Băm mật khẩu mới
         $new_pass = password_hash($new_pass, PASSWORD_DEFAULT);
 
-        $sql = "UPDATE students SET
-                password = ?
+        $sql = "UPDATE hoc_sinh SET
+                mat_khau = ?
                 WHERE id_hoc_sinh=?";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([$new_pass, $id_hoc_sinh]);
-        $sm = "The password has been changed successfully!";
+        $sm = "Mật khẩu đã được thay đổi thành công!";
         header("Location: ../student-edit.php?psuccess=$sm&$data");
         exit;
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../student-edit.php?error=$em&$data");
     exit;
   }

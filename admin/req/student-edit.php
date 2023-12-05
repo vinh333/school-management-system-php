@@ -10,15 +10,14 @@ if (isset($_POST['ho'])      &&
     isset($_POST['ten'])      &&
     isset($_POST['ten_dang_nhap'])   &&
     isset($_POST['id_hoc_sinh']) &&
-    isset($_POST['address'])    &&
-    isset($_POST['email_address']) &&
-    isset($_POST['gender'])        &&
-    isset($_POST['date_of_birth']) &&
-    isset($_POST['section'])       &&
-    isset($_POST['parent_ho'])  &&
-    isset($_POST['parent_ten'])  &&
-    isset($_POST['parent_phone_number']) &&
-    isset($_POST['grade'])) {
+    isset($_POST['dia_chi'])    &&
+    isset($_POST['email']) &&
+    isset($_POST['gioi_tinh'])        &&
+    isset($_POST['ngay_sinh']) &&
+    isset($_POST['lop'])       &&
+    isset($_POST['ho_ten_cha'])  &&
+    isset($_POST['ho_ten_me'])  &&
+    isset($_POST['so_dien_thoai_phu_huynh'])){
     
     include '../../DB_connection.php';
     include "../data/student.php";
@@ -27,18 +26,17 @@ if (isset($_POST['ho'])      &&
     $ten = $_POST['ten'];
     $uname = $_POST['ten_dang_nhap'];
 
-    $address = $_POST['address'];
-    $gender = $_POST['gender'];
-    $section = $_POST['section'];
-    $email_address = $_POST['email_address'];
-    $date_of_birth = $_POST['date_of_birth'];
-    $parent_ho = $_POST['parent_ho'];
-    $parent_ten = $_POST['parent_ten'];
-    $parent_phone_number = $_POST['parent_phone_number'];
+    $dia_chi = $_POST['dia_chi'];
+    $gioi_tinh = $_POST['gioi_tinh'];
+    $email = $_POST['email'];
+    $ngay_sinh = $_POST['ngay_sinh'];
+    $ho_ten_cha = $_POST['ho_ten_cha'];
+    $ho_ten_me = $_POST['ho_ten_me'];
+    $so_dien_thoai_phu_huynh = $_POST['so_dien_thoai_phu_huynh'];
 
     $id_hoc_sinh = $_POST['id_hoc_sinh'];
     
-    $grade = $_POST['grade'];
+    $lop = $_POST['lop'];
 
     $data = 'id_hoc_sinh='.$id_hoc_sinh;
 
@@ -58,50 +56,60 @@ if (isset($_POST['ho'])      &&
         $em  = "ten_dang_nhap is taken! try another";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($address)) {
-        $em  = "Address is required";
+    }else if (empty($dia_chi)) {
+        $em  = "dia_chi is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($gender)) {
-        $em  = "Gender is required";
+    }else if (empty($gioi_tinh)) {
+        $em  = "gioi_tinh is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($email_address)) {
-        $em  = "Email address is required";
+    }else if (empty($email)) {
+        $em  = "Email dia_chi is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($date_of_birth)) {
+    }else if (empty($ngay_sinh)) {
         $em  = "Date of birth is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($parent_ho)) {
+    }else if (empty($ho_ten_cha)) {
         $em  = "Parent first name is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($parent_ten)) {
+    }else if (empty($ho_ten_me)) {
         $em  = "Parent last name is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($parent_phone_number)) {
+    }else if (empty($so_dien_thoai_phu_huynh)) {
         $em  = "Parent phone number is required";
         header("Location: ../student-edit.php?error=$em&$data");
         exit;
-    }else if (empty($section)) {
-        $em  = "Section is required";
-        header("Location: ../student-edit.php?error=$em&$data");
-        exit;
+    
     }else {
-        $sql = "UPDATE students SET
-                ten_dang_nhap = ?, ho=?, ten=?, grade=?, address=?,gender = ?, section=?, email_address=?, date_of_birth=?, parent_ho=?,parent_ten=?,parent_phone_number=?
+        $sql = "UPDATE hoc_sinh SET
+                ten_dang_nhap = ?, ho=?, ten=?, id_lop=?, dia_chi=?,gioi_tinh=?, email=?, ngay_sinh=?, ho_ten_cha=?,ho_ten_me=?,so_dien_thoai_phu_huynh=?
                 WHERE id_hoc_sinh=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$uname,$ho, $ten, $grade, $address, $gender,$section, $email_address, $date_of_birth, $parent_ho, $parent_ten,$parent_phone_number, $id_hoc_sinh]);
+        echo "Username: $uname <br>";
+        echo "Họ: $ho <br>";
+        echo "Tên: $ten <br>";
+        echo "Lớp: $lop <br>";
+        echo "Địa chỉ: $dia_chi <br>";
+        echo "Giới tính: $gioi_tinh <br>";
+        echo "Email: $email <br>";
+        echo "Ngày sinh: $ngay_sinh <br>";
+        echo "Họ tên cha: $ho_ten_cha <br>";
+        echo "Họ tên mẹ: $ho_ten_me <br>";
+        echo "Số điện thoại phụ huynh: $so_dien_thoai_phu_huynh <br>";
+        echo "ID học sinh: $id_hoc_sinh";
+                $stmt->execute([$uname,$ho, $ten, $lop, $dia_chi, $gioi_tinh, $email, $ngay_sinh, $ho_ten_cha, $ho_ten_me,$so_dien_thoai_phu_huynh, $id_hoc_sinh]);
         $sm = "successfully updated!";
         header("Location: ../student-edit.php?success=$sm&$data");
         exit;
     }
     
   }else {
+    
     $em = "An error occurred";
     header("Location: ../student.php?error=$em");
     exit;

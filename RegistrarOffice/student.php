@@ -6,7 +6,7 @@ if (isset($_SESSION['id_giao_vien']) &&
     if ($_SESSION['role'] == 'Registrar Office') {
        include "../DB_connection.php";
        include "data/student.php";
-       $students = getAllStudents($conn);
+       $hoc_sinh = getAllStudents($conn);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ if (isset($_SESSION['id_giao_vien']) &&
 </head>
 <body>
     <?php 
-        if ($students != 0) {
+        if ($hoc_sinh != 0) {
      ?>
      <div class="container mt-5">
         <a href="student-add.php"
@@ -71,7 +71,7 @@ if (isset($_SESSION['id_giao_vien']) &&
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $i = 0; foreach ($students as $student ) { 
+                  <?php $i = 0; foreach ($hoc_sinh as $student ) { 
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>

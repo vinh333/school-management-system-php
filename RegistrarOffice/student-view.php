@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['r_user_id']) && 
+if (isset($_SESSION['id_phong_cong_tac_hssv']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Registrar Office') {
@@ -32,7 +32,7 @@ if (isset($_SESSION['r_user_id']) &&
      ?>
      <div class="container mt-5">
          <div class="card" style="width: 22rem;">
-          <img src="../img/student-<?=$student['gender']?>.png" class="card-img-top" alt="...">
+          <img src="../img/student-<?=$student['gioi_tinh']?>.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title text-center">@<?=$student['ten_dang_nhap']?></h5>
           </div>
@@ -40,11 +40,11 @@ if (isset($_SESSION['r_user_id']) &&
             <li class="list-group-item">Tên: <?=$student['ho']?></li>
             <li class="list-group-item">Họ: <?=$student['ten']?></li>
             <li class="list-group-item">Tên đăng nhập: <?=$student['ten_dang_nhap']?></li>
-            <li class="list-group-item">Địa chỉ: <?=$student['address']?></li>
-            <li class="list-group-item">Ngày sinh: <?=$student['date_of_birth']?></li>
-            <li class="list-group-item">Email: <?=$student['email_address']?></li>
-            <li class="list-group-item">Giới tính: <?=$student['gender']?></li>
-            <li class="list-group-item">Ngày tham gia: <?=$student['date_of_joined']?></li>
+            <li class="list-group-item">Địa chỉ: <?=$student['dia_chi']?></li>
+            <li class="list-group-item">Ngày sinh: <?=$student['ngay_sinh']?></li>
+            <li class="list-group-item">Email: <?=$student['email']?></li>
+            <li class="list-group-item">Giới tính: <?=$student['gioi_tinh']?></li>
+            <li class="list-group-item">Ngày tham gia: <?=$student['ngay_tham_gia']?></li>
 
             <li class="list-group-item">Khối: 
                  <?php 
@@ -61,9 +61,9 @@ if (isset($_SESSION['r_user_id']) &&
                   ?>
             </li>
             <br><br>
-            <li class="list-group-item">Họ tên phụ huynh: <?=$student['parent_ho']?></li>
-            <li class="list-group-item">Họ phụ huynh: <?=$student['parent_ten']?></li>
-            <li class="list-group-item">Số điện thoại phụ huynh: <?=$student['parent_phone_number']?></li>
+            <li class="list-group-item">Họ tên phụ huynh: <?=$student['ho_ten_cha']?></li>
+            <li class="list-group-item">Họ phụ huynh: <?=$student['ho_ten_me']?></li>
+            <li class="list-group-item">Số điện thoại phụ huynh: <?=$student['so_dien_thoai_phu_huynh']?></li>
           </ul>
           <div class="card-body">
             <a href="student.php" class="card-link">Quay lại</a>

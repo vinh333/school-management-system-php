@@ -8,7 +8,7 @@ if (isset($_SESSION['admin_id']) &&
        include "data/teacher.php";
        include "data/subject.php";
        include "data/class.php";
-       $teachers = getAllTeachers($conn);
+       $giao_vien = getAllTeachers($conn);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ if (isset($_SESSION['admin_id']) &&
 <body>
     <?php 
         include "inc/navbar.php";
-        if ($teachers != 0) {
+        if ($giao_vien != 0) {
      ?>
      <div class="container mt-5">
         <a href="teacher-add.php"
@@ -70,12 +70,12 @@ if (isset($_SESSION['admin_id']) &&
                     <th scope="col">Tên</th>
                     <th scope="col">Tên Đăng Nhập</th>
                     <th scope="col">Môn Học</th>
-                    <th scope="col">Lớp</th>
+                    <th scope="col">Lớp giảng dạy</th>
                     <th scope="col">Hành Động</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $i = 0; foreach ($teachers as $teacher ) { 
+                  <?php $i = 0; foreach ($giao_vien as $teacher ) { 
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>
@@ -87,8 +87,8 @@ if (isset($_SESSION['admin_id']) &&
                     <td>
                        <?php 
                            $s = '';
-                           $subjects = str_split(trim($teacher['subjects']));
-                           foreach ($subjects as $subject) {
+                           $mon_hoc = str_split(trim($teacher['mon_hoc']));
+                           foreach ($mon_hoc as $subject) {
                               $s_temp = getSubjectById($subject, $conn);
                               if ($s_temp != 0) 
                                 $s .=$s_temp['ten_mon_hoc'].', ';
@@ -99,16 +99,14 @@ if (isset($_SESSION['admin_id']) &&
                     <td>
                       <?php 
                            $c = '';
-                           $classes = str_split(trim($teacher['class']));
+                           $classes = str_split(trim($teacher['danh_sach_lop']));
 
                            foreach ($classes as $id_lop) {
                                $class = getClassById($id_lop, $conn);
 
-                              $c_temp = getGradeById($class['grade'], $conn);
-                              $section = getSectioById($class['section'], $conn);
-                              if ($c_temp != 0) 
-                                $c .=$c_temp['grade_code'].'-'.
-                                     $c_temp['grade'].$section['section'].', ';
+
+                              if ($class != 0) 
+                                $c .=$class['ten_lop'].', ';
                            }
                            echo $c;
 

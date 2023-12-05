@@ -7,9 +7,9 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
        include "data/registrar_office.php";
 
-       if(isset($_GET['r_user_id'])){
-           $r_user_id = $_GET['r_user_id'];
-           $r_user = getR_usersById($r_user_id,$conn);    
+       if(isset($_GET['id_phong_cong_tac_hssv'])){
+           $id_phong_cong_tac_hssv = $_GET['id_phong_cong_tac_hssv'];
+           $r_user = getR_usersById($id_phong_cong_tac_hssv,$conn);    
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
          <div class="card" style="width: 22rem;">
-          <img src="../img/registrar-office-<?=$r_user['gender']?>.jpg" class="card-img-top" alt="...">
+          <img src="../img/registrar-office-<?=$r_user['gioi_tinh']?>.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title text-center">@<?=$r_user['ten_dang_nhap']?></h5>
           </div>
@@ -39,14 +39,14 @@ if (isset($_SESSION['admin_id']) &&
             <li class="list-group-item">Tên: <?=$r_user['ten']?></li>
             <li class="list-group-item">Tên đăng nhập: <?=$r_user['ten_dang_nhap']?></li>
 
-            <li class="list-group-item">Số nhân viên: <?=$r_user['employee_number']?></li>
-            <li class="list-group-item">Địa chỉ: <?=$r_user['address']?></li>
-            <li class="list-group-item">Ngày sinh: <?=$r_user['date_of_birth']?></li>
-            <li class="list-group-item">Số điện thoại: <?=$r_user['phone_number']?></li>
-            <li class="list-group-item">Trình độ: <?=$r_user['qualification']?></li>
-            <li class="list-group-item">Địa chỉ email: <?=$r_user['email_address']?></li>
-            <li class="list-group-item">Giới tính: <?=$r_user['gender']?></li>
-            <li class="list-group-item">Ngày gia nhập: <?=$r_user['date_of_joined']?></li>
+            <li class="list-group-item">Số nhân viên: <?=$r_user['so_hieu_giao_vien']?></li>
+            <li class="list-group-item">Địa chỉ: <?=$r_user['dia_chi']?></li>
+            <li class="list-group-item">Ngày sinh: <?=$r_user['ngay_sinh']?></li>
+            <li class="list-group-item">Số điện thoại: <?=$r_user['so_dien_thoai']?></li>
+            <li class="list-group-item">Trình độ: <?=$r_user['trinh_do']?></li>
+            <li class="list-group-item">Địa chỉ email: <?=$r_user['email']?></li>
+            <li class="list-group-item">Giới tính: <?=$r_user['gioi_tinh']?></li>
+            <li class="list-group-item">Ngày gia nhập: <?=$r_user['ngay_tham_gia']?></li>
           </ul>
           <div class="card-body">
             <a href="registrar-office.php" class="card-link">Quay lại</a>

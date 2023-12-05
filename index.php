@@ -11,7 +11,7 @@ if ($setting != 0) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Chào mừng đến <?=$setting['school_name']?></title>
+	<title>Chào mừng đến <?=$setting['ten_truong']?></title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="logo.png">
@@ -34,7 +34,7 @@ if ($setting != 0) {
 		          <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#about">Giới thiệu</a>
+		          <a class="nav-link" href="#gioi_thieu">Giới thiệu</a>
 		        </li>
 		        <li class="nav-item">
 		          <a class="nav-link" href="#contact">Liên hệ</a>
@@ -50,10 +50,10 @@ if ($setting != 0) {
 		</nav>
         <section class="welcome-text d-flex justify-content-center align-items-center flex-column">
         	<img src="logo.png" >
-        	<h4>Chào mừng bạn đến với <?=$setting['school_name']?></h4>
-        	<p><?=$setting['slogan']?></p>
+        	<h4>Chào mừng bạn đến với <?=$setting['ten_truong']?></h4>
+        	<p><?=$setting['phat_ngon']?></p>
         </section>
-        <section id="about"
+        <section id="gioi_thieu"
                  class="d-flex justify-content-center align-items-center flex-column">
         	<div class="card mb-3 card-1">
 			  <div class="row g-0">
@@ -63,7 +63,7 @@ if ($setting != 0) {
 			    <div class="col-md-8">
 			      <div class="card-body">
 			        <h5 class="card-title">Về chúng tôi</h5>
-			        <p class="card-text"><?=$setting['about']?></p>
+			        <p class="card-text"><?=$setting['gioi_thieu']?></p>
 			        <p class="card-text"><small class="text-muted">Trường Y</small></p>
 			      </div>
 			    </div>
@@ -102,7 +102,7 @@ if ($setting != 0) {
 			</form>
         </section>
         <div class="text-center text-light">
-        	Bản quyền &copy; <?=$setting['hoc_ky']?> <?=$setting['school_name']?>. Đã đăng ký bản quyền.
+        	Bản quyền &copy; <?=$setting['hoc_ky']?> <?=$setting['ten_truong']?>. Đã đăng ký bản quyền.
         </div>
 
     	</div>

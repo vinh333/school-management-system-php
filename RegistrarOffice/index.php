@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (isset($_SESSION['r_user_id']) && 
+if (isset($_SESSION['id_phong_cong_tac_hssv']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Registrar Office') {

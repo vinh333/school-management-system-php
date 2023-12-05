@@ -37,19 +37,19 @@ if (isset($_SESSION['id_hoc_sinh']) &&
          <?php  
             $check = 0;
             foreach ($scores as $score) { 
-              if($score['year'] == $check){
-                $check = $score['year'];
+              if($score['nam_hoc'] == $check){
+                $check = $score['nam_hoc'];
                 $csubject = getSubjectById($score['id_mon_hoc'], $conn);
           ?>
           <tr>
             <td><?=$csubject['ten_mon_hoc']?></th>
-            <td><?=$csubject['subject']?></th>
+            <td><?=$csubject['ma_mon_hoc']?></th>
             <td>
               <?php 
                   $total = 0;
                   $outOf = 0;
-                  $results = explode(',', trim($score['results']));
-                  foreach ($results as $result) {
+                  $ket_qua = explode(',', trim($score['ket_qua']));
+                  foreach ($ket_qua as $result) {
                     
                     $temp =  explode(' ', trim($result));
                      $total +=$temp[0]; 
@@ -64,16 +64,16 @@ if (isset($_SESSION['id_hoc_sinh']) &&
             <th><?php 
                 echo gradeCalc($total);
                ?></th>
-            <th><?=$score['semester']?></th>
+            <th><?=$score['hoc_ky']?></th>
           </tr>
         <?php }else { 
-          $check = $score['year'];
+          $check = $score['nam_hoc'];
 
           $csubject = getSubjectById($score['id_mon_hoc'], $conn);
         ?>
          <div class="table-responsive " style="width: 90%; max-width: 700px;">
               <table class="table table-bordered mt-1 mb-5 n-table">
-                 <caption style="caption-side:top">Năm - <?=$score['year']?> </caption>
+                 <caption style="caption-side:top">Năm - <?=$score['nam_hoc']?> </caption>
                 <thead>
                   <tr>
                     <th scope="col">Mã Môn Học</th>
@@ -86,14 +86,15 @@ if (isset($_SESSION['id_hoc_sinh']) &&
                 </thead>
                 <tbody>
                   <tr>
+            
+            <td><?=$csubject['ma_mon_hoc']?></th>
             <td><?=$csubject['ten_mon_hoc']?></th>
-            <td><?=$csubject['subject']?></th>
             <td>
               <?php 
                   $total = 0;
                   $outOf = 0;
-                  $results = explode(',', trim($score['results']));
-                  foreach ($results as $result) { 
+                  $ket_qua = explode(',', trim($score['ket_qua']));
+                  foreach ($ket_qua as $result) { 
                     $temp =  explode(' ', trim($result));
                     $total += $temp[0];
                     $outOf += $temp[1];
@@ -107,9 +108,9 @@ if (isset($_SESSION['id_hoc_sinh']) &&
             <th><?php 
                 echo gradeCalc($total);
                ?></th>
-            <th><?=$score['semester']?></th>
+            <th><?=$score['hoc_ky']?></th>
           </tr>
-        <?php } if($score['year'] != $check){ ?>   
+        <?php } if($score['nam_hoc'] != $check){ ?>   
         </tbody>
       </table>
    </div><br />  

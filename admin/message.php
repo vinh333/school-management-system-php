@@ -27,20 +27,20 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5" style="width: 90%; max-width: 700px;">
         <h4 class="text-center p-3">Hộp Thư</h4>
-        <div class="accordion accordion-flush" id="accordionFlushExample_<?=$message['message_id']?>">
+        <div class="accordion accordion-flush" id="accordionFlushExample_<?=$message['id_thong_bao']?>">
           <?php foreach ($messages as $message) { ?>
           <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-heading_<?=$message['message_id']?>">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse_<?=$message['message_id']?>" aria-expanded="false" aria-controls="flush-collapse_<?=$message['message_id']?>">
-                <?=$message['sender_full_name']?> 
+            <h2 class="accordion-header" id="flush-heading_<?=$message['id_thong_bao']?>">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse_<?=$message['id_thong_bao']?>" aria-expanded="false" aria-controls="flush-collapse_<?=$message['id_thong_bao']?>">
+                <?=$message['ho_ten_nguoi_gui']?> 
               </button>
             </h2>
-            <div id="flush-collapse_<?=$message['message_id']?>" class="accordion-collapse collapse" aria-labelledby="flush-heading_<?=$message['message_id']?>" data-bs-parent="#accordionFlushExample_<?=$message['message_id']?>">
+            <div id="flush-collapse_<?=$message['id_thong_bao']?>" class="accordion-collapse collapse" aria-labelledby="flush-heading_<?=$message['id_thong_bao']?>" data-bs-parent="#accordionFlushExample_<?=$message['id_thong_bao']?>">
               <div class="accordion-body">
-                <?=$message['message']?>
+                <?=$message['noi_dung']?>
                 <div class="d-flex mb-3">
-                    <div class="p-2">Email: <b><?=$message['sender_email']?></b></div>
-                    <div class="ms-auto p-2">Ngày: <?=$message['date_time']?></div>
+                    <div class="p-2">Email: <b><?=$message['email_nguoi_gui']?></b></div>
+                    <div class="ms-auto p-2">Ngày: <?=$message['thoi_gian_gui']?></div>
                 </div>
             </div>
             </div>

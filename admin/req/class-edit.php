@@ -19,25 +19,25 @@ if (isset($_POST['section']) &&
     $data = 'id_lop='.$id_lop;
 
     if (empty($id_lop)) {
-        $em  = "Class id is required";
+        $em  = "ID lớp học là bắt buộc";
         header("Location: ../class-edit.php?error=$em&$data");
         exit;
     }else if (empty($grade)) {
-        $em  = "Grade is required";
+        $em  = "Khối lớp là bắt buộc";
         header("Location: ../class-edit.php?error=$em&$data");
         exit;
     }else if (empty($section)) {
-        $em  = "Section is required";
+        $em  = "Tên lớp là bắt buộc";
         header("Location: ../class-edit.php?error=$em&$data");
         exit;
     }else {
-        // check if the class already exists
-        $sql_check = "SELECT * FROM class 
+        // Kiểm tra xem lớp đã tồn tại chưa
+        $sql_check = "SELECT * FROM lop 
                       WHERE grade=? AND section=?";
         $stmt_check = $conn->prepare($sql_check);
         $stmt_check->execute([$grade, $section]);
         if ($stmt_check->rowCount() > 0) {
-           $em  = "The class already exists";
+           $em  = "Lớp đã tồn tại";
            header("Location: ../class-edit.php?error=$em&$data");
            exit;
         }else {
@@ -46,14 +46,14 @@ if (isset($_POST['section']) &&
                      WHERE id_lop=?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$grade, $section, $id_lop]);
-            $sm = "Class updated successfully";
+            $sm = "Cập nhật lớp học thành công";
             header("Location: ../class-edit.php?success=$sm&$data");
             exit;
        }
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../class.php?error=$em");
     exit;
   }

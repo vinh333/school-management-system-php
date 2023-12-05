@@ -34,7 +34,7 @@
           
           <div class="mb-3">
             <label class="form-label">Mật khẩu</label>
-            <input type="password" 
+            <input type="mat_khau" 
                    class="form-control"
                    name="pass">
           </div>

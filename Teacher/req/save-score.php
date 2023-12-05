@@ -18,8 +18,8 @@ if (isset($_POST['score-1']) &&
     isset($_POST['aoutof-5']) &&
     isset($_POST['id_hoc_sinh']) &&
     isset($_POST['id_mon_hoc']) &&
-    isset($_POST['hoc_ky']) &&
-    isset($_POST['nam_hoc'])
+    isset($_POST['nam_hoc']) &&
+    isset($_POST['hoc_ky'])
     ) {
     
     include '../../DB_connection.php';
@@ -41,12 +41,12 @@ if (isset($_POST['score-1']) &&
     $aoutof_5 = $_POST['aoutof-5'];
 
     $id_hoc_sinh = $_POST['id_hoc_sinh'];
-    $subject_id = $_POST['id_mon_hoc'];
-    $current_year = $_POST['hoc_ky'];
-    $current_semester = $_POST['nam_hoc'];
+    $id_mon_hoc = $_POST['id_mon_hoc'];
+    $nam_hoc = $_POST['nam_hoc'];
+    $hoc_ky = $_POST['hoc_ky'];
     $id_giao_vien = $_SESSION['id_giao_vien'];
 
-    if(empty($score_1) || empty($score_2) || empty($score_3) || empty($score_4) || empty($score_5) || empty($aoutof_1) || empty($aoutof_2) || empty($aoutof_3) || empty($aoutof_4) || empty($aoutof_5) || empty($id_hoc_sinh) || empty($subject_id) || empty($current_year) || empty($current_semester)){
+    if(empty($score_1) || empty($score_2) || empty($score_3) || empty($score_4) || empty($score_5) || empty($aoutof_1) || empty($aoutof_2) || empty($aoutof_3) || empty($aoutof_4) || empty($aoutof_5) || empty($id_hoc_sinh) || empty($id_mon_hoc) || empty($nam_hoc) || empty($hoc_ky)){
 
        $em  = "All fields are required";
         header("Location: ../student-grade.php?id_hoc_sinh=$id_hoc_sinh&error=$em");
@@ -85,23 +85,23 @@ if (isset($_POST['score-1']) &&
             header("Location: ../student-grade.php?id_hoc_sinh=$id_hoc_sinh&error=$em");
         }
         else {
-        if (isset($_POST['student_score_id'])) {
-        $sql = "UPDATE student_score SET
-                results = ?
-                WHERE  semester=?
-                AND year=? AND id_hoc_sinh=? AND id_giao_vien=? AND subject_id=?";
+        if (isset($_POST['diem_hoc_sinh_id'])) {
+        $sql = "UPDATE diem_hoc_sinh SET
+                ket_qua = ?
+                WHERE  nam_hoc=?
+                AND hoc_ky=? AND id_hoc_sinh=? AND id_giao_vien=? AND id_mon_hoc=?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$data, $current_semester, $current_year, $id_hoc_sinh, $id_giao_vien, $subject_id]);
-        $sm = "The Score has been updated successfully!";
+        $stmt->execute([$data, $hoc_ky, $nam_hoc, $id_hoc_sinh, $id_giao_vien, $id_mon_hoc]);
+        $sm = "Điểm đã được cập nhật thành công!";
         header("Location: ../student-grade.php?id_hoc_sinh=$id_hoc_sinh&success=$sm");
         exit;
           }else {
-             $sql = "INSERT INTO student_score(semester, year, id_hoc_sinh, id_giao_vien, subject_id, results)VALUES(?,?,?,?,?,?)";
+             $sql = "INSERT INTO diem_hoc_sinh( nam_hoc,hoc_ky, id_hoc_sinh, id_giao_vien, id_mon_hoc, ket_qua)VALUES(?,?,?,?,?,?)";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$current_semester, $current_year, $id_hoc_sinh, $id_giao_vien, $subject_id, $data]);
-        $sm = "The Score has been created successfully!";
+        $stmt->execute([$hoc_ky, $nam_hoc, $id_hoc_sinh, $id_giao_vien, $id_mon_hoc, $data]);
+        $sm = "Điểm đã được tạo thành công!";
         header("Location: ../student-grade.php?id_hoc_sinh=$id_hoc_sinh&success=$sm");
           }
         }

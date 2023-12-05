@@ -20,12 +20,7 @@
         <li class="nav-item">
           <a class="nav-link" href="student.php">Học Sinh</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="grade.php">Khối</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="section.php">Lớp</a>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" href="class.php">Lớp Học</a>
         </li>

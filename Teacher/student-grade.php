@@ -17,21 +17,21 @@ if (isset($_SESSION['id_giao_vien']) &&
            header("Location: students.php");
            exit;
        }
-       $student_id = $_GET['id_hoc_sinh'];
-       $student = getStudentById($student_id, $conn);
+       $id_hoc_sinh = $_GET['id_hoc_sinh'];
+       $student = getStudentById($id_hoc_sinh, $conn);
        $setting = getSetting($conn);
-       $subjects = getSubjectByClass($student['id_lop'], $conn);
+       $mon_hoc = getSubjectByClass($student['id_lop'], $conn);
 
-       $teacher_id = $_SESSION['id_giao_vien'];
-       $teacher = getTeacherById($teacher_id, $conn);
+       $id_giao_vien = $_SESSION['id_giao_vien'];
+       $teacher = getTeacherById($id_giao_vien, $conn);
 
        $teacher_subjects = str_split(trim($teacher['mon_hoc']));
 
-       $ssubject_id = 0;
-       if (isset($_POST['ssubject_id'])) {
-           $ssubject_id = $_POST['ssubject_id'];
-          echo $student_id, $teacher_id, $ssubject_id, $setting['nam_hoc'], $setting['hoc_ky'];
-           $student_score = getScoreById($student_id, $teacher_id, $ssubject_id, $setting['hoc_ky'], $setting['nam_hoc'], $conn); 
+       $sid_mon_hoc = 0;
+       if (isset($_POST['sid_mon_hoc'])) {
+           $sid_mon_hoc = $_POST['sid_mon_hoc'];
+          echo $id_hoc_sinh, $id_giao_vien, $sid_mon_hoc, $setting['nam_hoc'], $setting['hoc_ky'];
+           $diem_hoc_sinh = getScoreById($id_hoc_sinh, $id_giao_vien, $sid_mon_hoc, $setting['hoc_ky'], $setting['nam_hoc'], $conn); 
        }
  ?>
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ if (isset($_SESSION['id_giao_vien']) &&
 <body>
     <?php 
     include "inc/navbar.php";
-        if ($student != 0 && $setting !=0 && $subjects !=0 && $teacher_subjects != 0) {
+        if ($student != 0 && $setting !=0 && $mon_hoc !=0 && $teacher_subjects != 0) {
      ?>
 
      <div class="d-flex align-items-center flex-column"><br><br>
@@ -78,12 +78,12 @@ if (isset($_SESSION['id_giao_vien']) &&
             <?php } ?>
            
          <label class="form-label">Môn học</label>
-            <select class="form-control" name="ssubject_id">
-                <?php foreach($subjects as $subject){ 
+            <select class="form-control" name="sid_mon_hoc">
+                <?php foreach($mon_hoc as $subject){ 
                     foreach($teacher_subjects as $teacher_subject){
                         if($subject['id_mon_hoc'] == $teacher_subject){ ?>
                     
-                       <option <?php if($ssubject_id == $subject['id_mon_hoc']){echo "selected";} ?> 
+                       <option <?php if($sid_mon_hoc == $subject['id_mon_hoc']){echo "selected";} ?> 
                            value="<?php echo $subject['id_mon_hoc'] ?>">
                         <?php echo $subject['ten_mon_hoc'] ?></option>
                 <?php }   }
@@ -96,12 +96,12 @@ if (isset($_SESSION['id_giao_vien']) &&
         <form method="post" action="req/save-score.php">
         <?php 
             
-            if ($ssubject_id != 0) { 
+            if ($sid_mon_hoc != 0) { 
               $counter = 0;
-              if($student_score != 0){ ?>
-                <input type="text" name="student_score_id" value="<?=$student_score['id_diem']?>" hidden>
+              if($diem_hoc_sinh != 0){ ?>
+                <input type="text" name="diem_hoc_sinh_id" value="<?=$diem_hoc_sinh['id_diem']?>" hidden>
             <?php
-            $scores = explode(',', trim($student_score['ket_qua']));
+            $scores = explode(',', trim($diem_hoc_sinh['ket_qua']));
 
             foreach ($scores as $score) { 
                 $temp =  explode(' ', trim($score));
@@ -123,10 +123,10 @@ if (isset($_SESSION['id_giao_vien']) &&
             </div>
            <?php } } ?>
 
-           <input type="text" name="student_id" value="<?=$student_id?>" hidden>
-            <input type="text" name="subject_id" value="<?=$ssubject_id?>" hidden>
-            <input type="text" name="current_semester" value="<?=$setting['nam_hoc']?>" hidden>
-            <input type="text" name="current_year" value="<?=$setting['hoc_ky']?>" hidden>
+           <input type="text" name="id_hoc_sinh" value="<?=$id_hoc_sinh?>" hidden>
+            <input type="text" name="id_mon_hoc" value="<?=$sid_mon_hoc?>" hidden>
+            <input type="text" name="hoc_ky" value="<?=$setting['nam_hoc']?>" hidden>
+            <input type="text" name="nam_hoc" value="<?=$setting['hoc_ky']?>" hidden>
         
           <button type="submit" class="btn btn-primary">Lưu</button>
         </form>  

@@ -60,15 +60,15 @@ if (isset($_SESSION['admin_id']) &&
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>
-                    <td><?=$r_user['r_user_id']?></td>
-                    <td><a href="registrar-office-view.php?r_user_id=<?=$r_user['r_user_id']?>">
+                    <td><?=$r_user['id_phong_cong_tac_hssv']?></td>
+                    <td><a href="registrar-office-view.php?id_phong_cong_tac_hssv=<?=$r_user['id_phong_cong_tac_hssv']?>">
                          <?=$r_user['ho']?></a></td>
                     <td><?=$r_user['ten']?></td>
                     <td><?=$r_user['ten_dang_nhap']?></td>
                     <td>
-                        <a href="registrar-office-edit.php?r_user_id=<?=$r_user['r_user_id']?>"
+                        <a href="registrar-office-edit.php?id_phong_cong_tac_hssv=<?=$r_user['id_phong_cong_tac_hssv']?>"
                            class="btn btn-warning">Chỉnh sửa</a>
-                        <a href="registrar-office-delete.php?r_user_id=<?=$r_user['r_user_id']?>"
+                        <a href="registrar-office-delete.php?id_phong_cong_tac_hssv=<?=$r_user['id_phong_cong_tac_hssv']?>"
                            class="btn btn-danger">Xóa</a>
                     </td>
                   </tr>

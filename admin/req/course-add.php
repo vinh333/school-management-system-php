@@ -17,41 +17,41 @@ if (isset($_POST['course_name']) &&
     $grade = $_POST['grade'];
 
   if (empty($course_name)) {
-		$em  = "course name is required";
+		$em  = "Tên môn học là bắt buộc";
 		header("Location: ../course-add.php?error=$em");
 		exit;
 	}else if(empty($course_code)) {
-    $em  = "course code is required";
+    $em  = "Mã môn học là bắt buộc";
     header("Location: ../course-add.php?error=$em");
     exit;
   }else if (empty($grade)) {
-		$em  = "Grade is required";
+		$em  = "Khối lớp là bắt buộc";
 		header("Location: ../course-add.php?error=$em");
 		exit;
 	}else {
-        // check if the class already exists
-        $sql_check = "SELECT * FROM subjects 
+        // Kiểm tra xem môn học đã tồn tại chưa
+        $sql_check = "SELECT * FROM mon_hoc 
                       WHERE grade=? AND subject_code=?";
         $stmt_check = $conn->prepare($sql_check);
         $stmt_check->execute([$grade, $course_code]);
         if ($stmt_check->rowCount() > 0) {
-           $em  = "The course is already exists";
+           $em  = "Môn học đã tồn tại";
            header("Location: ../course-add.php?error=$em");
            exit;
         }else {
           $sql  = "INSERT INTO
-                 subjects(grade, subject, subject_code)
+                 mon_hoc(grade, subject, subject_code)
                  VALUES(?,?,?)";
           $stmt = $conn->prepare($sql);
           $stmt->execute([$grade, $course_name, $course_code]);
-          $sm = "New course created successfully";
+          $sm = "Tạo mới môn học thành công";
           header("Location: ../course-add.php?success=$sm");
           exit;
         } 
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../course-add.php?error=$em");
     exit;
   }

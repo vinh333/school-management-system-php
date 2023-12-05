@@ -21,58 +21,58 @@ if (isset($_POST['course_name']) &&
     $data = 'course_id='.$course_id;
 
     if (empty($course_id)) {
-        $em  = "course id is required";
+        $em  = "ID môn học là bắt buộc";
         header("Location: ../course-edit.php?error=$em&$data");
         exit;
     }else if (empty($grade)) {
-        $em  = "Grade is required";
+        $em  = "Khối lớp là bắt buộc";
         header("Location: ../course-edit.php?error=$em&$data");
         exit;
     }else if (empty($course_name)) {
-        $em  = "Course name is required";
+        $em  = "Tên môn học là bắt buộc";
         header("Location: ../course-edit.php?error=$em&$data");
         exit;
     }else if (empty($course_code)) {
-        $em  = "Course code is required";
+        $em  = "Mã môn học là bắt buộc";
         header("Location: ../course-edit.php?error=$em&$data");
         exit;
     }else {
-        // check if the class already exists
-        $sql_check = "SELECT * FROM subjects 
+        // Kiểm tra xem môn học đã tồn tại chưa
+        $sql_check = "SELECT * FROM mon_hoc 
                       WHERE grade=? AND subject_code=?";
         $stmt_check = $conn->prepare($sql_check);
         $stmt_check->execute([$grade, $course_code]);
         if ($stmt_check->rowCount() > 0) {
               $courses = $stmt_check->fetch();
              if ($courses['id_mon_hoc'] == $course_id) {
-                $sql  = "UPDATE subjects SET subject=?, subject_code=?, grade=?
-                     WHERE subject_id=?";
+                $sql  = "UPDATE mon_hoc SET subject=?, subject_code=?, grade=?
+                     WHERE id_mon_hoc=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([$course_name, $course_code, $grade, $course_id]);
-                $sm = "Course updated successfully";
+                $sm = "Cập nhật môn học thành công";
                 header("Location: ../course-edit.php?success=$sm&$data");
                 exit;
 
              }else {
-                 $em  = "The course is already exists";
+                 $em  = "Môn học đã tồn tại";
                  header("Location: ../course-edit.php?error=$em&$data");
                  exit;
             }
            
         }else {
 
-            $sql  = "UPDATE subjects SET subject=?, subject_code=?, grade=?
-                     WHERE subject_id=?";
+            $sql  = "UPDATE mon_hoc SET subject=?, subject_code=?, grade=?
+                     WHERE id_mon_hoc=?";
             $stmt = $conn->prepare($sql);
             $stmt->execute([$course_name, $course_code, $grade, $course_id]);
-            $sm = "Course updated successfully";
+            $sm = "Cập nhật môn học thành công";
             header("Location: ../course-edit.php?success=$sm&$data");
             exit;
        }
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../course.php?error=$em");
     exit;
   }

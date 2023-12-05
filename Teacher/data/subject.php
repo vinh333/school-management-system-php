@@ -11,8 +11,8 @@ function getAllSubjects($conn){
    // Kiểm tra số lượng dòng kết quả trả về từ câu truy vấn
    if ($stmt->rowCount() >= 1) {
      // Nếu có ít nhất một môn học, lấy thông tin và trả về
-     $subjects = $stmt->fetchAll();
-     return $subjects;
+     $mon_hoc = $stmt->fetchAll();
+     return $mon_hoc;
    } else {
      // Nếu không có môn học nào, trả về giá trị 0
     return 0;
@@ -20,13 +20,13 @@ function getAllSubjects($conn){
 }
 
 // Hàm để lấy thông tin môn học dựa trên ID
-function getSubjectById($subject_id, $conn){
+function getSubjectById($id_mon_hoc, $conn){
    // Chuỗi SQL để truy vấn thông tin môn học từ cơ sở dữ liệu
    $sql = "SELECT * FROM mon_hoc
            WHERE id_mon_hoc=?";
    // Chuẩn bị và thực thi câu truy vấn SQL sử dụng PDO
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$subject_id]);
+   $stmt->execute([$id_mon_hoc]);
 
    // Kiểm tra số lượng dòng kết quả trả về từ câu truy vấn
    if ($stmt->rowCount() == 1) {
@@ -51,8 +51,8 @@ function getSubjectByClass($class, $conn){
    // Kiểm tra số lượng dòng kết quả trả về từ câu truy vấn
    if ($stmt->rowCount() > 0) {
      // Nếu có ít nhất một môn học, lấy thông tin và trả về
-     $subjects = $stmt->fetchAll();
-     return $subjects;
+     $mon_hoc = $stmt->fetchAll();
+     return $mon_hoc;
    } else {
      // Nếu không có môn học nào tương ứng, trả về giá trị 0
     return 0;

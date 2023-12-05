@@ -6,7 +6,8 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
        include "../DB_connection.php";
        include "data/student.php";
-       $students = getAllStudents($conn);
+       include "data/class.php";
+       $hoc_sinh = getAllStudents($conn);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +24,7 @@ if (isset($_SESSION['admin_id']) &&
 <body>
     <?php 
         include "inc/navbar.php";
-        if ($students != 0) {
+        if ($hoc_sinh != 0) {
      ?>
      <div class="container mt-5">
         <a href="student-add.php"
@@ -66,12 +67,12 @@ if (isset($_SESSION['admin_id']) &&
                     <th scope="col">Tên</th>
                     <th scope="col">Họ</th>
                     <th scope="col">Tên Đăng Nhập</th>
-                    <th scope="col">Khối</th>
+                    <th scope="col">Lớp</th>
                     <th scope="col">Hành Động</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $i = 0; foreach ($students as $student ) { 
+                  <?php $i = 0; foreach ($hoc_sinh as $student ) { 
                     $i++;  ?>
                   <tr>
                     <th scope="row"><?=$i?></th>
@@ -85,12 +86,10 @@ if (isset($_SESSION['admin_id']) &&
                     <td><?=$student['ten_dang_nhap']?></td>
                     <td>
                       <?php 
-                           $grade = $student['grade'];
-                           $g_temp = getGradeById($grade, $conn);
-                           if ($g_temp != 0) {
-                              echo $g_temp['grade_code'].'-'.
-                                     $g_temp['grade'];
-                            }
+                           
+                            $class = $student['id_lop'];
+                            $s = getClassById($class, $conn);
+                            echo $s['ten_lop'];
                         ?>
                     </td>
                     <td>

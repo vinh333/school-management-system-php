@@ -43,34 +43,34 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Tên Trường</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$setting['school_name']?>" 
-                 name="school_name">
+                 value="<?=$setting['ten_truong']?>" 
+                 name="ten_truong">
         </div>
         <div class="mb-3">
           <label class="form-label">Slogan</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$setting['slogan']?>" 
-                 name="slogan">
+                 value="<?=$setting['phat_ngon']?>" 
+                 name="phat_ngon">
         </div>
         <div class="mb-3">
                 <label class="form-label">Giới Thiệu</label>
-                <textarea class="form-control" name="about"
-                          rows="4"><?=$setting['about']?></textarea>
+                <textarea class="form-control" name="gioi_thieu"
+                          rows="4"><?=$setting['gioi_thieu']?></textarea>
         </div>
         <div class="mb-3">
           <label class="form-label">Năm Học Hiện Tại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$setting['hoc_ky']?>" 
-                 name="current_year">
+                 name="nam_hoc">
         </div>
         <div class="mb-3">
           <label class="form-label">Học Kỳ Hiện Tại</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$setting['nam_hoc']?>"
-                 name="current_semester">
+                 name="hoc_ky">
         </div>
       <button type="submit" 
               class="btn btn-primary">

@@ -15,15 +15,15 @@ function getAllScores($conn){
 }
 
 // Hàm để lấy điểm của sinh viên theo ID
-function getScoreById($id_hoc_sinh, $id_giao_vien, $subject_id, $semester, $year, $conn){
+function getScoreById($id_hoc_sinh, $id_giao_vien, $id_mon_hoc, $hoc_ky, $nam_hoc, $conn){
    $sql = "SELECT * FROM diem_hoc_sinh
            WHERE id_hoc_sinh=? AND id_giao_vien=? AND id_mon_hoc=? AND hoc_ky=? AND nam_hoc=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$id_hoc_sinh, $id_giao_vien, $subject_id, $semester, $year]);
+   $stmt->execute([$id_hoc_sinh, $id_giao_vien, $id_mon_hoc, $hoc_ky, $nam_hoc]);
 
    if ($stmt->rowCount() == 1) {
-     $student_score = $stmt->fetch();
-     return $student_score;
+     $diem_hoc_sinh = $stmt->fetch();
+     return $diem_hoc_sinh;
    } else {
     return 0;
    }

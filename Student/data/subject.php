@@ -1,25 +1,25 @@
 <?php 
 
 // Tất cả các Môn Học
-function getAllSubjects($conn){
-   $sql = "SELECT * FROM subjects";
+function getAllmon_hoc($conn){
+   $sql = "SELECT * FROM mon_hoc";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
 
    if ($stmt->rowCount() >= 1) {
-     $subjects = $stmt->fetchAll();
-     return $subjects;
+     $mon_hoc = $stmt->fetchAll();
+     return $mon_hoc;
    } else {
    	return 0;
    }
 }
 
 // Lấy Môn Học bằng ID
-function getSubjectById($subject_id, $conn){
-   $sql = "SELECT * FROM subjects
-           WHERE subject_id=?";
+function getSubjectById($id_mon_hoc, $conn){
+   $sql = "SELECT * FROM mon_hoc
+           WHERE id_mon_hoc=?";
    $stmt = $conn->prepare($sql);
-   $stmt->execute([$subject_id]);
+   $stmt->execute([$id_mon_hoc]);
 
    if ($stmt->rowCount() == 1) {
      $subject = $stmt->fetch();

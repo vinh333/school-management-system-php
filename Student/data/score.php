@@ -1,15 +1,15 @@
 <?php
 
-// Get student_score by ID
+// Get diem_hoc_sinh by ID
 function getScoreById($id_hoc_sinh, $conn){
-   $sql = "SELECT * FROM student_score
-           WHERE id_hoc_sinh=? ORDER BY year DESC";
+   $sql = "SELECT * FROM diem_hoc_sinh
+           WHERE id_hoc_sinh=? ORDER BY nam_hoc DESC";
    $stmt = $conn->prepare($sql);
    $stmt->execute([$id_hoc_sinh]);
 
    if ($stmt->rowCount() > 0) {
-     $student_scores = $stmt->fetchAll();
-     return $student_scores;
+     $diem_hoc_sinhs = $stmt->fetchAll();
+     return $diem_hoc_sinhs;
    }else {
     return 0;
    }

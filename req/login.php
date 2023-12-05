@@ -65,8 +65,8 @@ if (isset($_POST['uname']) &&
                         header("Location: ../Student/index.php");
                         exit;
                     } elseif ($role == 'Registrar Office') {
-                        $id = $user['r_user_id'];
-                        $_SESSION['r_user_id'] = $id;
+                        $id = $user['id_phong_cong_tac_hssv'];
+                        $_SESSION['id_phong_cong_tac_hssv'] = $id;
                         header("Location: ../RegistrarOffice/index.php");
                         exit;
                     } elseif ($role == 'Teacher') {

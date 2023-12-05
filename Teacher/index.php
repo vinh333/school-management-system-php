@@ -35,7 +35,7 @@ if (isset($_SESSION['id_giao_vien']) &&
          <div class="card" style="width: 22rem;">
           <img src="../img/teacher-<?=$teacher['gioi_tinh']?>.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-center">@<?=$teacher['ten_dang_nhap']?></h5>
+            <h5 class="card-title text-center"><?=$teacher['ten_dang_nhap']?></h5>
           </div>
           <ul class="list-group list-group-flush">
           <li class="list-group-item">Họ và tên: <?=$teacher['ho']?></li>
@@ -54,8 +54,8 @@ if (isset($_SESSION['id_giao_vien']) &&
             <li class="list-group-item">Môn giảng dạy: 
                 <?php 
                    $s = '';
-                   $subjects = str_split(trim($teacher['mon_hoc']));
-                   foreach ($subjects as $subject) {
+                   $mon_hoc = str_split(trim($teacher['mon_hoc']));
+                   foreach ($mon_hoc as $subject) {
                       $s_temp = getSubjectById($subject, $conn);
                       if ($s_temp != 0) 
                         $s .=$s_temp['ma_mon_hoc'].', ';

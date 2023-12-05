@@ -9,9 +9,10 @@ if (isset($_SESSION['admin_id']) &&
        include "../DB_connection.php";
        include "data/subject.php";
        include "data/student.php";
-       $subjects = getAllSubjects($conn);
-       $grades = getAllGrades($conn);
-       $sections = getAllsections($conn);
+       include "data/class.php";
+
+       $mon_hoc = getAllSubjects($conn);
+       $class = getAllClasses($conn);
        
        $id_hoc_sinh = $_GET['id_hoc_sinh'];
        $student = getStudentById($id_hoc_sinh, $conn);
@@ -75,34 +76,34 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Địa chỉ</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['address']?>"
-                 name="address">
+                 value="<?=$student['dia_chi']?>"
+                 name="dia_chi">
         </div>
         <div class="mb-3">
           <label class="form-label">Địa chỉ Email</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['email_address']?>"
-                 name="email_address">
+                 value="<?=$student['email']?>"
+                 name="email">
         </div>
         <div class="mb-3">
           <label class="form-label">Ngày sinh</label>
           <input type="date" 
                  class="form-control"
-                 value="<?=$student['date_of_birth']?>"
-                 name="date_of_birth">
+                 value="<?=$student['ngay_sinh']?>"
+                 name="ngay_sinh">
         </div>
         <div class="mb-3">
           <label class="form-label">Giới tính</label><br>
           <input type="radio"
                  value="Nam"
-                 <?php if($student['gender'] == 'Nam') echo 'checked';  ?> 
-                 name="gender"> Nam
+                 <?php if($student['gioi_tinh'] == 'Nam') echo 'checked';  ?> 
+                 name="gioi_tinh"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
           <input type="radio"
-                 value="Nữ"
-                 <?php if($student['gender'] == 'Nữ') echo 'checked';  ?> 
-                 name="gender"> Nữ
+                 value="Nu"
+                 <?php if($student['gioi_tinh'] == 'Nu') echo 'checked';  ?> 
+                 name="gioi_tinh"> Nữ
         </div>
 
         <div class="mb-3">
@@ -117,50 +118,27 @@ if (isset($_SESSION['admin_id']) &&
                 name="id_hoc_sinh"
                 hidden>
 
-        <div class="mb-3">
-          <label class="form-label">Khối</label>
-          <div class="row row-cols-5">
-            <?php 
-            $grade_ids = str_split(trim($student['grade']));
-            foreach ($grades as $grade){ 
-              $checked =0;
-              foreach ($grade_ids as $grade_id ) {
-                if ($grade_id == $grade['grade_id']) {
-                   $checked =1;
-                }
-              }
-            ?>
-            <div class="col">
-              <input type="radio"
-                     name="grade"
-                     <?php if($checked) echo "checked"; ?>
-                     value="<?=$grade['grade_id']?>">
-                     <?=$grade['grade_code']?>-<?=$grade['grade']?>
-            </div>
-            <?php } ?>
-             
-          </div>
-        </div>
+        
 
         <div class="mb-3">
-          <label class="form-label">Khối</label>
+          <label class="form-label">Lớp</label>
           <div class="row row-cols-5">
             <?php 
-            $section_ids = str_split(trim($student['section']));
-            foreach ($sections as $section){ 
+            $section_ids = str_split(trim($student['id_lop']));
+            foreach ($class as $section){ 
               $checked =0;
               foreach ($section_ids as $section_id ) {
-                if ($section_id == $section['section_id']) {
+                if ($section_id == $section['id_lop']) {
                    $checked =1;
                 }
               }
             ?>
             <div class="col">
               <input type="radio"
-                     name="section"
+                     name="lop"
                      <?php if($checked) echo "checked"; ?>
-                     value="<?=$section['section_id']?>">
-                     <?=$section['section']?>
+                     value="<?=$section['id_lop']?>">
+                     <?=$section['ten_lop']?>
             </div>
             <?php } ?>
              
@@ -172,22 +150,22 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Tên phụ huynh (bố/mẹ)</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['parent_ho']?>"
-                 name="parent_ho">
+                 value="<?=$student['ho_ten_cha']?>"
+                 name="ho_ten_cha">
         </div>
         <div class="mb-3">
           <label class="form-label">Họ phụ huynh (bố/mẹ)</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['parent_ten']?>"
-                 name="parent_ten">
+                 value="<?=$student['ho_ten_me']?>"
+                 name="ho_ten_me">
         </div>
         <div class="mb-3">
           <label class="form-label">Số điện thoại phụ huynh (bố/mẹ)</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$student['parent_phone_number']?>"
-                 name="parent_phone_number">
+                 value="<?=$student['so_dien_thoai_phu_huynh']?>"
+                 name="so_dien_thoai_phu_huynh">
         </div>
 
         
@@ -216,7 +194,7 @@ if (isset($_SESSION['admin_id']) &&
        <div class="mb-3">
             <div class="mb-3">
             <label class="form-label">Mật khẩu của Admin</label>
-                <input type="password" 
+                <input type="mat_khau" 
                        class="form-control"
                        name="admin_pass"> 
           </div>

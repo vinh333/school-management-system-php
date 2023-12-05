@@ -34,7 +34,7 @@ if (isset($_SESSION['admin_id']) &&
      ?>
      <div class="container mt-5">
          <div class="card" style="width: 22rem;">
-          <img src="../img/teacher-<?=$teacher['gender']?>.png" class="card-img-top" alt="...">
+          <img src="../img/teacher-<?=$teacher['gioi_tinh']?>.png" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title text-center">@<?=$teacher['ten_dang_nhap']?></h5>
           </div>
@@ -43,20 +43,20 @@ if (isset($_SESSION['admin_id']) &&
             <li class="list-group-item">Tên: <?=$teacher['ten']?></li>
             <li class="list-group-item">Tên Đăng Nhập: <?=$teacher['ten_dang_nhap']?></li>
 
-            <li class="list-group-item">Số Nhân Viên: <?=$teacher['employee_number']?></li>
-            <li class="list-group-item">Địa Chỉ: <?=$teacher['address']?></li>
-            <li class="list-group-item">Ngày Sinh: <?=$teacher['date_of_birth']?></li>
-            <li class="list-group-item">Số Điện Thoại: <?=$teacher['phone_number']?></li>
-            <li class="list-group-item">Trình Độ: <?=$teacher['qualification']?></li>
-            <li class="list-group-item">Email: <?=$teacher['email_address']?></li>
-            <li class="list-group-item">Giới Tính: <?=$teacher['gender']?></li>
-            <li class="list-group-item">Ngày Tham Gia: <?=$teacher['date_of_joined']?></li>
+            <li class="list-group-item">Số Nhân Viên: <?=$teacher['so_hieu_giao_vien']?></li>
+            <li class="list-group-item">Địa Chỉ: <?=$teacher['dia_chi']?></li>
+            <li class="list-group-item">Ngày Sinh: <?=$teacher['ngay_sinh']?></li>
+            <li class="list-group-item">Số Điện Thoại: <?=$teacher['so_dien_thoai']?></li>
+            <li class="list-group-item">Trình Độ: <?=$teacher['trinh_do']?></li>
+            <li class="list-group-item">Email: <?=$teacher['email']?></li>
+            <li class="list-group-item">Giới Tính: <?=$teacher['gioi_tinh']?></li>
+            <li class="list-group-item">Ngày Tham Gia: <?=$teacher['ngay_tham_gia']?></li>
 
             <li class="list-group-item">Môn Học: 
                 <?php 
                    $s = '';
-                   $subjects = str_split(trim($teacher['subjects']));
-                   foreach ($subjects as $subject) {
+                   $mon_hoc = str_split(trim($teacher['mon_hoc']));
+                   foreach ($mon_hoc as $subject) {
                       $s_temp = getSubjectById($subject, $conn);
                       if ($s_temp != 0) 
                         $s .=$s_temp['ten_mon_hoc'].', ';
@@ -67,16 +67,14 @@ if (isset($_SESSION['admin_id']) &&
             <li class="list-group-item">Lớp: 
                   <?php 
                      $c = '';
-                     $classes = str_split(trim($teacher['class']));
+                     $classes = str_split(trim($teacher['danh_sach_lop']));
 
                      foreach ($classes as $id_lop) {
                          $class = getClassById($id_lop, $conn);
 
-                        $c_temp = getGradeById($class['grade'], $conn);
-                        $section = getSectioById($class['section'], $conn);
-                        if ($c_temp != 0) 
-                          $c .=$c_temp['grade_code'].'-'.
-                               $c_temp['grade'].$section['section'].', ';
+                        
+                        if ($class != 0) 
+                          $c .=$class['ten_lop'].', ';
                      }
                      echo $c;
 

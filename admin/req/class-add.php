@@ -15,21 +15,21 @@ if (isset($_POST['grade']) &&
     $grade = $_POST['grade'];
 
   if (empty($section)) {
-		$em  = "Section is required";
+		$em  = "Tên lớp là bắt buộc";
 		header("Location: ../class-add.php?error=$em");
 		exit;
 	}else if (empty($grade)) {
-		$em  = "Grade is required";
+		$em  = "Khối lớp là bắt buộc";
 		header("Location: ../class-add.php?error=$em");
 		exit;
 	}else {
-        // check if the class already exists
-        $sql_check = "SELECT * FROM class 
+        // Kiểm tra xem lớp đã tồn tại chưa
+        $sql_check = "SELECT * FROM lop 
                       WHERE grade=? AND section=?";
         $stmt_check = $conn->prepare($sql_check);
         $stmt_check->execute([$grade, $section]);
         if ($stmt_check->rowCount() > 0) {
-           $em  = "The class already exists";
+           $em  = "Lớp đã tồn tại";
            header("Location: ../class-add.php?error=$em");
            exit;
         }else {
@@ -38,14 +38,14 @@ if (isset($_POST['grade']) &&
                  VALUES(?,?)";
           $stmt = $conn->prepare($sql);
           $stmt->execute([$grade, $section]);
-          $sm = "New class created successfully";
+          $sm = "Tạo lớp mới thành công";
           header("Location: ../class-add.php?success=$sm");
           exit;
         } 
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../class-add.php?error=$em");
     exit;
   }

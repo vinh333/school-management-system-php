@@ -6,60 +6,60 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
     	
 
-if (isset($_POST['school_name']) &&
-    isset($_POST['slogan']) &&
-    isset($_POST['about']) &&
+if (isset($_POST['ten_truong']) &&
+    isset($_POST['phat_ngon']) &&
+    isset($_POST['gioi_thieu']) &&
     isset($_POST['hoc_ky']) &&
     isset($_POST['nam_hoc'])) {
     
     include '../../DB_connection.php';
 
-    $school_name = $_POST['school_name'];
-    $slogan = $_POST['slogan'];
-    $about = $_POST['about'];
-    $current_year = $_POST['hoc_ky'];
-    $current_semester = $_POST['nam_hoc'];
+    $ten_truong = $_POST['ten_truong'];
+    $phat_ngon = $_POST['phat_ngon'];
+    $gioi_thieu = $_POST['gioi_thieu'];
+    $nam_hoc = $_POST['nam_hoc'];
+    $hoc_ky = $_POST['hoc_ky'];
 
    
 
-    if (empty($school_name)) {
-        $em  = "School name is required";
+    if (empty($ten_truong)) {
+        $em  = "Tên trường là bắt buộc";
         header("Location: ../settings.php?error=$em");
         exit;
-    }else if (empty($slogan)) {
-        $em  = "Slogan name is required";
+    }else if (empty($phat_ngon)) {
+        $em  = "Phát ngôn là bắt buộc";
         header("Location: ../settings.php?error=$em");
         exit;
-    }else if (empty($about)) {
-        $em  = "About name is required";
+    }else if (empty($gioi_thieu)) {
+        $em  = "Giới thiệu là bắt buộc";
         header("Location: ../settings.php?error=$em");
         exit;
-    }else if (empty($current_year)) {
-        $em  = "Current year name is required";
+    }else if (empty($nam_hoc)) {
+        $em  = "Năm học hiện tại là bắt buộc";
         header("Location: ../settings.php?error=$em");
         exit;
-    }else if (empty($current_semester)) {
-        $em  = "Current semester name is required";
+    }else if (empty($hoc_ky)) {
+        $em  = "Học kỳ hiện tại là bắt buộc";
         header("Location: ../settings.php?error=$em");
         exit;
     }else {
         $id = 1;
         $sql  = "UPDATE setting 
-                 SET current_year=?,
-                     current_semester=?,
-                     school_name=?,
-                     slogan=?,
-                     about=?
+                 SET nam_hoc=?,
+                     hoc_ky=?,
+                     ten_truong=?,
+                     phat_ngon=?,
+                     gioi_thieu=?
                  WHERE id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$current_year, $current_semester, $school_name, $slogan, $about, $id]);
-        $sm = "Settings updated successfully";
-        header("Location: ../settings.php?success=$sm&$data");
+        $stmt->execute([$nam_hoc, $hoc_ky, $ten_truong, $phat_ngon, $gioi_thieu, $id]);
+        $sm = "Cập nhật cài đặt thành công";
+        header("Location: ../settings.php?success=$sm");
         exit;
 	}
     
   }else {
-  	$em = "An error occurred";
+  	$em = "Đã xảy ra lỗi";
     header("Location: ../section.php?error=$em");
     exit;
   }
