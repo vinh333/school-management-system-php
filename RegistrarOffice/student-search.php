@@ -9,6 +9,7 @@ if (isset($_SESSION['id_phong_cong_tac_hssv']) &&
        $search_key = $_GET['searchKey'];
        include "../DB_connection.php";
        include "data/student.php";
+       include "data/class.php";
        $hoc_sinh = searchStudents($search_key, $conn);
  ?>
 <!DOCTYPE html>
@@ -90,11 +91,10 @@ if (isset($_SESSION['id_phong_cong_tac_hssv']) &&
                     <td><?=$student['ten_dang_nhap']?></td>
                     <td>
                       <?php 
-                           $grade = $student['grade'];
-                           $g_temp = getGradeById($grade, $conn);
+                           $class = $student['id_lop'];
+                           $g_temp = getClassById($class, $conn);
                            if ($g_temp != 0) {
-                              echo $g_temp['grade_code'].'-'.
-                                     $g_temp['grade'];
+                              echo $g_temp['ten_lop'];
                             }
                         ?>
                     </td>

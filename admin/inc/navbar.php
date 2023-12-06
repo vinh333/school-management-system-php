@@ -25,10 +25,10 @@
           <a class="nav-link" href="class.php">Lớp Học</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="registrar-office.php">Văn Phòng Đăng Ký</a>
+          <a class="nav-link" href="registrar-office.php">Phòng Công Tác Học Sinh</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="course.php">Khóa Học</a>
+          <a class="nav-link" href="course.php">Môn Học</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="message.php">Tin Nhắn</a>

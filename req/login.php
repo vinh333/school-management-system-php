@@ -38,7 +38,7 @@ if (isset($_POST['uname']) &&
                     WHERE ten_dang_nhap = ?";
             $role = "Student";
         } elseif ($role == '4') {
-            $sql = "SELECT * FROM phong_dang_ky 
+            $sql = "SELECT * FROM phong_cong_tac_hssv 
                     WHERE ten_dang_nhap = ?";
             $role = "Registrar Office";
         }

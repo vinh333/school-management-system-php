@@ -90,19 +90,7 @@ if (isset($_POST['ho'])      &&
                 ten_dang_nhap = ?, ho=?, ten=?, id_lop=?, dia_chi=?,gioi_tinh=?, email=?, ngay_sinh=?, ho_ten_cha=?,ho_ten_me=?,so_dien_thoai_phu_huynh=?
                 WHERE id_hoc_sinh=?";
         $stmt = $conn->prepare($sql);
-        echo "Username: $uname <br>";
-        echo "Họ: $ho <br>";
-        echo "Tên: $ten <br>";
-        echo "Lớp: $lop <br>";
-        echo "Địa chỉ: $dia_chi <br>";
-        echo "Giới tính: $gioi_tinh <br>";
-        echo "Email: $email <br>";
-        echo "Ngày sinh: $ngay_sinh <br>";
-        echo "Họ tên cha: $ho_ten_cha <br>";
-        echo "Họ tên mẹ: $ho_ten_me <br>";
-        echo "Số điện thoại phụ huynh: $so_dien_thoai_phu_huynh <br>";
-        echo "ID học sinh: $id_hoc_sinh";
-                $stmt->execute([$uname,$ho, $ten, $lop, $dia_chi, $gioi_tinh, $email, $ngay_sinh, $ho_ten_cha, $ho_ten_me,$so_dien_thoai_phu_huynh, $id_hoc_sinh]);
+        $stmt->execute([$uname,$ho, $ten, $lop, $dia_chi, $gioi_tinh, $email, $ngay_sinh, $ho_ten_cha, $ho_ten_me,$so_dien_thoai_phu_huynh, $id_hoc_sinh]);
         $sm = "successfully updated!";
         header("Location: ../student-edit.php?success=$sm&$data");
         exit;

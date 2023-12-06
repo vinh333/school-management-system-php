@@ -90,7 +90,7 @@ if (isset($_POST['ho']) &&
         $pass = password_hash($pass, PASSWORD_DEFAULT);
 
         $sql  = "INSERT INTO
-                 registrar_office(ten_dang_nhap, mat_khau, ho, ten, dia_chi, so_hieu_giao_vien, ngay_sinh, so_dien_thoai, trinh_do, gioi_tinh, email)
+                 phong_cong_tac_hssv(ten_dang_nhap, mat_khau, ho, ten, dia_chi, so_nhan_vien, ngay_sinh, so_dien_thoai, trinh_do, gioi_tinh, email)
                  VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$uname, $pass, $ho, $ten, $dia_chi, $so_hieu_giao_vien, $ngay_sinh, $so_dien_thoai, $trinh_do, $gioi_tinh, $email]);

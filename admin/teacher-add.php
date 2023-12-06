@@ -174,8 +174,7 @@ if (isset($_SESSION['admin_id']) &&
                      name="classes[]"
                      value="<?=$class['id_lop']?>">
                      <?php 
-                        // $grade = getGradeById($class['grade'], $conn); 
-                        // $section = getSectioById($class['section'], $conn); 
+                  
                       ?>
                      <?=$class['ten_lop']?>
             </div>

@@ -67,7 +67,7 @@ if (isset($_SESSION['admin_id']) &&
         </div>
         <div class="mb-3">
           <label class="form-label">Số nhân viên</label>
-          <input type="text" class="form-control" value="<?=$r_user['so_hieu_giao_vien']?>" name="so_hieu_giao_vien">
+          <input type="text" class="form-control" value="<?=$r_user['so_nhan_vien']?>" name="so_hieu_giao_vien">
         </div>
         <div class="mb-3">
           <label class="form-label">Ngày sinh</label>
@@ -89,7 +89,7 @@ if (isset($_SESSION['admin_id']) &&
           <label class="form-label">Giới tính</label><br>
           <input type="radio" value="Nam" <?php if($r_user['gioi_tinh'] == 'Nam') echo 'checked';  ?> name="gioi_tinh"> Nam
                  &nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="radio" value="Nu" <?php if($r_user['gioi_tinh'] == 'Nữ') echo 'checked';  ?> name="gioi_tinh"> Nữ
+          <input type="radio" value="Nu" <?php if($r_user['gioi_tinh'] == 'Nu') echo 'checked';  ?> name="gioi_tinh"> Nữ
         </div>
         <input type="text" value="<?=$r_user['id_phong_cong_tac_hssv']?>" name="id_phong_cong_tac_hssv" hidden>
 

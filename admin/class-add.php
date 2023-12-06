@@ -5,10 +5,8 @@ if (isset($_SESSION['admin_id']) &&
 
     if ($_SESSION['role'] == 'Admin') {
        include '../DB_connection.php';
-       include 'data/grade.php';
-       include 'data/section.php';
-       $grades = getAllGrades($conn);
-       $sections = getAllSections($conn);
+       include 'data/class.php';
+       $class = getAllClasses($conn);
 
  ?>
 <!DOCTYPE html>
@@ -26,7 +24,7 @@ if (isset($_SESSION['admin_id']) &&
 <body>
     <?php 
         include "inc/navbar.php";
-        if ($sections == 0 || $grades == 0) { ?>
+        if ($class == 0 ) { ?>
            
           <div class="alert alert-info" role="alert">
            Trước tiên, hãy tạo khối và lớp học
@@ -53,27 +51,18 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">Khối</label>
-          <select name="grade"
-                  class="form-control" >
-                  <?php foreach ($grades as $grade) { ?>
-                    <option value="<?=$grade['grade_id']?>">
-                       <?=$grade['grade_code'].'-'.$grade['grade']?>
-                    </option> 
-                  <?php } ?>
-                  
-          </select>
+          <label class="form-label">Mã lớp</label>
+          <input type="text" 
+                 class="form-control"
+                
+                 name="id_lop">
         </div>
         <div class="mb-3">
-          <label class="form-label">Lớp</label>
-          <select name="section"
-                  class="form-control" >
-                  <?php foreach ($sections as $section) { ?>
-                    <option value="<?=$section['section_id']?>">
-                       <?=$section['section']?>
-                    </option> 
-                  <?php } ?> 
-          </select>
+          <label class="form-label">Tên lớp</label>
+          <input type="text" 
+                 class="form-control"
+                 
+                 name="ten_lop">
         </div>
       <button type="submit" class="btn btn-primary">Tạo</button>
      </form>

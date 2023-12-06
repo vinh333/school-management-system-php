@@ -10,8 +10,7 @@ if (isset($_SESSION['admin_id']) &&
        include "data/class.php";
 
        $class = getClassById($_GET['id_lop'], $conn);
-       $grades = getAllGrades($conn);
-       $sections = getAllSections($conn);
+
        
        if ($class == 0) {
          header("Location: class.php");
@@ -53,39 +52,18 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">Khối</label>
-          <select name="grade"
-                  class="form-control" >
-                  <?php foreach ($grades as $grade) { 
-                     $selected = 0;
-                     if ($grade['grade_id'] == $class['grade'] ) {
-                       $selected = 1;
-                     }
-                  ?>
-
-                    <option  value="<?=$grade['grade_id']?>"
-                          <?php if ($selected) echo "selected"; ?> >
-                       <?=$grade['grade_code'].'-'.$grade['grade']?>
-                    </option> 
-                  <?php } ?>
-                  
-          </select>
+          <label class="form-label">Mã lớp</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$class['id_lop']?>"
+                 name="id_lop">
         </div>
         <div class="mb-3">
-          <label class="form-label">Khối</label>
-          <select name="section"
-                  class="form-control" >
-                  <?php foreach ($sections as $section) {
-                    $selected = 0;
-                    if ($section['section_id'] == $class['section'] ) {
-                       $selected = 1;
-                     }
-                   ?>
-                    <option value="<?=$section['section_id']?>" <?php if ($selected) echo "selected"; ?> >
-                       <?=$section['section']?>
-                    </option> 
-                  <?php } ?> 
-          </select>
+          <label class="form-label">Tên lớp</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$class['ten_lop']?>"
+                 name="ten_lop">
         </div>
         <input type="text" 
                  class="form-control"

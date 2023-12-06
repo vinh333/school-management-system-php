@@ -6,9 +6,10 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
       
        include "../DB_connection.php";
-       $grades = getAllGrades($conn);
-       $sections = getAllSections($conn);
+       include "data/class.php";
 
+       $classes = getAllClasses($conn);
+   
 
        $ho = '';
        $ten = '';
@@ -149,29 +150,19 @@ if (isset($_SESSION['admin_id']) &&
                  value="<?=$ppn?>"
                  name="so_dien_thoai_phu_huynh">
         </div><br><hr>
-        <div class="mb-3">
-          <label class="form-label">Khối</label>
-          <div class="row row-cols-5">
-            <?php foreach ($grades as $grade): ?>
-            <div class="col">
-              <input type="radio"
-                     name="grade"
-                     value="<?=$grade['grade_id']?>">
-                     <?=$grade['grade_code']?>-<?=$grade['grade']?>
-            </div>
-            <?php endforeach ?>
-             
-          </div>
-        </div>
+        
         <div class="mb-3">
           <label class="form-label">Lớp</label>
           <div class="row row-cols-5">
-            <?php foreach ($sections as $section): ?>
+            <?php foreach ($classes as $class): ?>
             <div class="col">
-              <input type="radio"
-                     name="section"
-                     value="<?=$section['section_id']?>">
-                     <?=$section['section']?>
+              <input type="checkbox"
+                     name="classes[]"
+                     value="<?=$class['id_lop']?>">
+                     <?php 
+                  
+                      ?>
+                     <?=$class['ten_lop']?>
             </div>
             <?php endforeach ?>
              

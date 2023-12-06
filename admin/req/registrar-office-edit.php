@@ -83,9 +83,9 @@ if (isset($_POST['ho'])      &&
         header("Location: ../registrar-office-edit.php?error=$em&$data");
         exit;
     }else {
-        $sql = "UPDATE registrar_office SET
+        $sql = "UPDATE phong_cong_tac_hssv SET
                 ten_dang_nhap = ?, ho=?, ten=?,
-                dia_chi = ?, so_hieu_giao_vien=?, ngay_sinh = ?, so_dien_thoai = ?, trinh_do = ?,gioi_tinh=?, email = ?
+                dia_chi = ?, so_nhan_vien=?, ngay_sinh = ?, so_dien_thoai = ?, trinh_do = ?,gioi_tinh=?, email = ?
                 WHERE id_phong_cong_tac_hssv=?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$uname, $ho, $ten, $dia_chi, $so_hieu_giao_vien, $ngay_sinh, $so_dien_thoai, $trinh_do, $gioi_tinh, $email, $id_phong_cong_tac_hssv]);

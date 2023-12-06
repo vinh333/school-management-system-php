@@ -49,9 +49,9 @@ if (isset($_SESSION['admin_id']) &&
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Khóa Học</th>
-                    <th scope="col">Mã Khóa Học</th>
-                    <th scope="col">Khối Điểm</th>
+                    <th scope="col">Môn Học</th>
+                    <th scope="col">Tên Môn Học</th>
+                    <th scope="col">Viết tắt</th>
                   </tr>
                 </thead>
                 <tbody>

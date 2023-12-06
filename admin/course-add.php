@@ -5,8 +5,8 @@ if (isset($_SESSION['admin_id']) &&
 
     if ($_SESSION['role'] == 'Admin') {
       include '../DB_connection.php';
-      include 'data/grade.php';
-      $grades = getAllGrades($conn);
+      include 'data/class.php';
+      $class = getAllClasses($conn);
 
  ?>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ if (isset($_SESSION['admin_id']) &&
      <div class="container mt-5">
         <a href="course.php"
            class="btn btn-dark">Quay Lại</a> <br><br>
-        <?php if ($grades == 0) { ?>
+        <?php if ($class == 0) { ?>
           <div class="alert alert-info" role="alert">
            Hãy tạo khối trước.
           </div>
@@ -49,31 +49,25 @@ if (isset($_SESSION['admin_id']) &&
            <?=$_GET['success']?>
           </div>
         <?php } ?>
-        
+        <div class="mb-3">
+          <label class="form-label">Id Môn Học</label>
+          <input type="text" 
+                 class="form-control"
+                 name="id_mon_hoc">
+        </div>
         <div class="mb-3">
           <label class="form-label">Tên Môn Học</label>
           <input type="text" 
                  class="form-control"
-                 name="course_name">
+                 name="ten_mon_hoc">
         </div>
         <div class="mb-3">
-          <label class="form-label">Mã Môn Học</label>
+          <label class="form-label">Tên Viết Tắt Môn Học</label>
           <input type="text" 
                  class="form-control"
-                 name="course_code">
+                 name="ma_mon_hoc">
         </div>
-        <div class="mb-3">
-          <label class="form-label">Khối</label>
-          <select name="grade"
-                  class="form-control" >
-                  <?php foreach ($grades as $grade) { ?>
-                    <option value="<?=$grade['grade_id']?>">
-                       <?=$grade['grade_code'].'-'.$grade['grade']?>
-                    </option> 
-                  <?php } ?>
-                  
-          </select>
-        </div>
+        
       <button type="submit" class="btn btn-primary">Tạo Mới</button>
      </form>
      </div>

@@ -7,6 +7,7 @@ if (isset($_SESSION['id_phong_cong_tac_hssv']) &&
        include "../DB_connection.php";
        include "data/student.php";
        include "data/subject.php";
+       include "data/class.php";
 
        if(isset($_GET['id_hoc_sinh'])){
 
@@ -46,18 +47,12 @@ if (isset($_SESSION['id_phong_cong_tac_hssv']) &&
             <li class="list-group-item">Giới tính: <?=$student['gioi_tinh']?></li>
             <li class="list-group-item">Ngày tham gia: <?=$student['ngay_tham_gia']?></li>
 
-            <li class="list-group-item">Khối: 
-                 <?php 
-                      $grade = $student['grade'];
-                      $g = getGradeById($grade, $conn);
-                      echo $g['grade_code'].'-'.$g['grade'];
-                  ?>
-            </li>
+           
             <li class="list-group-item">Lớp: 
                  <?php 
-                    $section = $student['section'];
-                    $s = getSectioById($section, $conn);
-                    echo $s['section'];
+                    $class = $student['id_lop'];
+                    $s = getClassById($class, $conn);
+                    echo $s['ten_lop'];
                   ?>
             </li>
             <br><br>

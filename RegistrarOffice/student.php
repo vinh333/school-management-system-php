@@ -1,11 +1,13 @@
 <?php 
 session_start();
-if (isset($_SESSION['id_giao_vien']) && 
+if (isset($_SESSION['id_phong_cong_tac_hssv']) && 
     isset($_SESSION['role'])) {
 
     if ($_SESSION['role'] == 'Registrar Office') {
        include "../DB_connection.php";
        include "data/student.php";
+       include "data/class.php";
+
        $hoc_sinh = getAllStudents($conn);
  ?>
 <!DOCTYPE html>
@@ -67,7 +69,7 @@ if (isset($_SESSION['id_giao_vien']) &&
                     <th scope="col">Tên</th>
                     <th scope="col">Họ</th>
                     <th scope="col">Tên đăng nhập</th>
-                    <th scope="col">Khối</th>
+                    <th scope="col">Lớp</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,11 +87,10 @@ if (isset($_SESSION['id_giao_vien']) &&
                     <td><?=$student['ten_dang_nhap']?></td>
                     <td>
                       <?php 
-                           $grade = $student['grade'];
-                           $g_temp = getGradeById($grade, $conn);
+                           $class = $student['id_lop'];
+                           $g_temp = getClassById($class, $conn);
                            if ($g_temp != 0) {
-                              echo $g_temp['grade_code'].'-'.
-                                     $g_temp['grade'];
+                              echo $g_temp['ten_lop'];
                             }
                         ?>
                     </td>

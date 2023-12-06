@@ -6,44 +6,44 @@ if (isset($_SESSION['admin_id']) &&
     if ($_SESSION['role'] == 'Admin') {
     	
 
-if (isset($_POST['course_name']) &&
-    isset($_POST['course_code']) && 
-    isset($_POST['grade'])) {
+if (isset($_POST['id_mon_hoc']) &&
+    isset($_POST['ma_mon_hoc']) && 
+    isset($_POST['ten_mon_hoc'])) {
     
     include '../../DB_connection.php';
 
-    $course_name = $_POST['course_name'];
-    $course_code = $_POST['course_code'];
-    $grade = $_POST['grade'];
+    $id_mon_hoc = $_POST['id_mon_hoc'];
+    $ma_mon_hoc = $_POST['ma_mon_hoc'];
+    $ten_mon_hoc = $_POST['ten_mon_hoc'];
 
-  if (empty($course_name)) {
-		$em  = "Tên môn học là bắt buộc";
+  if (empty($id_mon_hoc)) {
+		$em  = "id môn học là bắt buộc";
 		header("Location: ../course-add.php?error=$em");
 		exit;
-	}else if(empty($course_code)) {
+	}else if(empty($ma_mon_hoc)) {
     $em  = "Mã môn học là bắt buộc";
     header("Location: ../course-add.php?error=$em");
     exit;
-  }else if (empty($grade)) {
-		$em  = "Khối lớp là bắt buộc";
+  }else if (empty($ten_mon_hoc)) {
+		$em  = "Tên lớp là bắt buộc";
 		header("Location: ../course-add.php?error=$em");
 		exit;
 	}else {
         // Kiểm tra xem môn học đã tồn tại chưa
         $sql_check = "SELECT * FROM mon_hoc 
-                      WHERE grade=? AND subject_code=?";
+                      WHERE id_mon_hoc=? ";
         $stmt_check = $conn->prepare($sql_check);
-        $stmt_check->execute([$grade, $course_code]);
+        $stmt_check->execute([$id_mon_hoc]);
         if ($stmt_check->rowCount() > 0) {
            $em  = "Môn học đã tồn tại";
            header("Location: ../course-add.php?error=$em");
            exit;
         }else {
           $sql  = "INSERT INTO
-                 mon_hoc(grade, subject, subject_code)
+                 mon_hoc(id_mon_hoc, ten_mon_hoc, ma_mon_hoc)
                  VALUES(?,?,?)";
           $stmt = $conn->prepare($sql);
-          $stmt->execute([$grade, $course_name, $course_code]);
+          $stmt->execute([$id_mon_hoc, $ten_mon_hoc, $ma_mon_hoc]);
           $sm = "Tạo mới môn học thành công";
           header("Location: ../course-add.php?success=$sm");
           exit;

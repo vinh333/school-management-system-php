@@ -8,9 +8,11 @@ if (isset($_SESSION['admin_id']) &&
       
        include "../DB_connection.php";
        include "data/subject.php";
+      
+
        $course_id = $_GET['course_id'];
        $course = getSubjectById($course_id, $conn);
-       $grades = getAllGrades($conn);
+       $subject = getAllSubjects($conn);
 
        if ($course == 0) {
          header("Location: section.php");
@@ -54,38 +56,27 @@ if (isset($_SESSION['admin_id']) &&
           </div>
         <?php } ?>
         <div class="mb-3">
-          <label class="form-label">Tên Khóa Học</label>
+          <label class="form-label">Mã Môn Học</label>
           <input type="text" 
                  class="form-control"
-                 value="<?=$course['subject']?>" 
-                 name="course_name">
+                 value="<?=$course['id_mon_hoc']?>" 
+                 name="id_mon_hoc">
         </div>
         <div class="mb-3">
-          <label class="form-label">Mã Khóa Học</label>
+          <label class="form-label">Tên Môn Học</label>
           <input type="text" 
                  class="form-control"
                  value="<?=$course['ten_mon_hoc']?>" 
-                 name="course_code">
+                 name="ten_mon_hoc">
         </div>
         <div class="mb-3">
-          <label class="form-label">Khối Điểm</label>
-          <select name="grade"
-                  class="form-control" >
-                  <?php foreach ($grades as $grade) { 
-                     $selected = 0;
-                     if ($grade['grade_id'] == $course['grade'] ) {
-                       $selected = 1;
-                     }
-                  ?>
-
-                    <option  value="<?=$grade['grade_id']?>"
-                          <?php if ($selected) echo "selected"; ?> >
-                       <?=$grade['grade_code'].'-'.$grade['grade']?>
-                    </option> 
-                  <?php } ?>
-                  
-          </select>
+          <label class="form-label">Tên Viết Tắt Môn Học</label>
+          <input type="text" 
+                 class="form-control"
+                 value="<?=$course['ma_mon_hoc']?>" 
+                 name="ma_mon_hoc">
         </div>
+        
         <input type="text" 
                  class="form-control"
                  value="<?=$course['id_mon_hoc']?>"
