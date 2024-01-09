@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập - Trường Y</title>
+    <title>Đăng nhập - Trường Cao Đẳng Kinh Tế - Kỹ Thuật Cần Thơ </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="logo.png">
@@ -56,7 +56,7 @@
         
         <br /><br />
         <div class="text-center text-light">
-            Bản quyền &copy; 2022 Trường Y. Đã đăng ký bản quyền.
+            Bản quyền &copy; 2023 Trường Cao Đẳng Kinh Tế - Kỹ Thuật Cần Thơ. Đã đăng ký bản quyền.
         </div>
 
         </div>
