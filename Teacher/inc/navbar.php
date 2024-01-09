@@ -11,7 +11,7 @@
         <li class="nav-item">
           <a class="nav-link" 
              aria-current="page" 
-             href="index.php">Dashboard</a>
+             href="index.php">Bảng điều khiển</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="classes.php">Lớp học</a>

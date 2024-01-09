@@ -141,10 +141,17 @@ if (isset($_SESSION['id_giao_vien']) &&
      ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>	
     <script>
-        $(document).ready(function(){
-             $("#navLinks li:nth-child(4) a").addClass('active');
-        });
-    </script>
+  $(document).ready(function(){
+      // Kiểm tra đường dẫn hiện tại để xác định mục nào đang được chọn
+      var currentPath = window.location.pathname;
+      if (currentPath.includes("student")) {
+          // Nếu đang ở trang liên quan đến "Điểm học sinh", thêm class 'active'
+          $("#navLinks li:nth-child(4) a").addClass('active');
+      }
+  });
+</script>
+
+
 </body>
 </html>
 <?php 

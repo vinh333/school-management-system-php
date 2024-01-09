@@ -21,13 +21,13 @@ if (isset($_SESSION['admin_id']) &&
       content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Admin</title>
     <!-- Favicon icon -->
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="assets/images/favicon.png"
+      href="../logo.png"
     />
     <!-- Custom CSS -->
     <link
