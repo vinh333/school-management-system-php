@@ -1,0 +1,106 @@
+/* Add here all your CSS customizations */
+.footer-copyright p a {
+    color: #fff;
+}
+.footer-copyright p a:hover {
+    color: #222;
+    font-weight:bold;
+}
+
+.count-block h5 {
+    font-size: 20px;
+    font-weight:bold;
+}
+
+.blog-single-details h4 {
+    font-size: 22px;
+    font-weight: 400;
+    padding: 20px 0px 0px 0px;
+    border-radius: 5px;
+    color:#044e99;
+    text-align: justify;
+    line-height: 30px;
+}
+.blog-single-details p img {
+    max-width: 100%;
+}
+.chien-luoc-phat-trien {
+    height: 610px;
+}
+.chien-luoc-phat-trien .course-content h5 {
+    text-align: justify;
+    padding-top: 10px;
+}
+.chien-luoc-phat-trien .course-content p {
+    text-align: justify;
+}
+
+.bg-blue {
+    background: #2196f3 !important;
+}
+#bieu-mau {
+    padding: 20px 40px;
+}
+#bieu-mau ul {
+    list-style-type: square;
+    padding-left: 50px;
+}
+
+#bieu-mau ul li{
+    line-height: 25px;
+}
+
+.blog-img-wrap {
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog-details h5 {
+    font-size: 17px;
+    font-weight: 500;
+    height: 70px;
+    line-height: 22px;
+    overflow: hidden;
+}
+
+.blog-details .mo_ta {
+    height: 178px;
+    overflow: hidden;
+}
+
+.thong-tin .blog-wrap {
+    margin-top: 20px;
+}
+.m-t-30 {
+    margin-top: 30px;
+}
+
+#calendar{
+    min-height:200px;
+    text-align: center;
+}
+.loading {
+    font-size: 13px;
+    color:#fff;
+    margin:auto;
+    padding: 5px;
+    /*position: relative;
+    top: 30px;
+    left: 500px;*/
+    z-index: 1;
+    margin-left:16px;
+}
+
+.text-label {
+    font-weight: 300;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.p-t-18 {
+    padding-top: 18px;
+}
+
+#frame_pdf {
+    width: 100%;
+    height: 90vh;
+}
